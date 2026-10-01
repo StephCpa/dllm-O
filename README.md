@@ -14,7 +14,8 @@ and order freedom in diffusion language models.
 - `scripts/`: analysis scripts used to regenerate reported CPU summaries.
 - `src/` and `tests/`: the auditable analysis and runner package plus tests.
 - `CURRENT_PROGRESS.md`: current experimental and writing status.
-- `REFERENCE_AUDIT.md`: citation-format and source-verification notes.
+- `paper/REFERENCE_AUDIT.md`: citation-format and source-verification notes.
+- `paper/REVISION_NOTES_20261001.md`: changes in the current manuscript revision.
 
 ## Rebuild the manuscript
 

@@ -32,10 +32,17 @@ Last updated: 2026-10-01
   universal policy-ranking law.
 - The main text ends within the ACL review-style page budget in the current
   build; references and appendix material follow it.
-- Figure 1 uses a mechanism-first schematic. An empirical Figure 1(b)
+- Figure 1 is a vector schematic drawn by `paper/figures/fig1_overview.py`.
+  Panel (a) shows one committed token per NFE under every schedule; panel (b)
+  is an explicitly non-empirical crossing sketch. An empirical Figure 1(b)
   candidate is included in `paper/figures/` for comparison only and is not
   wired into the manuscript because its curves overlap conceptually with the
   full empirical Figure 3.
+- The 2026-10-01 revision (`paper/REVISION_NOTES_20261001.md`) checked every
+  manuscript number against the reports. It reports the frozen trend
+  endpoint, states the temperature result as a frozen non-replication,
+  redraws Figures 2--5 at column width, and adds the temperature diagnostics
+  to Appendix F.
 - The current narrative avoids claiming that confidence-first is universally
   invariant to temperature, that exploratory selection improves coverage, or
   that one aggregate metric is sufficient without conditioning on budget and
@@ -45,9 +52,9 @@ Last updated: 2026-10-01
 
 1. Decide whether Figure 1(b) should remain conceptual or use the optional
    empirical teaser after a final-size comparison.
-2. Complete the ACL/ARR prose pass, especially the contribution claims,
-   evidence-tier labels, limitations, and the distinction between confirmatory
-   and post-outcome exploratory analyses.
+2. Review the 2026-10-01 revision. In particular, confirm the updated AI Use
+   Statement, and respond to any external reviewer comments that arrived after
+   the pre-review audit.
 3. Recheck references, anonymization, artifact links, and the target venue's
    current submission requirements before uploading.
 

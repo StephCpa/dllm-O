@@ -49,6 +49,13 @@ only in the appendix.
 
 ## 3. What is still blocked by missing query-level artifacts
 
+> **Status update (2026-10-01):** the query-level artifacts were recovered,
+> and these analyses were run as post-outcome exploratory diagnostics in
+> `query_level_exploratory_audits_20261001/`. The per-query effect
+> distribution, leave-one-query-out influence, moment-based dispersion
+> diagnostic, paired majority-vote intervals, and same-policy A/A split are
+> all reported there. The list below is kept as the original record.
+
 The committed report directory contains aggregate point estimates and intervals,
 but not the query-by-policy count vectors needed to recompute:
 

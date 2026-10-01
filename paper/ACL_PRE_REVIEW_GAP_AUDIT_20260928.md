@@ -19,6 +19,19 @@ $k=1$ but no resolved advantage at $k\geq16$, and near-zero same-policy A/A
 split differences. These are exploratory diagnostics; they narrow the
 statistical objections but do not create new confirmatory endpoints.
 
+Status update: 2026-10-01 (manuscript revision; see
+`REVISION_NOTES_20261001.md`). Figure 1 was redrawn as a vector schematic in
+which every schedule commits one token per NFE, which resolves the panel (a)
+objection under "What remains unresolved", item 4. Panel (b) remains
+conceptual, but it now has no data-like markers and is labelled as
+illustrative. Figure 2 now plots changes relative to $B=1$ on a $\log_2 B$
+axis with the unmeasured $B=2,4$ region drawn explicitly (item 5). Figure 3
+shows the seven-endpoint simultaneous band alongside the pointwise band
+(item 6). The frozen trend endpoint, the descriptive $T=0.6$ reference under
+the temperature functional, the paired majority-vote intervals at $k=1$, and
+the majority-vote deployment sentence are now in the main text. Item 7
+(Figure 4 uncertainty and a per-query distribution view) remains open.
+
 ## What the current draft has fixed
 
 1. **NFE-matched intervention is explicit.** The manuscript now states that every condition commits one token per NFE, so `B` is eligible-set width rather than simultaneous multi-token commitment or a throughput claim.

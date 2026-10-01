@@ -36,7 +36,7 @@
 \maketitle
 
 \begin{abstract}
-Masked diffusion language models make the choice of which masked position to commit next part of the decoding policy. We study how this order freedom changes the returns to repeated sampling on mathematical reasoning. All tested schedules use 256 neural function evaluations and commit exactly one token after each; the block parameter $B$ changes only the set of eligible positions. In a prospectively frozen intervention on one diffusion language model and two tasks, the signed difference in mean Pass@$k$ over $k\in\{4,8,16,32,64\}$ between confidence-first $B=32$ and sequential $B=1$ is $-0.044$ (95\% CI $[-0.070,-0.020]$), with no resolved loss at $k=1$. A targeted prospective extension, selected after an initial crossing was observed, finds a pooled high-budget random-minus-confidence difference of $+0.038$ (95\% CI $[+0.003,+0.074]$) at temperature $0.6$. A second prospective temperature extension finds that this reversal is temperature-dependent and reverses at $T=1.2$: the high-budget contrast is $+0.013$ at $T=0.9$ (simultaneous 95\% CI $[-0.047,+0.073]$) and $-0.196$ at $T=1.2$ (simultaneous 95\% CI $[-0.256,-0.136]$). Exploratory trace diagnostics find comparatively low selected-position entropy for confidence-first across the tested grid; this is mechanism-consistent evidence rather than a causal explanation. These results make both sampling budget and temperature part of the policy estimand; conclusions are limited to one model, two reasoning tasks, fixed compute, and oracle coverage.
+Masked diffusion language models make the choice of which masked position to commit next part of the decoding policy. We study how this order freedom changes the returns to repeated sampling on mathematical reasoning. All schedules use 256 neural function evaluations and commit exactly one token after each; the block parameter $B$ changes only which positions are eligible. In a prospectively frozen intervention on one model and two tasks, confidence-first $B=32$ minus sequential $B=1$ in mean Pass@$k$ over $k\in\{4,8,16,32,64\}$ is $\OptionBPoint$ (95\% CI $[\OptionBLow,\OptionBHigh]$), with no resolved loss at $k=1$. A targeted extension, selected after an initial crossing but frozen before its new outcomes, finds a random-minus-confidence difference over $k\in\{16,32,64\}$ of $\RandomPrimaryPoint$ (95\% CI $[\RandomPrimaryLow,\RandomPrimaryHigh]$) at temperature $0.6$, opposite in sign to the $k=1$ contrast. A second frozen extension does not replicate this reversal: the high-budget contrast (mean over $k\in\{16,32\}$) is $\TempNineHighPoint$ at $T=0.9$ (simultaneous 95\% CI $[\TempNineHighLower,\TempNineHighUpper]$) and $\TempTwelveHighPoint$ at $T=1.2$ ($[\TempTwelveHighLower,\TempTwelveHighUpper]$), where confidence-first coverage stays comparatively stable. Exploratory traces show that confidence-first keeps committing low-entropy positions, a mechanism-consistent but not causal finding. Sampling budget and temperature are thus part of the decoding-policy estimand; conclusions are limited to one model, two reasoning tasks, fixed compute, and oracle coverage.
 \end{abstract}
 
 \section{Introduction}
@@ -50,17 +50,17 @@ We isolate two scheduling axes in a frozen model and evaluation pipeline: the el
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\linewidth]{figures/fig1_overview.pdf}
-  \caption{The decision studied in this paper. (a) In the evaluated implementation, every schedule commits one token per NFE. At $B=1$ the eligible position is fixed; at $B>1$ the policy chooses the next position from a wider active block. Multiple highlighted positions schematically illustrate the order accumulated within a block, not simultaneous commitment in one NFE. (b) A conceptual policy crossing illustrates why the preferred decoder can depend on sampling budget; values are not empirical.}
+  \caption{The decision studied in this paper. (a) Three successive NFEs of the evaluated implementation, which commits exactly one token per NFE under every schedule. At $B=1$ the only eligible position is the next one, so the ranking rule is inert; at $B>1$ every masked position in the active block is eligible, and the ranking rule (CF, RND, or EF) chooses which one to commit. (b) A conceptual sketch of why the preferred decoder can depend on sampling budget; it contains no data (empirical frontiers: Figures~\ref{fig:frontier} and~\ref{fig:temperature}).}
   \label{fig:overview}
 \end{figure*}
 
-Our findings are deliberately narrower than a universal claim about parallel decoding. First, a prospectively frozen block-size intervention finds lower multi-sample coverage at $B=32$ than at $B=1$ on both tasks under matched NFE. The only resolved adjacent contrast on the tested grid is $B=1\rightarrow8$; because $B=2,4$ were not tested, this does not distinguish an immediate onset of order choice from gradual change inside that interval. Second, a targeted prospective extension, selected after an initial crossing was observed but frozen before 9,600 new generations were evaluated, estimates a pooled rank reversal between confidence-first and random position selection as $k$ grows at $T=0.6$. Third, the temperature extension, selected after review and frozen before 38,400 new generations were evaluated, does not resolve the same reversal at $T=0.9$ and resolves the high-budget contrast in the opposite direction at $T=1.2$. Fourth, an entropy-first intervention increases commitment-time uncertainty and parsed-answer diversity without improving the frozen aggregate coverage endpoint. Together, these results motivate an estimand lesson: a weighted summary over $k$ is a property of both the policy and the declared budget and temperature distribution, not of the policy alone.
+Our findings are deliberately narrower than a universal claim about parallel decoding. First, a prospectively frozen block-size intervention finds lower multi-sample coverage at $B=32$ than at $B=1$ on both tasks under matched NFE. The only resolved adjacent contrast on the tested grid is $B=1\rightarrow8$; because $B=2,4$ were not tested, this does not distinguish an immediate onset of order choice from gradual change inside that interval. Second, a targeted prospective extension, selected after an initial crossing was observed but frozen before 9,600 new generations were evaluated, estimates a pooled rank reversal between confidence-first and random position selection as $k$ grows at $T=0.6$. Third, the temperature extension, selected after review and frozen before 38,400 new generations were evaluated, does not resolve the same reversal at $T=0.9$ and resolves the high-budget contrast in the opposite direction at $T=1.2$; its frozen reversal criterion is therefore met at neither temperature. Fourth, an entropy-first intervention increases commitment-time uncertainty and parsed-answer diversity without improving the frozen aggregate coverage endpoint. Together, these results motivate an estimand lesson: a weighted summary over $k$ is a property of both the policy and the declared budget and temperature distribution, not of the policy alone.
 
 Our contributions are:
 \begin{itemize}
   \item \textbf{A prospective eligible-set intervention.} Under 256 matched NFEs and one token committed per step, $B=32$ has lower multi-sample coverage than $B=1$ on both tasks. Among the tested adjacent contrasts, only $B=1\rightarrow8$ resolves; we do not infer the unmeasured shape between them.
   \item \textbf{A budget-dependent policy comparison.} A separately frozen targeted extension finds a modest pooled random-minus-confidence difference on the prespecified high-budget functional, opposite in sign to the exploratory point estimates at $k=1,2$. We retain its post-unblinding selection status and do not claim independent replication or task-wise resolution.
-  \item \textbf{A temperature interaction test.} A second targeted extension shows that the random-minus-confidence high-budget contrast is not temperature-invariant: it is unresolved at $T=0.9$ and reverses direction at $T=1.2$. A post-outcome trace diagnostic finds that confidence-first's selected-position entropy remains comparatively low across the tested grid; this is mechanism-consistent evidence, not a causal identification.
+  \item \textbf{A frozen temperature non-replication.} A second targeted extension shows that the random-minus-confidence high-budget contrast is not temperature-invariant: it is unresolved at $T=0.9$ and resolved in the opposite direction at $T=1.2$. A post-outcome trace diagnostic finds that confidence-first's selected-position entropy remains comparatively low across the tested grid; this is mechanism-consistent evidence, not a causal identification.
   \item \textbf{An evaluation analysis.} We empirically show how a weighted summary of $\passk$ can attenuate a policy crossing, and argue that comparisons should declare their target sampling-budget distribution or report the frontier.
   \item \textbf{Negative mechanism evidence.} Entropy-first selection raises answer-string diversity but does not improve the frozen aggregate endpoint; a separately frozen local uncertainty diagnostic also fails to predict which queries benefit from sequential decoding.
 \end{itemize}
@@ -76,7 +76,7 @@ Let $x_t\in(\mathcal{V}\cup\{[\mathrm{MASK}]\})^L$ denote a partially masked seq
 The block size $B$ controls the scope from which the \emph{next} position may be selected. With generation length and denoising steps both fixed to 256, the implementation creates $256/B$ blocks and assigns $B$ denoising steps to each block. A block initially contains $B$ masks, so exactly one token is transferred at each step for every tested $B$. At $B=1$, the eligible set is a singleton and the same dLLM commits strictly left to right. For $B>1$, the policy selects one position from multiple masks in the active block. Thus $B$ varies eligible-set width and order freedom while holding NFEs and transfers per NFE fixed; it does not instantiate simultaneous multi-token commitment.
 
 \paragraph{Position ranking.}
-Within $B=32$ blocks we compare: \textbf{confidence-first (CF)}, which prioritizes positions whose sampled candidate token has high model probability; \textbf{random (RND)}, which selects uniformly among eligible positions; and \textbf{entropy-first (EF)}, which prioritizes positions with high full-distribution entropy. EF is not the algebraic inverse of CF because the rules rank different quantities. We call the $B=1$ condition \textbf{sequential} rather than autoregressive: the underlying model remains the same dLLM. For artifact compatibility, the released code retains the historical key \texttt{ao} for CF.
+Within $B=32$ blocks we compare: \textbf{confidence-first (CF)}, which prioritizes positions whose sampled candidate token has high model probability; \textbf{random (RND)}, which selects uniformly among eligible positions; and \textbf{entropy-first (EF)}, which prioritizes positions with high full-distribution entropy. EF is not the algebraic inverse of CF because the rules rank different quantities. Temperature enters only through Gumbel-noise sampling of each position's candidate token; CF and EF score positions with the untempered model distribution. We call the $B=1$ condition \textbf{sequential} rather than autoregressive: the underlying model remains the same dLLM. For artifact compatibility, the released code retains the historical key \texttt{ao} for CF.
 
 \subsection{Coverage under repeated sampling}
 
@@ -110,7 +110,7 @@ The study evolved through falsifiable stages rather than one retrospective analy
 \centering
 \scriptsize
 \setlength{\tabcolsep}{2pt}
-\begin{tabular}{@{}p{0.9cm}p{1.45cm}p{2.35cm}p{1.65cm}@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.9cm}>{\raggedright\arraybackslash}p{1.45cm}>{\raggedright\arraybackslash}p{2.35cm}>{\raggedright\arraybackslash}p{1.65cm}@{}}
 \toprule
 Study & Selection history & Frozen question & Evidentiary role \\
 \midrule
@@ -128,20 +128,20 @@ Audits & Post-outcome & Per-$k$, multiplicity, diversity, traces & Exploratory/\
 
 We first vary confidence-first eligible-set block size over $B\in\{1,8,16,32\}$ while holding the model, queries, rollout budget, 256 NFEs, one transfer per NFE, and all other decoding settings fixed. The prospectively frozen primary contrast is
 $\cauc_{\mathcal K_{64}}(B=32)-\cauc_{\mathcal K_{64}}(B=1)$.
-It is \OptionBPoint{} with 95\% CI $[\OptionBLow{},\OptionBHigh{}]$; the interval is below zero both on \gsm{} and \mathfive{}. Meanwhile the pooled Pass@1 point estimate rises from $0.543$ to $0.559$, while Pass@16 falls from $0.806$ to $0.757$. A single-sample comparison would therefore miss the principal change in repeated-sampling returns.
+It is $\OptionBPoint$ with 95\% CI $[\OptionBLow,\OptionBHigh]$; the interval is below zero both on \gsm{} and \mathfive{}. Meanwhile the pooled Pass@1 point estimate rises from $\BlockPassOneSequential$ to $\BlockPassOneWide$, while Pass@16 falls from $\BlockPassSixteenSequential$ to $\BlockPassSixteenWide$. A single-sample comparison would therefore miss the principal change in repeated-sampling returns.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth]{figures/fig2_block_size.pdf}
-  \caption{\textbf{Only the first tested eligible-set widening gives a resolved adjacent contrast.} (a) Absolute $\cauc_{\{4,8,16,32,64\}}$ values. (b) Paired adjacent contrasts with pointwise 95\% query-bootstrap intervals. The $1\rightarrow8$ decrease resolves; the later adjacent changes do not. Because $B=2,4$ are unmeasured, the change within $[1,8]$ is not localized. All settings use 256 NFEs and commit one token per NFE.}
+  \caption{\textbf{Only the first tested eligible-set widening gives a resolved adjacent contrast.} (a) Change in $\cauc_{\{4,8,16,32,64\}}$ relative to $B=1$ on a $\log_2 B$ axis. The hatched region marks the unmeasured $B=2,4$; dotted segments cross it without implying a shape. Error bars at the right are the frozen $B=32-B=1$ intervals. (b) Paired adjacent pooled contrasts with pointwise 95\% query-bootstrap intervals. The $1\rightarrow8$ decrease resolves; the later adjacent changes do not. All settings use 256 NFEs and commit one token per NFE.}
   \label{fig:block}
 \end{figure}
 
-Figure~\ref{fig:block} qualifies the initially frozen trend label. The $B=1\rightarrow8$ contrast is $-0.038$ $[-0.057,-0.020]$, whereas $8\rightarrow16$ and $16\rightarrow32$ both straddle zero. The two frozen query-level endpoints are highly dependent (Pearson $r=0.984$; tie-aware Spearman $\rho=0.943$). We therefore interpret the evidence as one resolved singleton-to-wider-set contrast on a coarse grid, not as multiple independent confirmations, a smooth law over $B$, an identified threshold location, or an effect of reducing NFEs.
+Figure~\ref{fig:block} qualifies the second frozen endpoint, a slope on $\log_2 B$. That slope also resolves below zero ($\OptionBTrendPoint$ per doubling; 95\% CI $[\OptionBTrendLow,\OptionBTrendHigh]$), but an exact decomposition attributes \BlockTrendStepShare{} of its magnitude to the step from $B=1$ to the block-parallel settings. Correspondingly, the $B=1\rightarrow8$ contrast is $\BlockStepOneEightPoint$ $[\BlockStepOneEightLow,\BlockStepOneEightHigh]$, whereas $8\rightarrow16$ and $16\rightarrow32$ both straddle zero, and the two frozen query-level endpoints are highly dependent (Pearson $r=\BlockEndpointPearson$; tie-aware Spearman $\rho=\BlockEndpointSpearman$). We therefore interpret the evidence as one resolved singleton-to-wider-set contrast on a coarse grid, not as multiple independent confirmations, a smooth law over $B$, an identified threshold location, or an effect of reducing NFEs.
 
-The effect also depends on sampling budget. A post-outcome grid audit estimates $B=32-B=1$ as \BlockLowGridPoint{} $[\BlockLowGridLow{},\BlockLowGridHigh{}]$ on $k\in\{1,2,4,8\}$, which does not strictly exclude zero, and \BlockHighGridPoint{} $[\BlockHighGridLow{},\BlockHighGridHigh{}]$ on $k\in\{16,32,64\}$. Per-$k$ contrasts are near zero at $k=1,2$ and resolve below zero from $k=4$ onward (Appendix~\ref{app:postreview}). Thus the primary finding concerns repeated-sampling coverage; it is not a claim that a wider eligible set uniformly harms every budget.
+The effect also depends on sampling budget. A post-outcome grid audit estimates $B=32-B=1$ as $\BlockLowGridPoint$ $[\BlockLowGridLow,\BlockLowGridHigh]$ on $k\in\{1,2,4,8\}$, which does not strictly exclude zero, and $\BlockHighGridPoint$ $[\BlockHighGridLow,\BlockHighGridHigh]$ on $k\in\{16,32,64\}$. Per-$k$ contrasts are near zero at $k=1,2$ and resolve below zero from $k=4$ onward (Appendix~\ref{app:postreview}). Thus the primary finding concerns repeated-sampling coverage; it is not a claim that a wider eligible set uniformly harms every budget.
 
-An exploratory query-level audit shows substantial heterogeneity rather than a single-query artifact: 73 of 200 primary-grid query effects are exactly zero, and the largest absolute leave-one-query-out change in the pooled estimate is $0.0039$. We report these diagnostics as descriptive evidence, not as a causal decomposition.
+An exploratory query-level audit shows that the pooled effect is concentrated in a minority of queries rather than carried by a single one: the median query effect is zero, 73 of 200 query effects are exactly zero, the 10th percentile is $-0.26$, and the largest absolute leave-one-query-out change in the pooled estimate is $0.0039$. We report these diagnostics as descriptive evidence, not as a causal decomposition.
 
 \section{The Preferred Position Policy Depends on Sampling Budget}
 \label{sec:policies}
@@ -151,27 +151,40 @@ We next hold $B=32$ fixed and vary the position-ranking rule. The original RND c
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth]{figures/fig3_policy_frontier.pdf}
-  \caption{\textbf{Position ranking reshapes the sampling-budget frontier.} (a) Equal-task pooled $\passk$ for four schedules. (b) RND minus CF with unadjusted pointwise 95\% intervals. CF is favored at small $k$; the contrast changes sign as $k$ grows. Per-$k$ intervals are descriptive; familywise audits appear in Appendix~\ref{app:multiplicity}.}
+  \caption{\textbf{Position ranking reshapes the sampling-budget frontier.} (a) Equal-task pooled $\passk$ for four schedules at $T=0.6$ (64 rollouts per query). (b) Paired RND minus CF with pointwise (shaded) and seven-endpoint simultaneous (dashed) 95\% query-bootstrap bands from the post-outcome multiplicity audit (Appendix~\ref{app:multiplicity}). CF is favored at small $k$ and the contrast changes sign as $k$ grows, but no positive per-$k$ point survives the simultaneous band; the frozen evidence is the single high-budget mean over the gray region.}
   \label{fig:frontier}
 \end{figure}
 
-The frozen high-budget functional averages the paired RND--CF difference at $k\in\{16,32,64\}$. Its pooled value is \RandomPrimaryPoint{} (95\% CI $[\RandomPrimaryLow{},\RandomPrimaryHigh{}]$). Task-specific estimates are similar in sign and magnitude but each interval crosses zero, so the claim is panel-level rather than replicated separately by task. At low budget, the exploratory pointwise RND--CF estimates have the opposite sign: $-0.094$ at $k=1$ and $-0.041$ at $k=2$. Taken together, these estimates support a scoped budget interaction, not universal RND superiority.
+The frozen high-budget functional averages the paired RND--CF difference at $k\in\{16,32,64\}$. Its pooled value is $\RandomPrimaryPoint$ (95\% CI $[\RandomPrimaryLow,\RandomPrimaryHigh]$). Task-specific estimates are similar in sign and magnitude but each interval crosses zero, so the claim is panel-level rather than replicated separately by task. At low budget, the exploratory pointwise RND--CF estimates have the opposite sign: $-0.094$ at $k=1$ and $-0.041$ at $k=2$. Taken together, these estimates support a scoped budget interaction, not universal RND superiority.
 
-Because the final 64-rollout estimator includes the 16 rollouts that motivated the extension, we also ran a post-outcome independence audit restricted to the 48 outcomes that were unseen when the extension was frozen. Over its feasible high-budget grid $k\in\{16,32\}$, RND--CF is \RandomNewPoint{} $[\RandomNewLow{},\RandomNewHigh{}]$; the individual $k=16$ and $k=32$ intervals also exclude zero. The old-16 minus new-48 RND curve straddles zero at every comparable $k$ (Appendix~\ref{app:postreview}). This audit does not upgrade the study to independent preregistered replication, but it shows that the crossing is not carried by the outcome-selected first 16 rollouts.
+Because the final 64-rollout estimator includes the 16 rollouts that motivated the extension, we also ran a post-outcome independence audit restricted to the 48 outcomes that were unseen when the extension was frozen. Over its feasible high-budget grid $k\in\{16,32\}$, RND--CF is $\RandomNewPoint$ $[\RandomNewLow,\RandomNewHigh]$; the individual $k=16$ and $k=32$ intervals also exclude zero. The old-16 minus new-48 RND curve straddles zero at every comparable $k$ (Appendix~\ref{app:postreview}). This audit does not upgrade the study to independent preregistered replication, but it shows that the crossing is not carried by the outcome-selected first 16 rollouts.
 
-Sequential $B=1$ retains slightly higher high-budget point estimates than RND, although their intervals overlap at $k\geq16$. Conversely, CF has the strongest Pass@1 among the tested $B=32$ policies. These are equal-rollout, equal-NFE comparisons, not latency-controlled utility frontiers: a practical decoder choice must jointly price wall-clock cost, sampling budget, and verifier quality.
+Sequential $B=1$ retains slightly higher high-budget point estimates than RND, but the paired RND--sequential intervals include zero at each of $k=16,32,64$. Conversely, CF has the strongest Pass@1 among the tested $B=32$ policies. These are equal-rollout, equal-NFE comparisons, not latency-controlled utility frontiers: a practical decoder choice must jointly price wall-clock cost, sampling budget, and verifier quality.
 
-The available paired RND--sequential contrast helps, but does not fully separate, width from ranking. It is \RandomSequentialLowPoint{} (95\% CI $[\RandomSequentialLowLow{},\RandomSequentialLowHigh{}]$) over $k\in\{2,4,8,16\}$, favoring sequential at low budget, but \RandomSequentialFullPoint{} (95\% CI $[\RandomSequentialFullLow{},\RandomSequentialFullHigh{}]$) over $k\in\{4,8,16,32,64\}$. Thus the data support a scoped low-budget sequential advantage over random selection, while the ranking component remains unresolved on the full high-budget grid.
+The available paired RND--sequential contrast helps, but does not fully separate, width from ranking. It is $\RandomSequentialLowPoint$ (95\% CI $[\RandomSequentialLowLow,\RandomSequentialLowHigh]$) over $k\in\{2,4,8,16\}$, favoring sequential at low budget, but $\RandomSequentialFullPoint$ (95\% CI $[\RandomSequentialFullLow,\RandomSequentialFullHigh]$) over $k\in\{4,8,16,32,64\}$. Thus the data support a scoped low-budget sequential advantage over random selection, while the ranking component remains unresolved on the full high-budget grid.
 
-A descriptive, tie-aware majority-vote analysis does not turn oracle coverage into a deployment result, but it provides a useful check. At $k=1$, pooled majority-vote accuracy is $0.550$ for CF and $0.460$ for RND; the paired unadjusted query-bootstrap intervals for both Sequential--RND and CF--RND exclude zero. At $k\geq16$, both comparisons include zero. These prefix-based, post-outcome statistics are not multiplicity-adjusted, so we report the full curves in Appendix~\ref{app:postreview} rather than treating them as a new confirmatory endpoint.
+A descriptive, tie-aware majority-vote analysis does not turn oracle coverage into a deployment result, but it provides a useful check. At $k=1$, pooled majority-vote accuracy is $0.550$ for CF and $0.460$ for RND; the paired unadjusted query-bootstrap intervals for both Sequential--RND ($+0.075$ $[+0.005,+0.140]$) and CF--RND ($+0.090$ $[+0.030,+0.155]$) exclude zero. At $k=16,32,64$, both comparisons include zero. These prefix-based, post-outcome statistics are not multiplicity-adjusted, so we report the full curves in Appendix~\ref{app:postreview} rather than treating them as a new confirmatory endpoint.
+
+\subsection{Maximizing answer diversity is not sufficient}
+
+The prospectively frozen EF intervention does not improve the aggregate endpoint over CF: EF--CF is $\ConditionAPoint$ with 95\% CI $[\ConditionALow,\ConditionAHigh]$. The interval crossing zero is unresolved, not evidence of equivalence. A preregistered guard also finds that EF responses are shorter by 9.83 whitespace tokens on average, requiring this result to be interpreted with caution.
+
+Nevertheless, the intervention clearly changes the output distribution. At $k=64$, EF has parsed-answer entropy $1.90/2.48$ on \gsm{}/\mathfive{}, versus $1.18/2.10$ for random; yet random exceeds EF in correct coverage over most measured budgets. Figure~\ref{fig:diversity} shows the separation. Parsed-answer entropy measures answer strings, not semantic reasoning paths, but the result rules out a simple proxy: maximizing commitment-time uncertainty can increase observed diversity without producing the best coverage of correct answers.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{figures/fig4_diversity.pdf}
+  \caption{\textbf{More parsed-answer diversity is not sufficient for greater correct-answer coverage.} Each point is a policy at $k=64$; the vertical axis averages Pass@$k$ over $k\in\{16,32,64\}$. EF has higher parsed-answer entropy than RND on both tasks without occupying a uniformly higher-coverage region.}
+  \label{fig:diversity}
+\end{figure}
 
 \section{Temperature Changes the Policy Frontier}
 \label{sec:temperature}
 
-The schedule comparison was then tested at two additional sampling temperatures, $T=0.9$ and $T=1.2$, using the same model, queries, 256 NFEs, and three schedules. This extension was selected after review of the earlier results and frozen before its 38,400 new generations were evaluated; it is a prospective follow-up outside the original Gate-1 chain. The frozen family tests whether the RND--CF contrast is below zero at $k=1$ and above zero at the mean of $k=16$ and $32$.
+The schedule comparison was then tested at two additional sampling temperatures, $T=0.9$ and $T=1.2$, using the same model, queries, 256 NFEs, and three schedules. This extension was selected after review of the earlier results and frozen before its 38,400 new generations were evaluated; it is a prospective follow-up outside the original Gate-1 chain. The frozen family tests whether the RND--CF contrast is below zero at $k=1$ and above zero at the mean of $k=16$ and $32$. Because each new cell has 32 rollouts, this high-budget functional stops at $k=32$; Table~\ref{tab:temperature-primary} therefore also lists the reused $T=0.6$ arm under the same functional as a descriptive reference.
 
 \begin{table}[t]
-\caption{Frozen temperature-extension endpoints. Intervals are simultaneous 95\% query-bootstrap bands over the four endpoints.}
+\caption{Temperature-extension endpoints: RND minus CF at $k=1$ and at the mean of $k=16,32$. Intervals are simultaneous 95\% query-bootstrap bands over the four frozen endpoints. $^\dagger$Descriptive reference from the first 32 reused $T=0.6$ rollouts; not part of the frozen family.}
 \label{tab:temperature-primary}
 \centering
 \small
@@ -186,29 +199,16 @@ $T$ & \multicolumn{2}{c}{RND--CF $k=1$} & \multicolumn{2}{c}{RND--CF high budget
 }
 \end{table}
 
-At $T=0.9$, the low-budget contrast is resolved below zero, but the high-budget estimate is $+0.013$ with an interval crossing zero, so the frozen reversal criterion is not met. At $T=1.2$, the high-budget contrast reverses direction and is resolved below zero ($-0.196$, 95\% simultaneous CI $[-0.256,-0.136]$). Thus the $T=0.6$ high-budget advantage is temperature-dependent and reverses at $T=1.2$ within this model and task panel. The sequential comparison also depends on temperature: its modest high-budget point advantage over CF at $T=0.6$ is absent at $T=1.2$.
+The frozen verdict is ``not resolved as reversal'' at both temperatures. At $T=0.9$, the low-budget contrast is resolved below zero, but the high-budget estimate is $\TempNineHighPoint$ with an interval crossing zero; this is not evidence of equivalence, since no equivalence margin was specified. At $T=1.2$, the high-budget contrast is resolved in the opposite direction ($\TempTwelveHighPoint$, 95\% simultaneous CI $[\TempTwelveHighLower,\TempTwelveHighUpper]$). Within this model and task panel, the $T=0.6$ high-budget advantage of RND ($\TempSixHighPoint$ under this functional) is therefore temperature-conditional. The sequential comparison also depends on temperature: its modest high-budget point advantage over CF at $T=0.6$ is absent at $T=1.2$.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth]{figures/fig5_temperature_frontier.pdf}
-  \caption{\textbf{Temperature changes the policy frontier.} Equal-task pooled Pass@$k$ for the three schedules at the reused $T=0.6$ condition and the two new temperatures. The $T=0.9$ crossing is attenuated and unresolved under the frozen high-budget family; at $T=1.2$, random and sequential coverage fall while confidence-first remains comparatively stable.}
+  \caption{\textbf{Temperature changes the policy frontier.} Equal-task pooled Pass@$k$ for the three schedules at the reused $T=0.6$ condition and the two new temperatures. The $T=0.9$ crossing is attenuated and unresolved under the frozen high-budget family; at $T=1.2$, random and sequential coverage fall while confidence-first remains comparatively stable. Gray: the frozen high-budget window $k\in\{16,32\}$.}
   \label{fig:temperature}
 \end{figure}
 
-The extension also reveals differential sensitivity. Relative to $T=0.6$, the exploratory paired change in random-minus-confidence Pass@1 is $-0.361$ at $T=1.2$ (unadjusted 95\% CI $[-0.402,-0.321]$), while confidence-first itself changes by only $-0.006$ (CI $[-0.021,+0.010]$). These comparisons were selected after outcomes were read and are descriptive. Trace diagnostics are consistent with the explanation that confidence-first commits positions with lower model-distribution entropy: across all 200 queries and two rollouts per cell, selected-position entropy for CF is $0.238$, $0.238$, and $0.250$ at $T=0.6,0.9,1.2$, respectively. This is a mechanism-consistent diagnostic rather than a causal decomposition. The trace field called \texttt{candidate\_probabilities} stores random selection scores for RND and must not be interpreted as model probabilities across policies.
-
-\subsection{Maximizing answer diversity is not sufficient}
-
-The prospectively frozen EF intervention does not improve the aggregate endpoint over CF: EF--CF is \ConditionAPoint{} with 95\% CI $[\ConditionALow{},\ConditionAHigh{}]$. The interval crossing zero is unresolved, not evidence of equivalence. A preregistered guard also finds that EF responses are shorter by 9.83 whitespace tokens on average, requiring this result to be interpreted with caution.
-
-Nevertheless, the intervention clearly changes the output distribution. At $k=64$, EF has parsed-answer entropy $1.90/2.48$ on \gsm{}/\mathfive{}, versus $1.18/2.10$ for random; yet random exceeds EF in correct coverage over most measured budgets. Figure~\ref{fig:diversity} shows the separation. Parsed-answer entropy measures answer strings, not semantic reasoning paths, but the result rules out a simple proxy: maximizing commitment-time uncertainty can increase observed diversity without producing the best coverage of correct answers.
-
-\begin{figure}[t]
-  \centering
-  \includegraphics[width=\linewidth]{figures/fig4_diversity.pdf}
-  \caption{\textbf{More parsed-answer diversity is not sufficient for greater correct-answer coverage.} Each point is a policy at $k=64$; the vertical axis averages Pass@$k$ over $k\in\{16,32,64\}$. EF has higher parsed-answer entropy than RND on both tasks without occupying a uniformly higher-coverage region.}
-  \label{fig:diversity}
-\end{figure}
+The extension also reveals differential sensitivity. Relative to $T=0.6$, the exploratory paired change in random-minus-confidence Pass@1 is $\TempInteractionPoint$ at $T=1.2$ (unadjusted 95\% CI $[\TempInteractionLower,\TempInteractionUpper]$), while confidence-first itself changes by only $-0.006$ (CI $[-0.021,+0.010]$). These comparisons were selected after outcomes were read and are descriptive. Trace diagnostics are consistent with the explanation that confidence-first keeps committing positions with low model-distribution entropy: across all 200 queries and two rollouts per cell, selected-position entropy for CF is $\TempCFEntropyBase$, $\TempCFEntropyMid$, and $\TempCFEntropyHigh$ at $T=0.6,0.9,1.2$, far below the ${\approx}1.26$ mean entropy of its eligible positions, whereas it rises from $0.41$ to $3.58$ for RND and from $0.28$ to $3.12$ for sequential decoding (Appendix~\ref{app:temperature}). This pattern is expected when temperature perturbs candidate sampling but CF ranks positions by untempered probabilities; it is a mechanism-consistent diagnostic rather than a causal decomposition. The trace field called \texttt{candidate\_probabilities} stores random selection scores for RND and must not be interpreted as model probabilities across policies.
 
 \section{A Scalar Summary Can Attenuate a Policy Crossing}
 \label{sec:estimand}
@@ -243,22 +243,22 @@ Decoding has long been understood to trade concentration against diversity: maxi
 
 \section{Discussion}
 
-The experiments provide a decision map over measured estimands rather than one universally best policy. At $k=1$, CF has the strongest measured accuracy among the $B=32$ policies, and its exploratory coverage point estimate remains higher at $k=2$. On the frozen pooled high-budget functional, RND recovers part of CF's coverage loss, while sequential commitment retains slightly higher point estimates. Entropy-first may be useful as a candidate generator only if a downstream selector can exploit its extra diversity; our oracle-coverage results do not demonstrate such a selector.
+The experiments provide a decision map over measured estimands rather than one universally best policy. At $k=1$, CF has the strongest measured accuracy among the $B=32$ policies, and its exploratory coverage point estimate remains higher at $k=2$; against sequential decoding, its Pass@1 advantage is unresolved ($+0.016$ $[-0.005,+0.037]$). On the frozen pooled high-budget functional at $T=0.6$, RND recovers part of CF's coverage loss, while sequential commitment retains slightly higher point estimates. Under descriptive majority voting, sequential decoding has the highest point estimate among the four policies in Table~\ref{tab:majority} at every $k\geq8$, making it the strongest practical baseline among them. Entropy-first may be useful as a candidate generator only if a downstream selector can exploit its extra diversity; our oracle-coverage results do not demonstrate such a selector.
 
-The resolved $B=1\rightarrow8$ contrast motivates an onset-of-choice hypothesis: once $B>1$, the committed position can depend on sampled model state, whereas $B=1$ has no within-block choice. The unmeasured $B=2,4$ settings leave gradual change within that interval equally compatible with the data. The design also does not causally isolate order freedom from confidence ranking or every other consequence of widening the active block. A local Boundary Closure Index was measurable but failed its held-out targeting test ($\rho=\BCIRho{}$; 95\% CI $[\BCIRhoLow{},\BCIRhoHigh{}]$), and adding it slightly worsened predictive MAE. This negative result further limits mechanistic interpretation.
+The resolved $B=1\rightarrow8$ contrast motivates an onset-of-choice hypothesis: once $B>1$, the committed position can depend on sampled model state, whereas $B=1$ has no within-block choice. The unmeasured $B=2,4$ settings leave gradual change within that interval equally compatible with the data. The design also does not causally isolate order freedom from confidence ranking or every other consequence of widening the active block. A local Boundary Closure Index was measurable but failed its held-out targeting test ($\rho=\BCIRhoPoint$; 95\% CI $[\BCIRhoLow,\BCIRhoHigh]$), and adding it slightly worsened predictive MAE. This negative result further limits mechanistic interpretation.
+
+\section{Conclusion}
+
+In the tested dLLM, widening the next-position eligible set changes the returns to repeated sampling without a resolved loss at $k=1$. At $B=32$, pooled CF and RND estimates change order as sampling budget grows at $T=0.6$, while the temperature extension finds that this high-budget advantage does not replicate at $T=0.9$ and is resolved in the opposite direction at $T=1.2$. EF diversity does not translate into superior correct-answer coverage. These fixed-NFE findings make sampling budget and temperature part of the decoding-policy estimand: report the deployment-relevant frontier, or state the weighting used to compress it.
 
 \section{Limitations}
 \label{sec:limitations}
 
-The study uses one frozen model checkpoint, two mathematical-reasoning datasets, three tested temperatures, a fixed sequence length, and one implementation of each policy. The random and temperature extensions were selected after earlier evidence or review and combine targeted follow-up designs with the original study; their selection histories remain visible in Table~\ref{tab:ledger}. Per-$k$ multiplicity, post-treatment response length, task ceilings, and an oracle correctness grader all constrain interpretation. The temperature trace diagnostic is based on two rollout traces per query and does not identify a causal mechanism. Most importantly, coverage is not realized utility without a verifier, and we do not report a controlled quality--latency--memory frontier. Cross-model, non-mathematical, and verifier-based tests are therefore questions for future work rather than claims of this paper.
-
-\section{Conclusion}
-
-In the tested dLLM, widening the next-position eligible set changes the returns to repeated sampling without a resolved loss at $k=1$. At $B=32$, pooled CF and RND estimates change order as sampling budget grows at $T=0.6$, while the temperature extension shows that this high-budget advantage reverses at $T=1.2$. EF diversity does not translate into superior correct-answer coverage. These fixed-NFE findings make sampling budget and temperature part of the decoding-policy estimand: report the deployment-relevant frontier, or state the weighting used to compress it.
+The study uses one frozen model checkpoint, two mathematical-reasoning datasets with 100 held-out queries each, three tested temperatures, a fixed sequence length, and one implementation of each policy; task-specific intervals are therefore wide, and the random-extension claim is panel-level only. The random and temperature extensions were selected after earlier evidence or review and combine targeted follow-up designs with the original study; their selection histories remain visible in Table~\ref{tab:ledger}. The temperature extension has 32 rollouts per cell, so its high-budget functional is not identical to the 64-rollout functional at $T=0.6$. No equivalence margins were prespecified, so unresolved contrasts are not evidence of equivalence. Per-$k$ multiplicity, post-treatment response length, task ceilings, and an oracle correctness grader all constrain interpretation. The temperature trace diagnostic is based on two rollout traces per query and does not identify a causal mechanism. Most importantly, coverage is not realized utility without a verifier, and we do not report a controlled quality--latency--memory frontier. Cross-model, non-mathematical, and verifier-based tests are therefore questions for future work rather than claims of this paper.
 
 \section*{AI Use Statement}
 
-During research and manuscript preparation, the authors used OpenAI Codex to assist with grammar checking, linguistic polishing, standardizing reference formatting, as well as code debugging and implementation suggestions. All research design, experiments and analysis were conducted by the authors. All AI-generated outputs were manually reviewed and revised. The authors take full responsibility for all content of this paper.
+During research and manuscript preparation, the authors used OpenAI Codex and Anthropic Claude to assist with grammar checking, linguistic polishing, standardizing reference formatting, checking reported values against the audited result files, figure scripting, as well as code debugging and implementation suggestions. All research design, experiments and analysis were conducted by the authors. All AI-generated outputs were manually reviewed and revised. The authors take full responsibility for all content of this paper.
 
 \bibliography{references}
 
@@ -313,7 +313,7 @@ The first Option-B analysis invocation terminated before emitting an endpoint be
 \label{app:multiplicity}
 
 \begin{table}[h]
-\caption{RND minus CF per-$k$ contrasts. Raw intervals are unadjusted; the simultaneous intervals use a seven-endpoint nonstudentized maximum-deviation bootstrap family. The audit was designed after outcomes were read.}
+\caption{RND minus CF per-$k$ contrasts from a post-outcome audit with 50,000 task-stratified paired-query bootstrap replicates. Raw intervals are unadjusted and can differ in the third decimal from the frozen analyzer's 10,000-replicate secondary intervals; simultaneous intervals use a seven-endpoint nonstudentized maximum-deviation family.}
 \centering
 \small
 \resizebox{\columnwidth}{!}{%
@@ -383,6 +383,45 @@ Level & $n$ & Sequential & CF & RND & EF \\
 All EF and CF conditions commit exactly 256 generated positions. The preregistered length guard concerns decoded whitespace length and triggers: EF is shorter than CF by $9.83$ words (95\% CI $[-11.78,-7.90]$). Post-outcome matched-length and fixed-effect analyses preserve a negative EF--CF Pass@1 contrast, but decoded length is post-treatment; these analyses are descriptive and do not repair or replace the frozen endpoint.
 
 At $k=64$, EF produces 20.09 and 26.80 unique parsed answers per query on \gsm{} and \mathfive{}, respectively, versus 11.65 and 21.66 for random. The corresponding EF/random answer entropies are 1.90/1.18 and 2.48/2.10. These statistics concern normalized parsed answer strings and make no claim about semantic solution-path diversity.
+
+\section{Temperature-Extension Diagnostics}
+\label{app:temperature}
+
+Table~\ref{tab:temperature-diagnostics} reports secondary frontier and quality diagnostics for every temperature-by-schedule cell, and Table~\ref{tab:temperature-trace} reports the trace entropies summarized in Section~\ref{sec:temperature}. All values were inspected after the frozen outcomes were read and are descriptive. Entropies use the untempered model distribution immediately before each commitment; for sequential decoding the eligible set is a singleton, so the two entropies coincide.
+
+\begin{table}[h]
+\caption{Temperature-by-schedule diagnostics (equal-task pooled; first 32 rollouts per cell). MV@32 is tie-aware majority-vote accuracy over 32 rollouts, Words is mean decoded whitespace length, and Unique@32 is the mean number of distinct parsed answers per query.}
+\label{tab:temperature-diagnostics}
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llrrrrr}
+\toprule
+$T$ & Schedule & Pass@1 & Pass@32 & MV@32 & Words & Unique@32 \\
+\midrule
+\TemperatureDiagnosticRows
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[h]
+\caption{Mean model-distribution entropy of the selected position (Sel.) and of all eligible positions (Elig.), from rollouts 0 and 1 of every held-out query (400 traces of 256 commits per cell).}
+\label{tab:temperature-trace}
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrrrr}
+\toprule
+ & \multicolumn{2}{c}{$T=0.6$} & \multicolumn{2}{c}{$T=0.9$} & \multicolumn{2}{c}{$T=1.2$} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}
+Schedule & Sel. & Elig. & Sel. & Elig. & Sel. & Elig. \\
+\midrule
+\TemperatureTraceRows
+\bottomrule
+\end{tabular}%
+}
+\end{table}
 
 \section{Failed Boundary-Closure Targeting Hypothesis}
 
