@@ -1,0 +1,154 @@
+{
+  "bootstrap_replicates": 50000,
+  "family": {
+    "contrast": "random_b32 - ao_b32",
+    "endpoint_count": 7,
+    "k_grid": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "method": "task-stratified paired query bootstrap",
+    "simultaneous_critical_value": 0.045,
+    "simultaneous_method": "nonstudentized maximum absolute deviation"
+  },
+  "interpretation_boundary": "This audit was designed after the extension outcomes were read. It diagnoses multiplicity sensitivity and cannot replace or strengthen the frozen primary verdict.",
+  "joint_low_high_summary": {
+    "definition": {
+      "high": "mean random-minus-AO Pass@k over k={16,32}",
+      "low": "mean random-minus-AO Pass@k over k={1,2}"
+    },
+    "high_minus_low": {
+      "point": 0.10372346385691414,
+      "raw_95_ci": [
+        0.07113966353754828,
+        0.13633070653729118
+      ]
+    },
+    "high_point": 0.03625694599977128,
+    "high_simultaneous_ci": [
+      0.0012692687909258427,
+      0.07124462320861671
+    ],
+    "joint_reversal_resolved": true,
+    "low_point": -0.06746651785714286,
+    "low_simultaneous_ci": [
+      -0.1024541950659883,
+      -0.032478840648297425
+    ],
+    "simultaneous_critical_value": 0.034987677208845436
+  },
+  "per_k": {
+    "1": {
+      "bonferroni_95_family_ci": [
+        -0.132265625,
+        -0.05730998883928578
+      ],
+      "max_deviation_95_simultaneous_ci": [
+        -0.13859375000000002,
+        -0.048593750000000005
+      ],
+      "point": -0.09359375,
+      "raw_95_ci": [
+        -0.12140625,
+        -0.06664062500000001
+      ]
+    },
+    "16": {
+      "bonferroni_95_family_ci": [
+        -0.008961245733790793,
+        0.08081953442205511
+      ],
+      "max_deviation_95_simultaneous_ci": [
+        -0.010954880279416629,
+        0.07904511972058337
+      ],
+      "point": 0.03404511972058337,
+      "raw_95_ci": [
+        0.00222810024198618,
+        0.06693951697578128
+      ]
+    },
+    "2": {
+      "bonferroni_95_family_ci": [
+        -0.08093266369047619,
+        -0.0036665603741496983
+      ],
+      "max_deviation_95_simultaneous_ci": [
+        -0.0863392857142857,
+        0.003660714285714295
+      ],
+      "point": -0.0413392857142857,
+      "raw_95_ci": [
+        -0.06971484375,
+        -0.013704985119047592
+      ]
+    },
+    "32": {
+      "bonferroni_95_family_ci": [
+        -0.010022734802744154,
+        0.08947336600699786
+      ],
+      "max_deviation_95_simultaneous_ci": [
+        -0.006531227721040818,
+        0.08346877227895919
+      ],
+      "point": 0.03846877227895918,
+      "raw_95_ci": [
+        0.003335032146147588,
+        0.07512609830915114
+      ]
+    },
+    "4": {
+      "bonferroni_95_family_ci": [
+        -0.04369378106709369,
+        0.03605678749388433
+      ],
+      "max_deviation_95_simultaneous_ci": [
+        -0.048754107803883055,
+        0.04124589219611694
+      ],
+      "point": -0.003754107803883056,
+      "raw_95_ci": [
+        -0.03281671541732768,
+        0.02562771689519277
+      ]
+    },
+    "64": {
+      "bonferroni_95_family_ci": [
+        -0.02,
+        0.1
+      ],
+      "max_deviation_95_simultaneous_ci": [
+        -0.0049999999999999975,
+        0.08499999999999999
+      ],
+      "point": 0.04,
+      "raw_95_ci": [
+        -0.004999999999999999,
+        0.08499999999999999
+      ]
+    },
+    "8": {
+      "bonferroni_95_family_ci": [
+        -0.020367206702955228,
+        0.06521588149175374
+      ],
+      "max_deviation_95_simultaneous_ci": [
+        -0.024045122101502104,
+        0.0659548778984979
+      ],
+      "point": 0.020954877898497894,
+      "raw_95_ci": [
+        -0.009593965801669298,
+        0.05260207710790506
+      ]
+    }
+  },
+  "seed": 20260914,
+  "status": "post-outcome exploratory multiplicity audit"
+}

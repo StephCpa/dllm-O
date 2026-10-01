@@ -1,0 +1,76 @@
+{
+  "analysis_rules": {
+    "first_correctness_read_must_be_logged": true,
+    "missing_or_invalid_artifact": "block analysis",
+    "parser_failures_and_empty_responses": "retain as incorrect",
+    "query_exclusions_after_outcome_read": false,
+    "secondary_endpoints_change_primary_verdict": false
+  },
+  "artifact_schema_sha256": "1f9e06530993ea89b972720671e96bdca8bbc348237a0989b44bc2127b8362bf",
+  "bci_freeze_sha256": "8f2b6df3f98abdb0b9060b704b02fcc428090d01d2d279514c7c108e2fb6ef17",
+  "cardinality": {
+    "generations_per_shard": 3200,
+    "heldout_queries_per_task": 100,
+    "new_generations": 9600,
+    "new_rollouts_per_query": 48,
+    "num_shards": 3,
+    "tasks": [
+      "gsm8k",
+      "math500"
+    ]
+  },
+  "created_at_utc": "2026-09-12T14:33:29.721869+00:00",
+  "external_repository_commit": "1a2fddb5c6655597e63081c0af5ebb718a849f39",
+  "model_id": "GSAI-ML/LLaDA-8B-Instruct",
+  "model_revision": "08b83a6feb34df1a6011b80c3c00c7563e963b07",
+  "not_permitted": [
+    "calling the extension part of the original Gate-1 chain",
+    "reinterpreting the frozen AO-random aggregate null",
+    "universal random-ranking superiority or crossover claims",
+    "treating answer-string diversity as semantic reasoning diversity",
+    "adding an endpoint, policy, task, or exclusion after outcome read"
+  ],
+  "policy": "random_b32",
+  "primary_endpoint": {
+    "aggregation": "equal-weight mean of GSM8K and MATH-500 task means",
+    "contrast": "random_b32 - ao_b32",
+    "definition": "mean unbiased Pass@k over k in {16,32,64}",
+    "name": "HighBudgetCoverage64",
+    "uncertainty": {
+      "level": 0.95,
+      "method": "task-stratified query bootstrap percentile interval",
+      "replicates": 10000,
+      "seed": 20260912
+    },
+    "unit": "paired held-out query"
+  },
+  "protocol_version": "random-extension-freeze-v1",
+  "rollout_budget": {
+    "analysis_rollouts_per_query": 64,
+    "existing_indices": [
+      0,
+      15
+    ],
+    "new_indices": [
+      16,
+      63
+    ]
+  },
+  "runner_commit": "91fa69d5741709a11eb38a33689f8887cfd42685",
+  "secondary_endpoints": [
+    "per-task primary contrast",
+    "random minus AO/AR/EF Pass@k for k in {1,2,4,8,16,32,64}",
+    "low grid {2,4,8,16} and full grid {4,8,16,32,64}",
+    "k=64 solved-set discordance",
+    "parsed-answer diversity at k=16 and k=64",
+    "parser, empty-response, decoded-length, and completeness summaries"
+  ],
+  "selection_rationale": "A post-unblinding matched first-16 decomposition found AO-random contrasts positive at low k and directionally negative at k=8/16; random_b32 was the only frontier policy without k=32/64 data.",
+  "selection_status": "post-unblinding targeted prospective follow-up",
+  "split_manifest_sha256": "68e4343846e2a8c7c3f5fba12a2cca9cbc2866f316e4fdb49adaf7cd40243b9b",
+  "verdict_taxonomy": {
+    "ci_entirely_above_zero": "resolved random high-budget coverage benefit",
+    "ci_entirely_below_zero": "resolved random high-budget coverage harm",
+    "ci_straddles_zero": "no resolved high-budget difference"
+  }
+}

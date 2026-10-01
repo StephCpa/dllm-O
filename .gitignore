@@ -1,0 +1,17 @@
+__pycache__/
+.pytest_cache/
+*.py[cod]
+
+# LaTeX build intermediates; keep the source, bibliography, generated macros,
+# figures, and the compiled PDF under version control.
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out
+paper/*.toc
+
+# Temporary figure QA overlays are reproducible and need not be distributed.
+paper/figures/*_overlay.pdf

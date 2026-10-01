@@ -1,0 +1,84 @@
+{
+  "analysis_rules": {
+    "first_correctness_read_must_be_logged": true,
+    "missing_or_invalid_artifact": "block analysis",
+    "parser_failures_and_empty_responses": "retain as incorrect",
+    "query_exclusions_after_outcome_read": false,
+    "secondary_endpoints_change_primary_verdict": false
+  },
+  "analyzer_commit": "42a6e94e00c743d077a6081a3902f0b2a5e0d32b",
+  "artifact_schema_sha256": "aff8a7d8417171cd80484dd6179981bd4e51a9816edfb48848a8a7eb5c50dc28",
+  "cardinality": {
+    "generations_per_shard": 6400,
+    "heldout_queries_per_task": 100,
+    "new_generations": 38400,
+    "new_temperatures": 2,
+    "num_shards": 6,
+    "rollouts_per_query_cell": 32,
+    "schedules_per_temperature": 3,
+    "tasks": [
+      "gsm8k",
+      "math500"
+    ]
+  },
+  "created_at_utc": "2026-09-15T12:16:04.354604+00:00",
+  "external_repository_commit": "1a2fddb5c6655597e63081c0af5ebb718a849f39",
+  "model_id": "GSAI-ML/LLaDA-8B-Instruct",
+  "model_revision": "08b83a6feb34df1a6011b80c3c00c7563e963b07",
+  "new_policy_names": [
+    "sequential_b1_t09",
+    "cf_b32_t09",
+    "rnd_b32_t09",
+    "sequential_b1_t12",
+    "cf_b32_t12",
+    "rnd_b32_t12"
+  ],
+  "new_temperatures": [
+    0.9,
+    1.2
+  ],
+  "not_permitted": [
+    "calling this follow-up part of the original Gate-1 chain",
+    "claiming temperature and schedule are universally independent",
+    "claiming equivalence from an interval that includes zero",
+    "collapsing crossing endpoints into a single coverage AUC verdict",
+    "adding a temperature, endpoint, policy, task, or exclusion after outcome read"
+  ],
+  "paired_seed_construction": "same Phase-1 seed key for a task/query/rollout across cells; not claimed to preserve an identical random trajectory after decoding paths diverge",
+  "primary_family": {
+    "aggregation": "equal-weight mean of GSM8K and MATH-500 task means",
+    "contrast": "random B32 minus confidence-first B32",
+    "endpoints_per_temperature": {
+      "high": "mean unbiased Pass@k over k in {16,32}",
+      "low": "Pass@1"
+    },
+    "temperatures": [
+      0.9,
+      1.2
+    ],
+    "uncertainty": {
+      "family_size": 4,
+      "method": "task-stratified paired query bootstrap with nonstudentized maximum-absolute-deviation simultaneous 95% bands",
+      "replicates": 10000,
+      "seed": 20260914
+    },
+    "unit": "paired held-out query",
+    "verdict": "a reversal replicates at a temperature only if the simultaneous CI for the low endpoint is entirely below zero and the simultaneous CI for the high endpoint is entirely above zero"
+  },
+  "protocol_seed": 20260823,
+  "protocol_version": "temperature-extension-freeze-v1",
+  "reused_control_inventory_sha256": "4efe7daccfc72a09395cd54c3425cbb9db3f43f3befcc09bf971c28290eee4d7",
+  "reused_temperature": 0.6,
+  "runner_commit": "42a6e94e00c743d077a6081a3902f0b2a5e0d32b",
+  "secondary_endpoints": [
+    "per-task primary-family point estimates",
+    "Pass@k curves for all schedules and temperatures on k={1,2,4,8,16,32}",
+    "within-temperature per-k schedule contrasts",
+    "cross-temperature empirical frontier comparisons",
+    "parsed-answer diversity and majority-vote accuracy; ties among modal parsed answers receive fractional correctness",
+    "parser, empty-response, decoded-length, and completeness summaries"
+  ],
+  "selection_rationale": "Reviewers identified sampling temperature as the strongest alternative explanation for schedule-dependent precision-coverage frontiers.",
+  "selection_status": "post-review prospective follow-up",
+  "split_manifest_sha256": "68e4343846e2a8c7c3f5fba12a2cca9cbc2866f316e4fdb49adaf7cd40243b9b"
+}

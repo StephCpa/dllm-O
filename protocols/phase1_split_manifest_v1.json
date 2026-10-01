@@ -1,0 +1,1385 @@
+{
+  "planning_seed": 20260823,
+  "sources": {
+    "gsm8k": {
+      "config": "main",
+      "dataset_id": "openai/gsm8k",
+      "parquet_sha256": "ee7b8da9e381df27b9e3f7758a159ab2bdaa4dbaa910546cbbc47e0cb44e4f59",
+      "revision": "740312add88f781978c0658806c59bc2815b9866",
+      "row_count": 1319,
+      "split": "test"
+    },
+    "math500": {
+      "dataset_id": "ankner/math-500",
+      "parquet_sha256": "a0bcfdab7dfeca2917d287e54e7ea1199bf216307ce880340e626b7d0288e10a",
+      "revision": "412eb03a7193aed402c5e4009fc958c66e61b937",
+      "row_count": 500,
+      "split": "test"
+    }
+  },
+  "split_version": "phase1-splits-v1",
+  "splits": {
+    "gsm8k": {
+      "calibration": [
+        {
+          "prompt_sha256": "07836807c799f44f985d68c5ac193129be1a909f70dd66f3ca725237c70d21d0",
+          "row_index": 55
+        },
+        {
+          "prompt_sha256": "30e10116f95bb87840ace44d50ad933c09d0937a25baa8d8f80c76bd7535350a",
+          "row_index": 92
+        },
+        {
+          "prompt_sha256": "20392eb4e714442f48f9afb981a1705324e9d15ccf8a84043ae73cac4d439d43",
+          "row_index": 98
+        },
+        {
+          "prompt_sha256": "01bfcc0e852a1d29fd4744b97b83fbd3cae6720ba66dde58a9282f0b6a096abf",
+          "row_index": 110
+        },
+        {
+          "prompt_sha256": "cdf3f31e007929771fb5edba6a762f04b0e92ca5416c600cf6e12a9eb428ffac",
+          "row_index": 141
+        },
+        {
+          "prompt_sha256": "72c96b49dcfbd41cce4fcab16030d29a6ee849a89137d6a5a200b6767cd98320",
+          "row_index": 147
+        },
+        {
+          "prompt_sha256": "7c1ba632402e9dd45afe2facff39d1c8f0b5dea7c087ce5f7e17ff5fdc31e59a",
+          "row_index": 148
+        },
+        {
+          "prompt_sha256": "a18a490507c2ef997e3b929ce00286cf4c3c504c25d6058c546568caa8653c5b",
+          "row_index": 311
+        },
+        {
+          "prompt_sha256": "c46455f66de332c03de5ac89a8660ac1d31269cc6df97ea4258e056a29446865",
+          "row_index": 380
+        },
+        {
+          "prompt_sha256": "5012767a70c5d3846d5f071c45a23915158946ccdef6ed80ebcfa92d76f7ee7d",
+          "row_index": 396
+        },
+        {
+          "prompt_sha256": "ef01fcbd1d0c2062bb0508049de00c8459909734d0afebb45eed49e4df0d3eeb",
+          "row_index": 430
+        },
+        {
+          "prompt_sha256": "f16f3c13c4f786d48b2550a79509008e31617f55c7e2ec988ab11f28549beeac",
+          "row_index": 510
+        },
+        {
+          "prompt_sha256": "dc337d52a2513af3228fe08a7734d10d6a9f2dd7259b3b568a6692fdb5436673",
+          "row_index": 555
+        },
+        {
+          "prompt_sha256": "4c9439fa1014db5aa1e67ed4978cab4b45353c18bb39d6f9449e2fdb8335304e",
+          "row_index": 587
+        },
+        {
+          "prompt_sha256": "7ad70902d789af62452ac710046e219dcaba77b86ef58529c38f5a8c9a19f81b",
+          "row_index": 598
+        },
+        {
+          "prompt_sha256": "1cf5d810216ad34c1dd35d2ae3ce346cc700c3e0e51ad3a66cd13973d330d2bd",
+          "row_index": 600
+        },
+        {
+          "prompt_sha256": "8029f8a8c7e12e84cf20f2faababf95dddfe8be1e12aca403bde85d167d91461",
+          "row_index": 635
+        },
+        {
+          "prompt_sha256": "8411ed1e3c55e6aa5b494536d6e712533b53b3ef70f08b5f330ff1683df5a617",
+          "row_index": 637
+        },
+        {
+          "prompt_sha256": "c40d9b813cf704a8b7fb077d5a1da23f98b7421c27deeb95a939c0bc0efdecab",
+          "row_index": 645
+        },
+        {
+          "prompt_sha256": "7d983dd6df21ff415a6d7008ca23b4837d0bfc0ae2461238124dc449d78ed081",
+          "row_index": 673
+        },
+        {
+          "prompt_sha256": "4c528ff4beacf686e63369a4e9d75bfded6b89820ffc0b106dc7b047e6c645df",
+          "row_index": 682
+        },
+        {
+          "prompt_sha256": "93fb6bacceb07dffd9e6c0c6854306b810a3004b82194178f21b030e68e23fad",
+          "row_index": 792
+        },
+        {
+          "prompt_sha256": "656e874e3f82ca4984c9340f9873fae61f97a5e1d405ca1c8a34bf0e8cec0ad1",
+          "row_index": 797
+        },
+        {
+          "prompt_sha256": "9e33b3f8778dc9778babfadb44de67a62cc1267c57c03b7712c71f732f033ae7",
+          "row_index": 826
+        },
+        {
+          "prompt_sha256": "cf158eca25037c528f8dc3b57cc175098e54804962fc69896323d16d9975922b",
+          "row_index": 836
+        },
+        {
+          "prompt_sha256": "069f6cd31d89a97c36ab1db340958a0a435416660ed1f7cc4555a93bc466ac81",
+          "row_index": 848
+        },
+        {
+          "prompt_sha256": "2d377ad5ca04caa9d2006b41205c21c71a08e50da9717e7863388e00009c7048",
+          "row_index": 877
+        },
+        {
+          "prompt_sha256": "3a43441138b0b2a36dc79d49e66b229878b18d5536b059de6acc5120f4aa2ff6",
+          "row_index": 880
+        },
+        {
+          "prompt_sha256": "95746fee7be3c2cca6b405a1ff8a65c18662f55fa695cc2a5280a8377b1f6408",
+          "row_index": 881
+        },
+        {
+          "prompt_sha256": "f2d4d7e5edbe95c346938dc6db1e368f40a364a4767b41bc66b17d52da9d899e",
+          "row_index": 883
+        },
+        {
+          "prompt_sha256": "2cc798489b7bf2752f090cdd504c84aad930b882fbd1dd0502f55cf81496e1b9",
+          "row_index": 894
+        },
+        {
+          "prompt_sha256": "a8011976d7ce0e0e2f99c3808d7391408c72adf63956afafef9a2f0fc0af4d34",
+          "row_index": 940
+        },
+        {
+          "prompt_sha256": "0ba3c7d3ca4b906d984af558f49a6ad0848139e5e26626abaca12dcb6ec23904",
+          "row_index": 982
+        },
+        {
+          "prompt_sha256": "db2d2e36b8659d9cbd1ab29337615628979bc241e79f8d01e2ae06e917721986",
+          "row_index": 1023
+        },
+        {
+          "prompt_sha256": "5c77e890f2588e1c9e518c4fd29ab54173e2e9de895d6de3d9385e148079c7be",
+          "row_index": 1056
+        },
+        {
+          "prompt_sha256": "528398375ba806bcc8adb71d541b242984ca34de54148424c6a17fd4a3b61f2a",
+          "row_index": 1070
+        },
+        {
+          "prompt_sha256": "908924ef11dcb8a0200ebd904169f2cc97e43bd28f284e132120259cb512a45b",
+          "row_index": 1072
+        },
+        {
+          "prompt_sha256": "a399b7ef4e12433941517ee2c33f58c81d40bce2595c014a4b0a681a1e7b9668",
+          "row_index": 1081
+        },
+        {
+          "prompt_sha256": "906a073ff1d122b381046d8d97ac4eb2bca0238f841cda346bc5487a4ce3fbc5",
+          "row_index": 1117
+        },
+        {
+          "prompt_sha256": "b0dc7171ec99375c40721a2348c7e845ed47474a2aacb6ddaebd9892a3337fff",
+          "row_index": 1132
+        },
+        {
+          "prompt_sha256": "f8fc73f303ad37ca920987cd296fbc7e9124b4677c396c7fd4223266ba1e6a50",
+          "row_index": 1167
+        },
+        {
+          "prompt_sha256": "cc0ffee694a5bc09e07d3ad2fd64b3912db6888ddb6a1e68f3205865221c8635",
+          "row_index": 1182
+        },
+        {
+          "prompt_sha256": "d3eceda393448f03457d9f02e2488f22eef1461c68bc9e9dad06f8115dda83bf",
+          "row_index": 1187
+        },
+        {
+          "prompt_sha256": "403c14d7e3268a34e7db02d081f0111ca60985533e231e07ab8787d3b58d03c3",
+          "row_index": 1194
+        },
+        {
+          "prompt_sha256": "afec5cd2fe1d2e1ec02edd7450c8de7cc40921105415c0064f133702a7938459",
+          "row_index": 1199
+        },
+        {
+          "prompt_sha256": "d7b5398ffe7a991f8310ee070a94daed963dde059d48ff573dfa086312e21c56",
+          "row_index": 1224
+        },
+        {
+          "prompt_sha256": "a45936495f064c16cf6621fe21bf0d84f54f5850bf6bfe19ced45b30c591aa36",
+          "row_index": 1251
+        },
+        {
+          "prompt_sha256": "8b33d0a0eefe84b0781cef7bdbc30c84e8fc45caef2099cdc17c21b70b2dbb60",
+          "row_index": 1252
+        },
+        {
+          "prompt_sha256": "dbffd01c046059b8278d9e0517a86a71dfa8fa465253d3cd55889970584a28b3",
+          "row_index": 1292
+        },
+        {
+          "prompt_sha256": "c0676c5d9ca2b510f43acd1e73715754d4e303616d84c859e9725d365ce47da3",
+          "row_index": 1316
+        }
+      ],
+      "heldout": [
+        {
+          "prompt_sha256": "6710fc83e60aca754f988ee29df093f21bef44b7019c137c6320573c88e04fa3",
+          "row_index": 7
+        },
+        {
+          "prompt_sha256": "a27c00492da7960bf4ff718ba6c9c25bfd67127df2cac096ce03ad50de44c2b1",
+          "row_index": 35
+        },
+        {
+          "prompt_sha256": "e861738e0c5013ff1ccce47d6b4858cc47e994db2ddf49eabc832a823562e562",
+          "row_index": 36
+        },
+        {
+          "prompt_sha256": "30384332aecb8a01dc93c256982910b4fb3e755c04f177bbe6747535ebd5bc97",
+          "row_index": 41
+        },
+        {
+          "prompt_sha256": "60b3bdde0ef3178112ad091b3d5ce77be3cb7df9256a3027ce12479e80b43d80",
+          "row_index": 66
+        },
+        {
+          "prompt_sha256": "a80a2f35ac31460e8b2875d6f76da679d74176e30990f0fd1d2bdd91a8f76ee6",
+          "row_index": 71
+        },
+        {
+          "prompt_sha256": "09a8532e00e3cd9a41779c00b791730f72848bf57e0ea9e380ad034816e7ec31",
+          "row_index": 140
+        },
+        {
+          "prompt_sha256": "3a8bfcb6189a8338cb888b7b052a4d33399bd2be3685cbc915f4b0d669a6bc5e",
+          "row_index": 150
+        },
+        {
+          "prompt_sha256": "3080714d3273eb2154ecbe942cdc3c2da16240e29388a2f608252e367d15e23c",
+          "row_index": 151
+        },
+        {
+          "prompt_sha256": "4e332330d73d72eb50e5e8d1e7a977e31b554f94be78b92826b0c60f8aa30d5a",
+          "row_index": 154
+        },
+        {
+          "prompt_sha256": "9ba6bc62521e272d574838f595df6635350aafeec948b49073aaed160856a24b",
+          "row_index": 171
+        },
+        {
+          "prompt_sha256": "55091194deedd01e75ab16a799766d76ad0ecc478b159e0a72c51a19eba1dcbc",
+          "row_index": 177
+        },
+        {
+          "prompt_sha256": "5e156993b8efcfcb07ee8863b626619896ed9658149f65c57d3c96c48216b043",
+          "row_index": 212
+        },
+        {
+          "prompt_sha256": "ca8264c5040be49ee75ec25aad2e456775908d3e047301209b393917822ec74c",
+          "row_index": 220
+        },
+        {
+          "prompt_sha256": "7716dfeb1725b3fbb65f357ed7842dd47562b35060969ceb102397b6cc9d8ab7",
+          "row_index": 235
+        },
+        {
+          "prompt_sha256": "664927c9965ff5ad2b75b556ae51e0ddc812e7b7e372d06952005656f6ca4683",
+          "row_index": 238
+        },
+        {
+          "prompt_sha256": "344f259f27823e6e3ee93d41baf8ec2e754d060893eebc8fd3cdbac4e6e79788",
+          "row_index": 240
+        },
+        {
+          "prompt_sha256": "8e2693d6c9f71919efc5b114804e03d91e220571db0109a9ce79f7627b0e1fdd",
+          "row_index": 241
+        },
+        {
+          "prompt_sha256": "1996a72dbf80558f4505f413993dfbd8b5daa193428dd1cc03e638cbe84e060a",
+          "row_index": 259
+        },
+        {
+          "prompt_sha256": "2baf04e31d4e975c6e5cc8bb9db3a54aae4edf283ee1b94aeb7e34968d3c4bfa",
+          "row_index": 271
+        },
+        {
+          "prompt_sha256": "400a07fcaae641de7335e9e35e75986238566dbfa74c7c1441ac3ce511b78c25",
+          "row_index": 283
+        },
+        {
+          "prompt_sha256": "dcb2cf7d422368e3013444da96d745e35f0a3f1a5ac55ed1ca7b1f0964b6f562",
+          "row_index": 336
+        },
+        {
+          "prompt_sha256": "5cebe7049ddf3e70909d8cdc09d0b41728fc9fbfe274d84d21b622e4f0bcf113",
+          "row_index": 347
+        },
+        {
+          "prompt_sha256": "4b7297b47da8c4f180a211eb3a06300210670e13c65b9175e318afadc08de540",
+          "row_index": 359
+        },
+        {
+          "prompt_sha256": "74ce8d7c4bee6297958f78d6a4c7d7c354f6360a4ab78c1e53e8253249d99ffc",
+          "row_index": 401
+        },
+        {
+          "prompt_sha256": "1cb038acd83346246745c392806c3659928178a8ef3f6a41c00d4d148332645c",
+          "row_index": 407
+        },
+        {
+          "prompt_sha256": "a00e3bac19824f24805c2d97149eec2bd85ca3bc595dc337334ce2b594b3934a",
+          "row_index": 421
+        },
+        {
+          "prompt_sha256": "f5b3e88f74e8c0f48b3120c568fde4e7f02fa4f4e607320a3337317ba2c27858",
+          "row_index": 461
+        },
+        {
+          "prompt_sha256": "0264a7faeb62e07f12a024bea6129f85d6dbd974c7bce73ac94d14ec229c4eda",
+          "row_index": 471
+        },
+        {
+          "prompt_sha256": "051ae2b51a5de4945aeebd41c1161a35c24f5d72fb2731488a4c2c86dc7f22ac",
+          "row_index": 479
+        },
+        {
+          "prompt_sha256": "cfbcb8a880ab1f951aef79d532de3185b742724353093f79f65e3c5224c92456",
+          "row_index": 521
+        },
+        {
+          "prompt_sha256": "a6e52b3379ebd479057fddbfa267255e844713a195b6abc71f8e78aedec32f3f",
+          "row_index": 523
+        },
+        {
+          "prompt_sha256": "5935bc9247aec3af3addd37773af98082280a8db898c025e62b3ad78cb85b1a0",
+          "row_index": 526
+        },
+        {
+          "prompt_sha256": "ab15ac421db11587db72ec3ae62f112acb788473073e394b5f2829ca75c61a67",
+          "row_index": 532
+        },
+        {
+          "prompt_sha256": "63acc70208f4e74583b8eeddea329dde0eda2aafcd6fd85e8c7d7afcee79932c",
+          "row_index": 533
+        },
+        {
+          "prompt_sha256": "cc439002a3f47bde46f1646916d892ddaf5260ea5025bd38e7a253dc0bacd73b",
+          "row_index": 539
+        },
+        {
+          "prompt_sha256": "b658cc3bc6453a2ab1b0818a038c2080184cbb0b28463d7550f07fa828905af5",
+          "row_index": 582
+        },
+        {
+          "prompt_sha256": "15e94c36279f5ef449d222b30bb3d5fcc769b8598be32965e08594bfe484e37c",
+          "row_index": 589
+        },
+        {
+          "prompt_sha256": "84015aa6b72f339f3c39458c3b1372dd836a72f90381311ae9d55cf3bbbc4a8d",
+          "row_index": 596
+        },
+        {
+          "prompt_sha256": "b58a4f277ac13d343d7ddb1e5736a6495ac5793d96ccd1b53cb65492eb872dfd",
+          "row_index": 609
+        },
+        {
+          "prompt_sha256": "297086917a42d14569ec6555f82db1631f8a7c56190f50ec131e1f614f59db38",
+          "row_index": 619
+        },
+        {
+          "prompt_sha256": "9733c6c3497099f2e7dfb27f63d22bdc6dfeff8672a6c1b593c5b8610849f5fc",
+          "row_index": 624
+        },
+        {
+          "prompt_sha256": "3f7d3c8f58f11ef18ae87e8b13fd3392aa3095b33a1f5a10ea7daccb917e93e5",
+          "row_index": 627
+        },
+        {
+          "prompt_sha256": "fb8dad803f580e4f14a1b0b6a49a5e735b08cbacfa9877bd555c6fe00234ba4a",
+          "row_index": 649
+        },
+        {
+          "prompt_sha256": "71c5a303a4ee08888d1bbba5bf037e5a164ec6a02340ff8c80ac088d36b41507",
+          "row_index": 661
+        },
+        {
+          "prompt_sha256": "399e41530fe6ee96744ae95fccec2c311d45b5b1013403692321f04707830faf",
+          "row_index": 663
+        },
+        {
+          "prompt_sha256": "946d8b77a841e6d81d2894b9bb76d7ada102ad2c6bc20005bb6bfc34640d6e4c",
+          "row_index": 690
+        },
+        {
+          "prompt_sha256": "21d68b10c625413677281ce19bfd6c5439c90694589f1682d0e22bd97bb08147",
+          "row_index": 699
+        },
+        {
+          "prompt_sha256": "93899a6c3fde211cea4406559ae73c03b3c04169848ef4ca9878d9a53ff465ff",
+          "row_index": 700
+        },
+        {
+          "prompt_sha256": "4067bce91754443c261b50bc01c9240ea442bd00793c5f59abf1e6bbfa91ca71",
+          "row_index": 721
+        },
+        {
+          "prompt_sha256": "8f0444d13c227e22f3a2143386e8edcd05ca0d292f49bd98641d623df723b82c",
+          "row_index": 726
+        },
+        {
+          "prompt_sha256": "219de13bb67850bc46e6039bae22e16a56af8428cc404c6c992f8338f8405e2b",
+          "row_index": 729
+        },
+        {
+          "prompt_sha256": "68a79fb42cb74b46fb886f05b9f74f0cbf01148f942d9eb5a137ceda4bcbd377",
+          "row_index": 736
+        },
+        {
+          "prompt_sha256": "ef1ef8136de8d73cc750272439eff998448597e70beaf59bd70d7cf3f5d34909",
+          "row_index": 739
+        },
+        {
+          "prompt_sha256": "95e59e61c0f50f0dda88c6bc37152edf7a25f4fe022818493bf0c3205312ef3b",
+          "row_index": 742
+        },
+        {
+          "prompt_sha256": "fb18ba5120df46c407af92b4d3882452fb1373b3b6002fbd421bc73ceee3a5c2",
+          "row_index": 743
+        },
+        {
+          "prompt_sha256": "bad1d10bacc7e55841f662aec3f8042dce6338be2592d91b4a05890f5ca9c6c5",
+          "row_index": 744
+        },
+        {
+          "prompt_sha256": "fd00105695254e90d5e4a649bfd85a920019cc6aecac9408ed3e33e45d63f67b",
+          "row_index": 749
+        },
+        {
+          "prompt_sha256": "314249fd39abeb1919bde620966c1737975a03a3c11d374dd61a9cdf19fabbec",
+          "row_index": 751
+        },
+        {
+          "prompt_sha256": "3e00706781486b06abdb228ce27a5b79bdaa1d2a367c91df018fe67001c025a7",
+          "row_index": 753
+        },
+        {
+          "prompt_sha256": "466d789af8bf082ed50f9569fae72c3337b96f5e55bb6c0156a86841851acec4",
+          "row_index": 766
+        },
+        {
+          "prompt_sha256": "03c263632e80397e8466508048e2f8309a5d6a2a0ff4c84df6359123bf2e9714",
+          "row_index": 777
+        },
+        {
+          "prompt_sha256": "611e204d0b80fae8ca1a0aabf7ca6525fdebc0ef97501061f41e675bb78023de",
+          "row_index": 781
+        },
+        {
+          "prompt_sha256": "a1e9556931ba596bbbb4f3f64e5a29ce780536dfc3f70206078f16d1ccadfa2a",
+          "row_index": 795
+        },
+        {
+          "prompt_sha256": "f86655f6128d433191c4906589ea8052831f3e1ee79ffd7bdfe9ded0d7493084",
+          "row_index": 803
+        },
+        {
+          "prompt_sha256": "5995504093caa318fc71a5df03f39e2180bf18affc0771e0cfecb482ef833961",
+          "row_index": 812
+        },
+        {
+          "prompt_sha256": "8693657a63663864b2acc200545397297d37771187e8f147ed898ef0103f083e",
+          "row_index": 827
+        },
+        {
+          "prompt_sha256": "e81abeb946244925b88dc2472246eee2ed2eec284131b4f67fdd0d3f0fe1e636",
+          "row_index": 828
+        },
+        {
+          "prompt_sha256": "da8be9e9373e2f8b27c094ab244bb3232ab75274d38813f862202688fa6e28ae",
+          "row_index": 837
+        },
+        {
+          "prompt_sha256": "7432b9f2c05773a0fda89112696ca8b911d680a2fcef879fc99e00719e043a08",
+          "row_index": 852
+        },
+        {
+          "prompt_sha256": "bbaf8ef410103f0e6fa3e43a7eeb4d90f02742f3bd5f351940077fd0d4292cb9",
+          "row_index": 862
+        },
+        {
+          "prompt_sha256": "80c6c993731f0b11c9cbb188419d0fec8de3c77caaad1e15da7cea4851f3c727",
+          "row_index": 864
+        },
+        {
+          "prompt_sha256": "9fa70f2dd7a054f455917badddd9f69389ec5d530e05f6df3fd45626018d5bd5",
+          "row_index": 865
+        },
+        {
+          "prompt_sha256": "51522c33248bb7e91745b44b814f263fb96044731539bf93124820d127637d54",
+          "row_index": 868
+        },
+        {
+          "prompt_sha256": "136aeda7ea6fcf2e6c173e2eb3a3222afd46ffb099d218c36d4643a19168183a",
+          "row_index": 901
+        },
+        {
+          "prompt_sha256": "576b2cfdf78a68a7e9cce95372cb67c9d4b838bdb6e5f2ba19dd3b936a3019ae",
+          "row_index": 915
+        },
+        {
+          "prompt_sha256": "3ccfe3e67ea94384552e363edb484cd9954feb60d1ce5867b4d1c80abf6f8764",
+          "row_index": 920
+        },
+        {
+          "prompt_sha256": "8fd6525f5b25a51226ed5c53e8d6fa871061e7d766d51d66cddc37eade3888ef",
+          "row_index": 951
+        },
+        {
+          "prompt_sha256": "87e2b81e2fe92c7887c575ac9630a5992a619f344f5531ba4677d2dd677b0349",
+          "row_index": 968
+        },
+        {
+          "prompt_sha256": "d039917ba6a4c1bdd6f7f018282fd3f2ec3887bedb3d31313db087b4ffc33474",
+          "row_index": 979
+        },
+        {
+          "prompt_sha256": "0407558da1e3fd8f9ee6e7fbbc1be7d9f54d279c13c20422bec34670af25e615",
+          "row_index": 993
+        },
+        {
+          "prompt_sha256": "c73d918c6c99ce50b236855f6461718ad0300f17ddec31e8d3fac1220ef7d288",
+          "row_index": 996
+        },
+        {
+          "prompt_sha256": "a4de1b0d96af78d00d1b12f579d5462845c2528aca7cfd8e4437c22bd9315886",
+          "row_index": 1003
+        },
+        {
+          "prompt_sha256": "9f87e95b2d0dffa988521f450fda987ec2e6d0467697159327704eafcfcbe90f",
+          "row_index": 1004
+        },
+        {
+          "prompt_sha256": "60dcca05c2f0750cfadd66c6ba8b40293a542053aee18cf45bd213dcc3bff54d",
+          "row_index": 1014
+        },
+        {
+          "prompt_sha256": "018f6c642af7ddad46a6c63b3a95c01b982f8b26fef53c1e9f76091dda109505",
+          "row_index": 1032
+        },
+        {
+          "prompt_sha256": "f4ee65938fd8ac2b369ab926e7cb15d140020c804e823b29ce7441b799c881aa",
+          "row_index": 1062
+        },
+        {
+          "prompt_sha256": "df1e0d9376f2be33d594c09be96824546124a0215c7817c5a1e3315c415fdfcd",
+          "row_index": 1068
+        },
+        {
+          "prompt_sha256": "48705328fbdd61a3820c40b3b488089f341ace66f78cd69797d464fccb66a37e",
+          "row_index": 1127
+        },
+        {
+          "prompt_sha256": "c26bef6514ff77603e39a2ffd1aa8cf31bde9b361ba6eb27b76d9a82396c525d",
+          "row_index": 1133
+        },
+        {
+          "prompt_sha256": "6206bc51a78315ffc176309157e0bdb07d5eb50510d21e8555c6370c7fce9df9",
+          "row_index": 1173
+        },
+        {
+          "prompt_sha256": "5c273a4296dab569a9227675d3415098976f9b9726e03ddf75856b179512a2b6",
+          "row_index": 1180
+        },
+        {
+          "prompt_sha256": "851383cec9e7f23b30996e8611f7442133a1ec4499e770685df671546980559d",
+          "row_index": 1245
+        },
+        {
+          "prompt_sha256": "ab8dc3a9e0b031f0ef781442f8c1a7708bd20d71968084f22632441f0c38366e",
+          "row_index": 1256
+        },
+        {
+          "prompt_sha256": "2e4540b8e9e3979c0567cb565c74c6810a1e09d38284af035ef73b1aae7ee92e",
+          "row_index": 1259
+        },
+        {
+          "prompt_sha256": "0200e6459433efc593e8e0cf77a51d6b94eb1e4a1f6bc1999fb64e896ca3ad6b",
+          "row_index": 1270
+        },
+        {
+          "prompt_sha256": "a1fdabcde3902e6bb24de61f836735a77794e5eeaa864cb50641c91d6d437d90",
+          "row_index": 1275
+        },
+        {
+          "prompt_sha256": "d5109d41c04521d8c10f39e5bf08f70d1f4d58e8fa0102937efb300119d41ff8",
+          "row_index": 1279
+        },
+        {
+          "prompt_sha256": "22d608d67e55ce6bb4930a78e2bb19e5c9232e28ad03170276e413b964975e58",
+          "row_index": 1281
+        },
+        {
+          "prompt_sha256": "7aa654e3bd9e9ab25a5d1a7cd8229b5d21c2d8d6bfb8aea5a74e89d7e58a51dd",
+          "row_index": 1290
+        }
+      ]
+    },
+    "math500": {
+      "calibration": [
+        {
+          "prompt_sha256": "4a689483247ad4e14e2cb068b56d2f06bb1f1b1a53e38f944d730225b5e694cf",
+          "row_index": 18,
+          "stratum": "Algebra|Level 4"
+        },
+        {
+          "prompt_sha256": "541b1e2d00f8abc0f395da9ef46a2e0dfa2b73617c1047840572cd16916e9ddc",
+          "row_index": 30,
+          "stratum": "Intermediate Algebra|Level 4"
+        },
+        {
+          "prompt_sha256": "30625ff210cf5a08933c65b91f4ff6b36fa1d03087ea1a369003d6d5eb143f5e",
+          "row_index": 36,
+          "stratum": "Prealgebra|Level 3"
+        },
+        {
+          "prompt_sha256": "485a4ae2186b809a47f3f85c9c269e22f250be53a400fa29cd040b432dd56324",
+          "row_index": 38,
+          "stratum": "Counting & Probability|Level 3"
+        },
+        {
+          "prompt_sha256": "3d3e24122bb962efa5a5dfb09c51b4a606122b0635c3ef9e1646011f16057b8b",
+          "row_index": 40,
+          "stratum": "Algebra|Level 4"
+        },
+        {
+          "prompt_sha256": "f8a544c16470d0d977ed83b1f53419140e39a8bd393a77b613b9bb58a1c6a1b0",
+          "row_index": 42,
+          "stratum": "Algebra|Level 2"
+        },
+        {
+          "prompt_sha256": "4f5c7595557fb7e122155baf08f5bc9bb95ef916f235385497e3e4eb4e33b1fd",
+          "row_index": 44,
+          "stratum": "Prealgebra|Level 1"
+        },
+        {
+          "prompt_sha256": "5627c5004c844e65497d898840739dee79ba6e3e4bf7e705fc2cbcd420a6d5b9",
+          "row_index": 56,
+          "stratum": "Intermediate Algebra|Level 3"
+        },
+        {
+          "prompt_sha256": "6d83ea396c4d02e7901f7369c4e492b353fc57be84d4a4b9bf1565cd21d4fce8",
+          "row_index": 63,
+          "stratum": "Prealgebra|Level 5"
+        },
+        {
+          "prompt_sha256": "84e6ea460d0c77b63491536fa0d42114e73db869e0fb9c5710e20c0e4aae218f",
+          "row_index": 68,
+          "stratum": "Prealgebra|Level 4"
+        },
+        {
+          "prompt_sha256": "0ddb97da516d2c8ae05ded6ad442f177f1ff50da268e7d2a13775297e9703411",
+          "row_index": 85,
+          "stratum": "Precalculus|Level 4"
+        },
+        {
+          "prompt_sha256": "85ce3942b3df87de4db5a9ca418f6b0e22da98b533fbf4593b85bcb142b495a9",
+          "row_index": 87,
+          "stratum": "Number Theory|Level 2"
+        },
+        {
+          "prompt_sha256": "c9f5e4f7de15e04a18ab8cd4d19d87721e836920b02d53daaf34bf24991f58e0",
+          "row_index": 102,
+          "stratum": "Intermediate Algebra|Level 3"
+        },
+        {
+          "prompt_sha256": "c0f252e34cd872fb52c2b96ae47acc08060a0579ac5c1148a0575bbb69f993bb",
+          "row_index": 118,
+          "stratum": "Precalculus|Level 3"
+        },
+        {
+          "prompt_sha256": "0cc53d4225a1afcfb6d3ba905d7d597798fd10e099b86358508786f203c9cf5f",
+          "row_index": 139,
+          "stratum": "Geometry|Level 2"
+        },
+        {
+          "prompt_sha256": "0f3414174a8d4ac5b29ab1713099dd9a9024ec5ab78784b87787e500a0d972a9",
+          "row_index": 140,
+          "stratum": "Algebra|Level 2"
+        },
+        {
+          "prompt_sha256": "a327eb513959ab9e98872dd70565b5b0c04a498b31137ea25d4094cd7c2cb69a",
+          "row_index": 148,
+          "stratum": "Algebra|Level 1"
+        },
+        {
+          "prompt_sha256": "be7c9898f1dd2b9b86ae0036b01b61af34e1da80d707784310af1e6871e3c1b8",
+          "row_index": 154,
+          "stratum": "Intermediate Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "2ef4e16aa00075c0b14094a76b9a0edc119594b2c5e2fd77fc80f8c1d4bc5085",
+          "row_index": 161,
+          "stratum": "Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "000e5389f4e9b731f7d15d7682243f9014e78c1598f7de8b1d9235ff2f837f8c",
+          "row_index": 164,
+          "stratum": "Number Theory|Level 4"
+        },
+        {
+          "prompt_sha256": "9f3b9f8d7ae2958e0245eb06db8341a7ec0d7597903466a87448caabbacfeb92",
+          "row_index": 165,
+          "stratum": "Number Theory|Level 5"
+        },
+        {
+          "prompt_sha256": "219265628c63e2cfb606f052520c6065caba8494b2cdfd2e3f0b4dc9641e2e7b",
+          "row_index": 166,
+          "stratum": "Prealgebra|Level 4"
+        },
+        {
+          "prompt_sha256": "fc5af6f4b5f0c360e30d528b4545e6fc156c99d39aa63a17492e93476324a72b",
+          "row_index": 170,
+          "stratum": "Counting & Probability|Level 5"
+        },
+        {
+          "prompt_sha256": "d6beb85644f222f42147a9c2dfb4b9349a2265727ca9c18dea37dcb0925ab161",
+          "row_index": 177,
+          "stratum": "Algebra|Level 3"
+        },
+        {
+          "prompt_sha256": "1e1217d70cf4e0b8473222b9bb6590224c4ef2b87cce34644bbdf4bef6e3a5ee",
+          "row_index": 237,
+          "stratum": "Prealgebra|Level 2"
+        },
+        {
+          "prompt_sha256": "af2d6f3908ac07e6203aba8c7d1ecb3826e0c01f943b6286a9262b7b0648f162",
+          "row_index": 241,
+          "stratum": "Precalculus|Level 5"
+        },
+        {
+          "prompt_sha256": "cebd67bf0465507a2172251ff7d2109c16b1eaf779ee95bf987b99a8df7f835c",
+          "row_index": 280,
+          "stratum": "Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "9492e29faaee122215287dfb89d234138509659fdeecb78ae3273da1cc9e9b94",
+          "row_index": 283,
+          "stratum": "Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "fd6156688221f10bc2fae6b48dd283957d6c1a59cd9275b05da256da0e6999d6",
+          "row_index": 287,
+          "stratum": "Counting & Probability|Level 2"
+        },
+        {
+          "prompt_sha256": "f1d7eeb5e30cc891c12165caaa60971354eeee06a221629dbb5fe0ea848c466a",
+          "row_index": 299,
+          "stratum": "Geometry|Level 4"
+        },
+        {
+          "prompt_sha256": "9b85603bc31a20300a1bae15663aad93309ecaa4d23de1d5291eee9dc713a0c7",
+          "row_index": 320,
+          "stratum": "Counting & Probability|Level 4"
+        },
+        {
+          "prompt_sha256": "56661c3501c8002901b0b44cd6a30557a818d7e67a7bf559ff74c3a0b7f94dc5",
+          "row_index": 328,
+          "stratum": "Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "ded61cc58afe7029f81bc5723e3abdc5404ee00645f2229079168265134d1f94",
+          "row_index": 331,
+          "stratum": "Algebra|Level 1"
+        },
+        {
+          "prompt_sha256": "ab7e10c4af73c9ed6ddf5ba3ffb0e07855591c25339c369f4ff920a3771210e4",
+          "row_index": 340,
+          "stratum": "Number Theory|Level 3"
+        },
+        {
+          "prompt_sha256": "5f1a36224f907f275cfe8970ad51333b6c35496bcb6d10d8df29d1cd648844b9",
+          "row_index": 343,
+          "stratum": "Intermediate Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "2abe0890bc35ba374f142b2ee7caabf0bfae7477313ae711edcab6b3ca1f3dc3",
+          "row_index": 351,
+          "stratum": "Prealgebra|Level 3"
+        },
+        {
+          "prompt_sha256": "eea61ebc6f0b5af4a1a03559a262758894f400df0f7b453384b118ce41bb621f",
+          "row_index": 372,
+          "stratum": "Algebra|Level 2"
+        },
+        {
+          "prompt_sha256": "b62a6a8193ac5a90cf75814619003c9385ce7185534d929ebf01348e97966a6e",
+          "row_index": 379,
+          "stratum": "Geometry|Level 3"
+        },
+        {
+          "prompt_sha256": "db68c1a6bf65fb4ab6e8af5db6bff93f279e68b1cca562bd21df8796ff63a780",
+          "row_index": 392,
+          "stratum": "Intermediate Algebra|Level 4"
+        },
+        {
+          "prompt_sha256": "88e1f98169c592aa5539a9a5ccf4b4d400495e9d48af283d5906cebe7f92d313",
+          "row_index": 407,
+          "stratum": "Precalculus|Level 4"
+        },
+        {
+          "prompt_sha256": "d8813dfb7d7d883aab52a3b1dfc240f45ab64d6c74d3632de8574fbea0c469e3",
+          "row_index": 408,
+          "stratum": "Number Theory|Level 5"
+        },
+        {
+          "prompt_sha256": "7b2c916bca677635acb70e6d85a05cb9baa4b0a204fe8dc38541b8e77b578c6d",
+          "row_index": 419,
+          "stratum": "Precalculus|Level 2"
+        },
+        {
+          "prompt_sha256": "c61efec2192a26c64f277d7b986947a0c5f41e464637873dc0197c3f02da6349",
+          "row_index": 422,
+          "stratum": "Counting & Probability|Level 5"
+        },
+        {
+          "prompt_sha256": "193c17410f2faf06224fb6a949df0f2569d46a0acf4e819fe1992cf8cd7711e1",
+          "row_index": 426,
+          "stratum": "Prealgebra|Level 3"
+        },
+        {
+          "prompt_sha256": "fe639383a8bd441d33683b2f4bd5be155a5720bfed051c72d40fad8cbc21c18a",
+          "row_index": 435,
+          "stratum": "Intermediate Algebra|Level 2"
+        },
+        {
+          "prompt_sha256": "b91650e3d7c055fc4469ecc70b730dc8a8d137b46baf61cc69cd080254d50314",
+          "row_index": 449,
+          "stratum": "Algebra|Level 4"
+        },
+        {
+          "prompt_sha256": "00e5deaea9e6cc2a643a8a99c776966aa7ed3971147f758db9726d4eeff391d3",
+          "row_index": 479,
+          "stratum": "Geometry|Level 5"
+        },
+        {
+          "prompt_sha256": "4ee84d8437bf8abc3aec2ac6839bd909da5949676e271354438ac625c5d2dd45",
+          "row_index": 481,
+          "stratum": "Precalculus|Level 1"
+        },
+        {
+          "prompt_sha256": "1121784bed170eb49d17c51c13d8ca0c9a5ca4e05fef230f9911690835030713",
+          "row_index": 487,
+          "stratum": "Algebra|Level 3"
+        },
+        {
+          "prompt_sha256": "c2acdc62e9c9e0746a0ac56621b0eeddece8df81f95b81510f3358382d4c3385",
+          "row_index": 494,
+          "stratum": "Prealgebra|Level 5"
+        }
+      ],
+      "heldout": [
+        {
+          "prompt_sha256": "bda8187aa4d6c1f7be6827a01f866d1a3122aaca02801bef0afdd996364481c3",
+          "row_index": 1,
+          "stratum": "Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "50cf5a7e5b2dd96916529f71b86b49798feddc62092f20f1b968122ab45db525",
+          "row_index": 3,
+          "stratum": "Prealgebra|Level 3"
+        },
+        {
+          "prompt_sha256": "0b7b1e3d180e23251ec8e06eea1bf4be4ba434419683ad09fc22fbc76c323750",
+          "row_index": 4,
+          "stratum": "Intermediate Algebra|Level 4"
+        },
+        {
+          "prompt_sha256": "3e14b5fdaf02200814518fc780584baa82cd5e90e6cadadb4c113cc9e921b477",
+          "row_index": 5,
+          "stratum": "Prealgebra|Level 2"
+        },
+        {
+          "prompt_sha256": "024f78ab850538359cc5fca3e505241ca9f50e3f0b9cb6867b7ed5c842b7584e",
+          "row_index": 10,
+          "stratum": "Precalculus|Level 4"
+        },
+        {
+          "prompt_sha256": "ed77d0d1cc8e0c630c857a781b6142a78d4e4fa51b65df801f8f7d789dc4ec2b",
+          "row_index": 14,
+          "stratum": "Algebra|Level 2"
+        },
+        {
+          "prompt_sha256": "665d4ef705ad5768ce3955839550ee6f2d2f6428715d2b7b8df8803526bc3ce0",
+          "row_index": 25,
+          "stratum": "Intermediate Algebra|Level 3"
+        },
+        {
+          "prompt_sha256": "7694c0471fb07495d1ce17d8a92d2788edab0e57e8b428799e0e4cad5cba1207",
+          "row_index": 37,
+          "stratum": "Algebra|Level 2"
+        },
+        {
+          "prompt_sha256": "79b7b095949bd64cba563c068359e6ebb6c9fedd0b97216d62df474291741bd2",
+          "row_index": 41,
+          "stratum": "Intermediate Algebra|Level 1"
+        },
+        {
+          "prompt_sha256": "7b7b228008b2881d16466e0e377118da071fd381d4db4cc130f91a25b2e0dedc",
+          "row_index": 58,
+          "stratum": "Counting & Probability|Level 5"
+        },
+        {
+          "prompt_sha256": "1a52e49e07f4892ac7c67dfe0f192f16657ef41d9ff8e242c3a23f084d5acc0c",
+          "row_index": 67,
+          "stratum": "Geometry|Level 5"
+        },
+        {
+          "prompt_sha256": "385773169d2e4e1431e1f74d6c7a68879a1ea76020b86ebad49541b2f94f4f03",
+          "row_index": 79,
+          "stratum": "Prealgebra|Level 5"
+        },
+        {
+          "prompt_sha256": "7ae13788fcc36e0882098c64c7f8c28a622691e36a91c8242a9e6bdf197320ae",
+          "row_index": 84,
+          "stratum": "Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "3f4b31ea332c7b1e964195711e91e938849e3a9f49c4a48cd89c8cbef638aae7",
+          "row_index": 93,
+          "stratum": "Prealgebra|Level 5"
+        },
+        {
+          "prompt_sha256": "0a13d264c1acb744bd738218fea64fdb7f504d6aaf4f0a5438b31fdd7d2d9a37",
+          "row_index": 94,
+          "stratum": "Prealgebra|Level 2"
+        },
+        {
+          "prompt_sha256": "3500051195f92950a4585344875b85d43bbc64715115a162361dc5f0033f2cd9",
+          "row_index": 107,
+          "stratum": "Intermediate Algebra|Level 2"
+        },
+        {
+          "prompt_sha256": "ab9a554e65acbbae9fe6e1c4470b97b6b107219fc84d1cbc2cee7b173c8600a1",
+          "row_index": 111,
+          "stratum": "Geometry|Level 4"
+        },
+        {
+          "prompt_sha256": "f3079b4c1928db954a72bab5994f08e798f1a20017476b474c86f3379f258d74",
+          "row_index": 112,
+          "stratum": "Algebra|Level 1"
+        },
+        {
+          "prompt_sha256": "c3a88f8bb3e6c396b2b5d6a2d742ec9d43cd29909a384f676855fefaaf48c0e6",
+          "row_index": 117,
+          "stratum": "Prealgebra|Level 4"
+        },
+        {
+          "prompt_sha256": "b7cc81ebece10abd9d85d40a1107f8aeeed0e51edd333c23a77b81e75a3cc2c1",
+          "row_index": 124,
+          "stratum": "Intermediate Algebra|Level 3"
+        },
+        {
+          "prompt_sha256": "3e70ebfbc1675d412f52bc2945d4e0e2ae97bafb714dcd54bf64372a6984eb1f",
+          "row_index": 127,
+          "stratum": "Geometry|Level 2"
+        },
+        {
+          "prompt_sha256": "ded5cf8b7020b076856bd34c59b6eec9dd9f23890bd7ac2de9586f86618061c2",
+          "row_index": 128,
+          "stratum": "Geometry|Level 2"
+        },
+        {
+          "prompt_sha256": "024758997cbe6b3bb5730a67a482af70f509eee5e99c958e6699f3fb7611ab56",
+          "row_index": 130,
+          "stratum": "Prealgebra|Level 1"
+        },
+        {
+          "prompt_sha256": "d475a317f9d177ff037e4f4060b4331751345d80ccd6b246938dfba0f7bc3564",
+          "row_index": 131,
+          "stratum": "Precalculus|Level 5"
+        },
+        {
+          "prompt_sha256": "23b116b3d41b2134a1d3868489228dc35e011c2cd4a5610ec2d9d56f5cf481c0",
+          "row_index": 135,
+          "stratum": "Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "362ace7697b9f9b02d38b0b375875d81de808c2e29e7f25705e130d36a677c4b",
+          "row_index": 138,
+          "stratum": "Precalculus|Level 2"
+        },
+        {
+          "prompt_sha256": "f36d5ba3a9bd772d7a81ee993a35b0a8c260f46c011585c796175ceb694aa6b7",
+          "row_index": 149,
+          "stratum": "Geometry|Level 4"
+        },
+        {
+          "prompt_sha256": "d3610a7a7451457588e70f4ab41af1c4a50615e72de3ebbd4fc4dccd4a209d27",
+          "row_index": 152,
+          "stratum": "Intermediate Algebra|Level 3"
+        },
+        {
+          "prompt_sha256": "e2274678d82fd3c4d03c1c3938d0c0b66180a96b8f0327bbe3053d33c2b5cb19",
+          "row_index": 159,
+          "stratum": "Counting & Probability|Level 2"
+        },
+        {
+          "prompt_sha256": "f367dd5b90aa5a8c62e02601660ca44697e5116d6998d4e7655a18ec8bf56d9a",
+          "row_index": 160,
+          "stratum": "Intermediate Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "c81f509fb6f5863436953e147ff514713b9255d3ab3a58a130320789d9404063",
+          "row_index": 163,
+          "stratum": "Prealgebra|Level 3"
+        },
+        {
+          "prompt_sha256": "8ecbd221fffc47fd6cefadf66ceb261a120bfc34379b81fa28fffa06b69a2748",
+          "row_index": 180,
+          "stratum": "Prealgebra|Level 3"
+        },
+        {
+          "prompt_sha256": "7e91dcaf7b7d0512f6076d8002e7da0f4f56ae058f0e004e1db136769c180569",
+          "row_index": 186,
+          "stratum": "Intermediate Algebra|Level 2"
+        },
+        {
+          "prompt_sha256": "a7486029fc1551a680e7a670f01eb6d1723afafc71157f858e4e78111fe5c8a4",
+          "row_index": 189,
+          "stratum": "Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "2ddc77a6d3699b670b2fc07aa74c6bb5c123c8ee0024b9c78b1a5da3f02c8095",
+          "row_index": 193,
+          "stratum": "Geometry|Level 3"
+        },
+        {
+          "prompt_sha256": "624c52f7b151b4f15aea0da55f5340797c127d3fc499e46ff365aeadd82e2c72",
+          "row_index": 198,
+          "stratum": "Geometry|Level 5"
+        },
+        {
+          "prompt_sha256": "0bd100c6ebf3504636693ed23a51f7e7d5a8a9bb0ee9b60c2f1062015214b517",
+          "row_index": 199,
+          "stratum": "Algebra|Level 3"
+        },
+        {
+          "prompt_sha256": "39f3eda07badddb0b9f0e94ca2bfc31329c66c3ab75925d4b4fa97548e798267",
+          "row_index": 203,
+          "stratum": "Prealgebra|Level 3"
+        },
+        {
+          "prompt_sha256": "6d94ecb41d3441807bd04cd1347f073fbbd687ffd2334f3c43c51f31e7b4d332",
+          "row_index": 209,
+          "stratum": "Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "43489bcfd1c0a9b820f200d6310f01ffaad873ad7a8c47a4b1d2a4dbfb1b7261",
+          "row_index": 216,
+          "stratum": "Algebra|Level 1"
+        },
+        {
+          "prompt_sha256": "4c515759d70feaf8f3c1b9321568bfe251e0ad5bcbf96dca3f8a2fa61ce76c05",
+          "row_index": 220,
+          "stratum": "Intermediate Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "c37a168fb211f0aa8d099380caeb1434de54cf829f0ad6af148ff50a7c93703e",
+          "row_index": 224,
+          "stratum": "Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "e8b381ec718a5732212cf3bbdddc9db8586dd8cf86ad546e656e27445be545db",
+          "row_index": 231,
+          "stratum": "Precalculus|Level 3"
+        },
+        {
+          "prompt_sha256": "8dde0d0a8adbcdb7e3b4220311b117a2ff0765589eb80f50640745360b00eee9",
+          "row_index": 246,
+          "stratum": "Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "0615288ee6cd4ad2dcd8fb58af91fe1b6b8d6f02b3e7e85cfee88960702c1d47",
+          "row_index": 254,
+          "stratum": "Algebra|Level 3"
+        },
+        {
+          "prompt_sha256": "d731ff9eea9cdf9edc9c7bf79b4060bfe966f8b146c8da862ef200f16a16e719",
+          "row_index": 255,
+          "stratum": "Prealgebra|Level 1"
+        },
+        {
+          "prompt_sha256": "6418c6f12467a22f6ac897a781b975f99f212e0ca835afa8fd9eafe3e3378e7c",
+          "row_index": 256,
+          "stratum": "Precalculus|Level 5"
+        },
+        {
+          "prompt_sha256": "0593dece0bd26719e17b32051b8bf451ee58b630b365197af14a35c115c62d7c",
+          "row_index": 258,
+          "stratum": "Counting & Probability|Level 3"
+        },
+        {
+          "prompt_sha256": "960ef8c600d320e74a9f642b5f5368cf5fd389210764f0f3de9e6af326b6b0d3",
+          "row_index": 260,
+          "stratum": "Geometry|Level 4"
+        },
+        {
+          "prompt_sha256": "b94ce440660de9a0b1a3865a9175ddcdb668cc812ccaf4088212e07e2ebc884e",
+          "row_index": 261,
+          "stratum": "Number Theory|Level 2"
+        },
+        {
+          "prompt_sha256": "42eaa94e143bc0b66dfafdddc480093d281cd4cce4390805c53da21c5c044185",
+          "row_index": 264,
+          "stratum": "Algebra|Level 4"
+        },
+        {
+          "prompt_sha256": "80257733d77de081fc82cf9bb73d82a99eb314b1ee9ba2432560ca52031fd6f8",
+          "row_index": 266,
+          "stratum": "Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "3e4e6f9ed6689ad68915bb48c58f08e4f81214ea3f3aadcd96d6cd6519a4b12c",
+          "row_index": 268,
+          "stratum": "Prealgebra|Level 5"
+        },
+        {
+          "prompt_sha256": "f941333fc04796ea271a63bb0c3f96ae4030ec58ca174994f0bf43ff6dbf52fa",
+          "row_index": 269,
+          "stratum": "Prealgebra|Level 4"
+        },
+        {
+          "prompt_sha256": "166436db9da39646e5406fd5e53684540f5f60f80514ed6f9707394c1c08a60b",
+          "row_index": 271,
+          "stratum": "Precalculus|Level 2"
+        },
+        {
+          "prompt_sha256": "b48589072489118694353e4821d71fbaf8e02b7d37dd653dce1920e07a17dec0",
+          "row_index": 281,
+          "stratum": "Intermediate Algebra|Level 2"
+        },
+        {
+          "prompt_sha256": "9071dc20a2d605e51b1540dff20e466438dc088965d0b56f5b74de4f7ad7e1d4",
+          "row_index": 285,
+          "stratum": "Precalculus|Level 3"
+        },
+        {
+          "prompt_sha256": "b1c5cb4a4f28b52bdbe847992d437012e7705c51145fa8886c4c00458d305354",
+          "row_index": 289,
+          "stratum": "Prealgebra|Level 1"
+        },
+        {
+          "prompt_sha256": "bf3c45f8e183f229d656f89004e0a029da9b26308bdac1af66ca0f30437ae928",
+          "row_index": 290,
+          "stratum": "Counting & Probability|Level 4"
+        },
+        {
+          "prompt_sha256": "70e330d087034db6e58589fc08dbc304eea0e2761aa35f3483ac20166edee1e7",
+          "row_index": 297,
+          "stratum": "Number Theory|Level 5"
+        },
+        {
+          "prompt_sha256": "15ac5f6c33575419b669e8f992aa06e4414e714e5bf5b7c922d4b3472663c4ac",
+          "row_index": 301,
+          "stratum": "Counting & Probability|Level 5"
+        },
+        {
+          "prompt_sha256": "f14a7fbcddd3d436be5053e739741c3196818b7c3279542233e68ba5e3868976",
+          "row_index": 302,
+          "stratum": "Algebra|Level 3"
+        },
+        {
+          "prompt_sha256": "b0428a421188acbfd5d909f3babaf61d28822b9f596744ba3251a3a07ec15aa2",
+          "row_index": 309,
+          "stratum": "Precalculus|Level 4"
+        },
+        {
+          "prompt_sha256": "be9251de444401fd0e808d0dd6e9c620a2d6084b61d5ed1aea7f70380ed1a371",
+          "row_index": 318,
+          "stratum": "Algebra|Level 4"
+        },
+        {
+          "prompt_sha256": "54e737dbc3588fbd97fbf1db2dfa49b3e53825249d0b48f303f1d9de47a8313f",
+          "row_index": 321,
+          "stratum": "Precalculus|Level 4"
+        },
+        {
+          "prompt_sha256": "42189f4dc9fdcc0b600b11658df168fde7c1fd2e104550b382b9295b63bf7de9",
+          "row_index": 325,
+          "stratum": "Geometry|Level 1"
+        },
+        {
+          "prompt_sha256": "7d6cd3a2b3dcbaeaddfeb49d860bacf22dc1e33c79b74a23547d7fa1f21a2b36",
+          "row_index": 326,
+          "stratum": "Intermediate Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "770eb94d889a4167c314d5a2c6f814a6f1a4c13b004be53919a3f9d1597596be",
+          "row_index": 345,
+          "stratum": "Number Theory|Level 5"
+        },
+        {
+          "prompt_sha256": "7ca3c990f269c3188f73ad6f8df3bd40ca9c51a2b94e0033a008bf9090d37f51",
+          "row_index": 346,
+          "stratum": "Number Theory|Level 4"
+        },
+        {
+          "prompt_sha256": "b8386dd20705f60c4f8644c3c07bfeb799deeea73420e936b31d2c290356a16f",
+          "row_index": 383,
+          "stratum": "Precalculus|Level 4"
+        },
+        {
+          "prompt_sha256": "6ea476eb6f77aba8e0ff84818807d9c44f25e18e065fa1de82afa4db8530505a",
+          "row_index": 385,
+          "stratum": "Algebra|Level 2"
+        },
+        {
+          "prompt_sha256": "d2fc0c6045240c3c30d580a8a1a08e2af10ac42fd83ea0120044d05588f471e0",
+          "row_index": 389,
+          "stratum": "Counting & Probability|Level 5"
+        },
+        {
+          "prompt_sha256": "9a6c1d40c7e2247ae8806acb4bd323866c0c7d2fdd4aac01d825ad5981f73ac4",
+          "row_index": 393,
+          "stratum": "Precalculus|Level 3"
+        },
+        {
+          "prompt_sha256": "f90a514d9da6bb127bd59b5b2d84a542a79decb7a5510045f140e093b47a25bc",
+          "row_index": 394,
+          "stratum": "Number Theory|Level 3"
+        },
+        {
+          "prompt_sha256": "ce5270e32a5d2c109741b34e315330956e4f62d8f6e195449ebe65d49cfb4944",
+          "row_index": 399,
+          "stratum": "Intermediate Algebra|Level 4"
+        },
+        {
+          "prompt_sha256": "bf0bc2e174e37545d9f46d5dc48e74b47e5a2b68a06e8f54ac0d8cda6ee67398",
+          "row_index": 403,
+          "stratum": "Counting & Probability|Level 1"
+        },
+        {
+          "prompt_sha256": "10b1b6fad7ceb50c46432cf7976a3bc48eb7ab26ac92b6f7dfcf98673b3ae113",
+          "row_index": 405,
+          "stratum": "Counting & Probability|Level 3"
+        },
+        {
+          "prompt_sha256": "d07c1c4abaedddc9327eba51405448ae927385dc88f8157c222f421cfc29bc7b",
+          "row_index": 414,
+          "stratum": "Intermediate Algebra|Level 4"
+        },
+        {
+          "prompt_sha256": "9951cbabf9226df67aa10ba5859e6e5950825a798e3395f15203072a4c0f58ce",
+          "row_index": 415,
+          "stratum": "Number Theory|Level 5"
+        },
+        {
+          "prompt_sha256": "745fc1a6f943f717473f424b512b4a11a4ee6320b6715225fb291a6f513181b2",
+          "row_index": 416,
+          "stratum": "Algebra|Level 4"
+        },
+        {
+          "prompt_sha256": "7cdf9573d667f20c37d35e1c0f6e7048f2ec424f71ec3e7006e5417883aefca0",
+          "row_index": 421,
+          "stratum": "Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "7d449a236c699d9837722f23aa24672d317890559c133e00b8b77e58f2b6b8a9",
+          "row_index": 423,
+          "stratum": "Number Theory|Level 2"
+        },
+        {
+          "prompt_sha256": "b6e7bca355b8b4a66d30593a08afd1082381ef3f875635a03d3ea6ea2654aca8",
+          "row_index": 427,
+          "stratum": "Intermediate Algebra|Level 5"
+        },
+        {
+          "prompt_sha256": "55430ed4d3936ff73499f1e6990cacd4fe8fbf9e598ab9546da5b0959c71884d",
+          "row_index": 430,
+          "stratum": "Algebra|Level 2"
+        },
+        {
+          "prompt_sha256": "abb90dd2755015a62f7bf78ef56120d14cce7f0884cc912ba33061f6f77832ca",
+          "row_index": 441,
+          "stratum": "Algebra|Level 2"
+        },
+        {
+          "prompt_sha256": "a7695d41822533772ec534401534ee82982b16478eb941c5bef47a3c9427e2d6",
+          "row_index": 446,
+          "stratum": "Counting & Probability|Level 4"
+        },
+        {
+          "prompt_sha256": "f9394f956574769340bbed7ef3ed1517d9d19eadcc4f4e3e1f03b928d87637ca",
+          "row_index": 451,
+          "stratum": "Algebra|Level 3"
+        },
+        {
+          "prompt_sha256": "c63ef758dfd7f10c96a6daa29f5720a01512d9ac1618a91c8607a155b0b63644",
+          "row_index": 452,
+          "stratum": "Intermediate Algebra|Level 4"
+        },
+        {
+          "prompt_sha256": "1d73c9bd0ae194ba564d571beecc2a3ceb196d6691a70b4236458978e4940f81",
+          "row_index": 456,
+          "stratum": "Prealgebra|Level 4"
+        },
+        {
+          "prompt_sha256": "103e565e021a05ea4936dda35fde6bc48f79d1f9f5b94a288b10a6f613ab98f7",
+          "row_index": 460,
+          "stratum": "Counting & Probability|Level 2"
+        },
+        {
+          "prompt_sha256": "09f21dcee9a961a1e7388f4fd4eca71ff908ff97f5cc2606e8efe1740ab78789",
+          "row_index": 462,
+          "stratum": "Number Theory|Level 5"
+        },
+        {
+          "prompt_sha256": "32237818ab7252665fe28be5b4b9293c4889af5fd50b851e5c865aa040f13e48",
+          "row_index": 468,
+          "stratum": "Prealgebra|Level 2"
+        },
+        {
+          "prompt_sha256": "2a7bbe63a69f3bcf9243f8d67e6b3e2e758745fc4eab423ed7795ae30cb29a00",
+          "row_index": 469,
+          "stratum": "Geometry|Level 3"
+        },
+        {
+          "prompt_sha256": "a9c1797f8bd9b204799c0f5104fc793d67f171286af16474f3b78fa7fa69bc5f",
+          "row_index": 475,
+          "stratum": "Precalculus|Level 1"
+        },
+        {
+          "prompt_sha256": "5438a58eee9cb066ad3fc6feed8c5bbc60aca08f907772fdc6b8f74b505d4fcb",
+          "row_index": 477,
+          "stratum": "Number Theory|Level 3"
+        },
+        {
+          "prompt_sha256": "3f70ce283d18df2c6dcebcd8ec624f27a425a8f928977491f6df4371570522a8",
+          "row_index": 483,
+          "stratum": "Algebra|Level 4"
+        },
+        {
+          "prompt_sha256": "8a552d09cbb87770eaf4ca1bdd19099bd904ef7cdb48f38d1f94633c607a7550",
+          "row_index": 484,
+          "stratum": "Number Theory|Level 4"
+        },
+        {
+          "prompt_sha256": "a1f6d18d88159a4221fba73f9e8116e101743f78696335c678bc1c0fb7592649",
+          "row_index": 486,
+          "stratum": "Precalculus|Level 5"
+        },
+        {
+          "prompt_sha256": "b9a719410d9d9e365daf52e18be9dfff70e72c14557c65a3e1ec8a1b3299b102",
+          "row_index": 492,
+          "stratum": "Algebra|Level 1"
+        },
+        {
+          "prompt_sha256": "0f736b1769bf4b2d9e647a36ef829f058c8471ca3d714adfc79cf39626d10751",
+          "row_index": 499,
+          "stratum": "Prealgebra|Level 4"
+        }
+      ]
+    }
+  }
+}

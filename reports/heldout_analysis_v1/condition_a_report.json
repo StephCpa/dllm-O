@@ -1,0 +1,218 @@
+{
+  "condition_a_freeze_sha256": "a1205bd8bc5b6d9d81fdfc63c842efc3ede8cc59f192f80523b61151bf8d7be5",
+  "created_at_utc": "2026-09-09T13:46:12.493139+00:00",
+  "length_guard": {
+    "ef_minus_ao64": {
+      "ci_high": -7.9012265625000015,
+      "ci_low": -11.779,
+      "point": -9.829765625
+    },
+    "ef_minus_random16": {
+      "ci_high": -2.8212343750000004,
+      "ci_low": -5.4306328125,
+      "point": -4.110625
+    },
+    "fixed_generation_positions": 256,
+    "triggered": true
+  },
+  "markers": {
+    "markers": 8,
+    "total_result_count": 12800
+  },
+  "pre_registered_reading": "no resolved entropy-first benefit; confidence-guided position choice is not identified as the source of the coverage cost",
+  "primary": {
+    "classification": "straddles_zero",
+    "contrast": "CoverageAUC64(ef_b32) - CoverageAUC64(ao_b32)",
+    "per_task": {
+      "gsm8k": {
+        "ci_high": 0.04746521663536369,
+        "ci_low": -0.04303233066084806,
+        "point": 0.000836201323573319
+      },
+      "math500": {
+        "ci_high": 0.02631364313016847,
+        "ci_low": -0.06708178114983801,
+        "point": -0.0205581942150549
+      }
+    },
+    "pooled": {
+      "ci_high": 0.023767553093818287,
+      "ci_low": -0.04200346691710545,
+      "point": -0.00986099644574079
+    }
+  },
+  "protocol_version": "condition-a-v1",
+  "quality": {
+    "gsm8k": {
+      "ao_b32": {
+        "empty_response_rate": 0,
+        "mean_whitespace_tokens": 146.973125,
+        "parser_status_counts": {
+          "ok": 6400
+        }
+      },
+      "ef_b32": {
+        "empty_response_rate": 0,
+        "mean_whitespace_tokens": 139.1646875,
+        "parser_status_counts": {
+          "ok": 6400
+        }
+      },
+      "random_b32": {
+        "empty_response_rate": 0,
+        "mean_whitespace_tokens": 142.345,
+        "parser_status_counts": {
+          "ok": 1600
+        }
+      }
+    },
+    "math500": {
+      "ao_b32": {
+        "empty_response_rate": 0,
+        "mean_whitespace_tokens": 125.4196875,
+        "parser_status_counts": {
+          "ok": 6400
+        }
+      },
+      "ef_b32": {
+        "empty_response_rate": 0,
+        "mean_whitespace_tokens": 113.56859375,
+        "parser_status_counts": {
+          "ok": 6400
+        }
+      },
+      "random_b32": {
+        "empty_response_rate": 0,
+        "mean_whitespace_tokens": 118.508125,
+        "parser_status_counts": {
+          "ok": 1600
+        }
+      }
+    }
+  },
+  "secondary": {
+    "ef_minus_ao_screening16": {
+      "ci_high": -0.014548529942279943,
+      "ci_low": -0.0980722798035298,
+      "point": -0.056164828227328226
+    },
+    "ef_minus_random_screening16": {
+      "ci_high": -0.032972844083000344,
+      "ci_low": -0.09138615889319014,
+      "point": -0.06205874333999334
+    },
+    "ef_minus_random_screening16_per_task": {
+      "gsm8k": {
+        "ci_high": -0.049125942807192804,
+        "ci_low": -0.12646971986346986,
+        "point": -0.0857235680985681
+      },
+      "math500": {
+        "ci_high": 0.005871317397879876,
+        "ci_low": -0.08455752372627373,
+        "point": -0.038393918581418586
+      }
+    }
+  },
+  "solved_set_membership": {
+    "gsm8k": {
+      "ef16_vs_random16": {
+        "both": 91,
+        "ef_only": 1,
+        "neither": 0,
+        "random_only": 8
+      },
+      "ef64_vs_ao64": {
+        "ao_only": 1,
+        "both": 95,
+        "ef_only": 4,
+        "neither": 0
+      }
+    },
+    "math500": {
+      "ef16_vs_random16": {
+        "both": 54,
+        "ef_only": 6,
+        "neither": 32,
+        "random_only": 8
+      },
+      "ef64_vs_ao64": {
+        "ao_only": 8,
+        "both": 62,
+        "ef_only": 7,
+        "neither": 23
+      }
+    }
+  },
+  "summaries": {
+    "gsm8k": {
+      "ao_b32": {
+        "coverage_auc": 0.9153370498523231,
+        "pass_at_1": 0.73203125,
+        "pass_at_16": 0.9257267430749782,
+        "pass_at_32": 0.9454211458072388,
+        "pass_at_4": 0.8511739190652464,
+        "pass_at_64": 0.96,
+        "pass_at_8": 0.894363441314152,
+        "rollouts": 64
+      },
+      "ef_b32": {
+        "coverage_auc": 0.9161732511758964,
+        "pass_at_1": 0.49765625,
+        "pass_at_16": 0.9367397834530229,
+        "pass_at_32": 0.9732309646372047,
+        "pass_at_4": 0.7996676770919896,
+        "pass_at_64": 0.99,
+        "pass_at_8": 0.8812278306972646,
+        "rollouts": 64
+      },
+      "random_b32": {
+        "coverage_auc": 0.8986177780552781,
+        "pass_at_1": 0.645625,
+        "pass_at_16": 0.99,
+        "pass_at_2": 0.78325,
+        "pass_at_4": 0.8749670329670329,
+        "pass_at_8": 0.9462540792540792,
+        "rollouts": 16
+      }
+    },
+    "math500": {
+      "ao_b32": {
+        "coverage_auc": 0.5911542018013354,
+        "pass_at_1": 0.38546875,
+        "pass_at_16": 0.588155550640484,
+        "pass_at_32": 0.6445509998628238,
+        "pass_at_4": 0.48730932550175016,
+        "pass_at_64": 0.7,
+        "pass_at_8": 0.535755133001619,
+        "rollouts": 64
+      },
+      "ef_b32": {
+        "coverage_auc": 0.5705960075862805,
+        "pass_at_1": 0.221875,
+        "pass_at_16": 0.5883137060227971,
+        "pass_at_32": 0.6461134887666504,
+        "pass_at_4": 0.41802538969051395,
+        "pass_at_64": 0.69,
+        "pass_at_8": 0.5105274534514409,
+        "rollouts": 64
+      },
+      "random_b32": {
+        "coverage_auc": 0.50506027999778,
+        "pass_at_1": 0.28375,
+        "pass_at_16": 0.62,
+        "pass_at_2": 0.3804166666666667,
+        "pass_at_4": 0.4697747252747253,
+        "pass_at_8": 0.5500497280497281,
+        "rollouts": 16
+      }
+    }
+  },
+  "validation": {
+    "expected": 12800,
+    "invalid": 0,
+    "missing": 0,
+    "outcome_fields_read": false,
+    "present_and_valid": 12800
+  }
+}

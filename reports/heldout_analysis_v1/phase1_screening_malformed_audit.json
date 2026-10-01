@@ -1,0 +1,199 @@
+{
+  "audit_version": "phase1-screening-malformed-audit-v1",
+  "by_cell": {
+    "gsm8k|ao_b16": {
+      "exceeds_sensitivity_threshold": false,
+      "expected": 1600,
+      "invalid": 0,
+      "malformed_count": 0,
+      "malformed_fraction": 0.0,
+      "missing": 0,
+      "parser_status_counts": {
+        "ok": 1600
+      },
+      "policy": "ao_b16",
+      "present_and_valid": 1600,
+      "task": "gsm8k"
+    },
+    "gsm8k|ao_b32": {
+      "exceeds_sensitivity_threshold": false,
+      "expected": 1600,
+      "invalid": 0,
+      "malformed_count": 0,
+      "malformed_fraction": 0.0,
+      "missing": 0,
+      "parser_status_counts": {
+        "ok": 1600
+      },
+      "policy": "ao_b32",
+      "present_and_valid": 1600,
+      "task": "gsm8k"
+    },
+    "gsm8k|ao_b8": {
+      "exceeds_sensitivity_threshold": false,
+      "expected": 1600,
+      "invalid": 0,
+      "malformed_count": 0,
+      "malformed_fraction": 0.0,
+      "missing": 0,
+      "parser_status_counts": {
+        "ok": 1600
+      },
+      "policy": "ao_b8",
+      "present_and_valid": 1600,
+      "task": "gsm8k"
+    },
+    "gsm8k|ar_b1": {
+      "exceeds_sensitivity_threshold": false,
+      "expected": 1600,
+      "invalid": 0,
+      "malformed_count": 0,
+      "malformed_fraction": 0.0,
+      "missing": 0,
+      "parser_status_counts": {
+        "ok": 1600
+      },
+      "policy": "ar_b1",
+      "present_and_valid": 1600,
+      "task": "gsm8k"
+    },
+    "gsm8k|random_b32": {
+      "exceeds_sensitivity_threshold": false,
+      "expected": 1600,
+      "invalid": 0,
+      "malformed_count": 0,
+      "malformed_fraction": 0.0,
+      "missing": 0,
+      "parser_status_counts": {
+        "ok": 1600
+      },
+      "policy": "random_b32",
+      "present_and_valid": 1600,
+      "task": "gsm8k"
+    },
+    "math500|ao_b16": {
+      "exceeds_sensitivity_threshold": false,
+      "expected": 1600,
+      "invalid": 0,
+      "malformed_count": 0,
+      "malformed_fraction": 0.0,
+      "missing": 0,
+      "parser_status_counts": {
+        "ok": 1600
+      },
+      "policy": "ao_b16",
+      "present_and_valid": 1600,
+      "task": "math500"
+    },
+    "math500|ao_b32": {
+      "exceeds_sensitivity_threshold": false,
+      "expected": 1600,
+      "invalid": 0,
+      "malformed_count": 0,
+      "malformed_fraction": 0.0,
+      "missing": 0,
+      "parser_status_counts": {
+        "ok": 1600
+      },
+      "policy": "ao_b32",
+      "present_and_valid": 1600,
+      "task": "math500"
+    },
+    "math500|ao_b8": {
+      "exceeds_sensitivity_threshold": false,
+      "expected": 1600,
+      "invalid": 0,
+      "malformed_count": 0,
+      "malformed_fraction": 0.0,
+      "missing": 0,
+      "parser_status_counts": {
+        "ok": 1600
+      },
+      "policy": "ao_b8",
+      "present_and_valid": 1600,
+      "task": "math500"
+    },
+    "math500|ar_b1": {
+      "exceeds_sensitivity_threshold": false,
+      "expected": 1600,
+      "invalid": 0,
+      "malformed_count": 0,
+      "malformed_fraction": 0.0,
+      "missing": 0,
+      "parser_status_counts": {
+        "ok": 1600
+      },
+      "policy": "ar_b1",
+      "present_and_valid": 1600,
+      "task": "math500"
+    },
+    "math500|random_b32": {
+      "exceeds_sensitivity_threshold": false,
+      "expected": 1600,
+      "invalid": 0,
+      "malformed_count": 0,
+      "malformed_fraction": 0.0,
+      "missing": 0,
+      "parser_status_counts": {
+        "ok": 1600
+      },
+      "policy": "random_b32",
+      "present_and_valid": 1600,
+      "task": "math500"
+    }
+  },
+  "correctness_read": false,
+  "counts": {
+    "expected": 16000,
+    "invalid": 0,
+    "missing": 0,
+    "present_and_valid": 16000
+  },
+  "created_at_utc": "2026-08-29T17:46:36.989507+00:00",
+  "differential_missingness": {
+    "gsm8k": {
+      "all_policy_rates": {
+        "ao_b16": 0.0,
+        "ao_b32": 0.0,
+        "ao_b8": 0.0,
+        "ar_b1": 0.0,
+        "random_b32": 0.0
+      },
+      "flagged_for_confound_risk": false,
+      "max_abs_pairwise_rate_difference": {
+        "difference": 0.0,
+        "left": "ar_b1",
+        "right": "ao_b8"
+      },
+      "note": "Descriptive only; no p-values, no formal inference. A large ar_b1-vs-ao_b32 differential would confound the primary contrast independently of any coverage mechanism; the frozen valid-output sensitivity is the designated remedy and will run automatically in the final analysis.",
+      "primary_ar_minus_ao_rate_difference": 0.0
+    },
+    "math500": {
+      "all_policy_rates": {
+        "ao_b16": 0.0,
+        "ao_b32": 0.0,
+        "ao_b8": 0.0,
+        "ar_b1": 0.0,
+        "random_b32": 0.0
+      },
+      "flagged_for_confound_risk": false,
+      "max_abs_pairwise_rate_difference": {
+        "difference": 0.0,
+        "left": "ar_b1",
+        "right": "ao_b8"
+      },
+      "note": "Descriptive only; no p-values, no formal inference. A large ar_b1-vs-ao_b32 differential would confound the primary contrast independently of any coverage mechanism; the frozen valid-output sensitivity is the designated remedy and will run automatically in the final analysis.",
+      "primary_ar_minus_ao_rate_difference": 0.0
+    }
+  },
+  "fields_read": [
+    "parser_status",
+    "parsed_answer"
+  ],
+  "malformed_definition": "parser_status != 'ok' or parsed_answer is null",
+  "note": "Operational missingness audit, not a Gate 1 analysis. Any cell above the frozen threshold means the frozen valid-output sensitivity will run in the final analysis.",
+  "outcome_invariance": "output is invariant to 'correct' and 'response' fields; proven by sentinel-substitution test",
+  "scope": "held-out screening artifacts only; runs before extension completion and reads no correctness values",
+  "sensitivity_threshold": 0.01,
+  "triggered": []
+}

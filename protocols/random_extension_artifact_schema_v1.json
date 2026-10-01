@@ -1,0 +1,454 @@
+{
+  "$defs": {
+    "generation_result": {
+      "additionalProperties": false,
+      "properties": {
+        "bci_freeze_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "completion_status": {
+          "const": "complete"
+        },
+        "correct": {
+          "type": "boolean"
+        },
+        "environment_fingerprint": {
+          "type": "object"
+        },
+        "external_repository_commit": {
+          "const": "1a2fddb5c6655597e63081c0af5ebb718a849f39"
+        },
+        "model_id": {
+          "const": "GSAI-ML/LLaDA-8B-Instruct"
+        },
+        "model_revision": {
+          "const": "08b83a6feb34df1a6011b80c3c00c7563e963b07"
+        },
+        "parsed_answer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "parser_status": {
+          "type": "string"
+        },
+        "peak_memory_bytes": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "random_extension_freeze_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "policy": {
+          "$ref": "#/$defs/policy"
+        },
+        "protocol_version": {
+          "const": "phase1-v1"
+        },
+        "response": {
+          "type": "string"
+        },
+        "rollout_index": {
+          "maximum": 63,
+          "minimum": 16,
+          "type": "integer"
+        },
+        "run_kind": {
+          "const": "random-extension"
+        },
+        "runner_repository": {
+          "$ref": "#/$defs/repository_state"
+        },
+        "seed": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "seed_key": {
+          "type": "string"
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "split_manifest_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "trace_event_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "trace_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "wall_time_seconds": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "protocol_version",
+        "run_kind",
+        "split_manifest_sha256",
+        "bci_freeze_sha256",
+        "random_extension_freeze_sha256",
+        "source",
+        "model_id",
+        "model_revision",
+        "policy",
+        "rollout_index",
+        "seed_key",
+        "seed",
+        "response",
+        "parsed_answer",
+        "parser_status",
+        "correct",
+        "wall_time_seconds",
+        "trace_event_count",
+        "trace_sha256",
+        "runner_repository",
+        "external_repository_commit",
+        "environment_fingerprint",
+        "completion_status"
+      ],
+      "type": "object"
+    },
+    "policy": {
+      "additionalProperties": false,
+      "properties": {
+        "block_length": {
+          "const": 32
+        },
+        "cfg_scale": {
+          "const": 0.0
+        },
+        "generation_length": {
+          "const": 256
+        },
+        "name": {
+          "const": "random_b32"
+        },
+        "remasking": {
+          "const": "random"
+        },
+        "steps": {
+          "const": 256
+        },
+        "temperature": {
+          "const": 0.6
+        }
+      },
+      "required": [
+        "name",
+        "steps",
+        "generation_length",
+        "block_length",
+        "temperature",
+        "cfg_scale",
+        "remasking"
+      ],
+      "type": "object"
+    },
+    "repository_state": {
+      "additionalProperties": false,
+      "properties": {
+        "commit": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "dirty": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "commit",
+        "dirty"
+      ],
+      "type": "object"
+    },
+    "shard_completion": {
+      "additionalProperties": false,
+      "properties": {
+        "completed_at_utc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "expected_keys_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "num_shards": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "observed_keys_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "protocol_version": {
+          "const": "phase1-v1"
+        },
+        "result_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "run_kind": {
+          "const": "random-extension"
+        },
+        "shard_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "split_role": {
+          "const": "heldout"
+        },
+        "task_selection": {
+          "enum": [
+            "all",
+            "gsm8k",
+            "math500"
+          ]
+        }
+      },
+      "required": [
+        "protocol_version",
+        "split_role",
+        "run_kind",
+        "task_selection",
+        "shard_index",
+        "num_shards",
+        "expected_keys_sha256",
+        "observed_keys_sha256",
+        "result_count",
+        "completed_at_utc"
+      ],
+      "type": "object"
+    },
+    "source": {
+      "additionalProperties": false,
+      "properties": {
+        "dataset_id": {
+          "type": "string"
+        },
+        "dataset_revision": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "dataset_split": {
+          "type": "string"
+        },
+        "prompt_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "row_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "split_role": {
+          "enum": [
+            "calibration",
+            "heldout"
+          ]
+        }
+      },
+      "required": [
+        "dataset_id",
+        "dataset_revision",
+        "dataset_split",
+        "row_index",
+        "split_role",
+        "prompt_sha256"
+      ],
+      "type": "object"
+    },
+    "trace_event": {
+      "properties": {
+        "active_block_end": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "active_block_start": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "batch_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "block_index": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "candidate_probabilities": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "candidate_token_ids": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "eligible_entropy": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "eligible_logit_margins": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "eligible_positions": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "entropy": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "full_logsumexp": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "global_step": {
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "logit_margins": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "probability_margins": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "selected_positions": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "selected_token_ids": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "state_checksum_after": {
+          "type": "string"
+        },
+        "state_checksum_before": {
+          "type": "string"
+        },
+        "step_in_block": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "top1_logits": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "top1_token_ids": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "top2_logits": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "top2_token_ids": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "top64_logits": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        },
+        "top64_token_ids": {
+          "items": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "batch_index",
+        "global_step",
+        "block_index",
+        "step_in_block",
+        "active_block_start",
+        "active_block_end",
+        "eligible_positions",
+        "entropy",
+        "top1_token_ids",
+        "top2_token_ids",
+        "top1_logits",
+        "top2_logits",
+        "logit_margins",
+        "probability_margins",
+        "candidate_token_ids",
+        "candidate_probabilities",
+        "eligible_entropy",
+        "eligible_logit_margins",
+        "selected_positions",
+        "selected_token_ids",
+        "state_checksum_before",
+        "state_checksum_after"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "random_extension_artifact_schema_v1.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/generation_result"
+    },
+    {
+      "$ref": "#/$defs/trace_event"
+    },
+    {
+      "$ref": "#/$defs/shard_completion"
+    }
+  ],
+  "title": "Post-Gate random-policy 64-rollout extension artifacts"
+}

@@ -1,0 +1,12 @@
+{
+  "expected": 9600,
+  "invalid": 0,
+  "invalid_examples": [],
+  "marker_errors": [],
+  "marker_results": 9600,
+  "markers": 3,
+  "missing": 0,
+  "missing_examples": [],
+  "outcome_fields_read": false,
+  "present_and_valid": 9600
+}

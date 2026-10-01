@@ -1,0 +1,15 @@
+{
+  "diversity_scope": "Diversity is computed over frozen parsed-answer strings. Semantically equivalent strings may remain distinct.",
+  "inconsistent_answer_groups": 2,
+  "majority_vote_definition": "Unique parsed-answer mode; exact modal ties count as incorrect. Correctness of an answer string is the majority frozen-grader label among records with that string.",
+  "mc_draws": 2000,
+  "mc_seed": 20260909,
+  "outputs": [
+    "pareto_frontier.csv",
+    "diversity.json",
+    "ef_mechanism.json",
+    "summary.json"
+  ],
+  "runtime_scope": "Observed serial wall-time proxy from instrumented runs conducted at different times and shared-server loads; not controlled deployment latency. Rollout count k is the comparable nominal inference budget.",
+  "status": "exploratory post-unblinding analyses complete"
+}

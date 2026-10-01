@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "phase1_artifact_schema_v1.json",
+  "title": "Phase 1 dLLM order-transmission artifacts",
+  "$defs": {
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dataset_id", "dataset_revision", "dataset_split", "row_index", "split_role", "prompt_sha256"],
+      "properties": {
+        "dataset_id": {"type": "string"},
+        "dataset_revision": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "dataset_split": {"type": "string"},
+        "row_index": {"type": "integer", "minimum": 0},
+        "split_role": {"enum": ["calibration", "heldout"]},
+        "prompt_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "steps", "generation_length", "block_length", "temperature", "cfg_scale", "remasking"],
+      "properties": {
+        "name": {"enum": ["ar_b1", "ao_b8", "ao_b16", "ao_b32", "random_b32"]},
+        "steps": {"const": 256},
+        "generation_length": {"const": 256},
+        "block_length": {"enum": [1, 8, 16, 32]},
+        "temperature": {"const": 0.6},
+        "cfg_scale": {"const": 0.0},
+        "remasking": {"enum": ["low_confidence", "random"]}
+      }
+    },
+    "repository_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["commit", "dirty"],
+      "properties": {
+        "commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "dirty": {"type": "boolean"}
+      }
+    },
+    "generation_result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "protocol_version", "run_kind", "split_manifest_sha256", "source", "model_id",
+        "model_revision", "policy", "rollout_index", "seed_key", "seed",
+        "response", "parsed_answer", "parser_status", "correct", "wall_time_seconds",
+        "trace_event_count", "trace_sha256", "runner_repository",
+        "external_repository_commit", "environment_fingerprint", "completion_status"
+      ],
+      "properties": {
+        "protocol_version": {"const": "phase1-v1"},
+        "run_kind": {"enum": ["smoke", "screening", "primary-extension"]},
+        "split_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "bci_freeze_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+        "source": {"$ref": "#/$defs/source"},
+        "model_id": {"const": "GSAI-ML/LLaDA-8B-Instruct"},
+        "model_revision": {"const": "08b83a6feb34df1a6011b80c3c00c7563e963b07"},
+        "policy": {"$ref": "#/$defs/policy"},
+        "rollout_index": {"type": "integer", "minimum": 0, "maximum": 63},
+        "seed_key": {"type": "string"},
+        "seed": {"type": "integer", "minimum": 0},
+        "response": {"type": "string"},
+        "parsed_answer": {"type": ["string", "null"]},
+        "parser_status": {"type": "string"},
+        "correct": {"type": "boolean"},
+        "wall_time_seconds": {"type": "number", "minimum": 0},
+        "peak_memory_bytes": {"type": ["integer", "null"], "minimum": 0},
+        "trace_event_count": {"type": "integer", "minimum": 0},
+        "trace_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "runner_repository": {"$ref": "#/$defs/repository_state"},
+        "external_repository_commit": {"const": "1a2fddb5c6655597e63081c0af5ebb718a849f39"},
+        "environment_fingerprint": {"type": "object"},
+        "completion_status": {"const": "complete"}
+      }
+    },
+    "trace_event": {
+      "type": "object",
+      "required": [
+        "batch_index", "global_step", "block_index", "step_in_block",
+        "active_block_start", "active_block_end", "eligible_positions",
+        "entropy", "top1_token_ids", "top2_token_ids", "top1_logits",
+        "top2_logits", "logit_margins", "probability_margins",
+        "candidate_token_ids", "candidate_probabilities", "eligible_entropy",
+        "eligible_logit_margins", "selected_positions", "selected_token_ids",
+        "state_checksum_before", "state_checksum_after"
+      ],
+      "properties": {
+        "batch_index": {"type": "integer", "minimum": 0},
+        "global_step": {"type": "integer", "minimum": 0, "maximum": 255},
+        "block_index": {"type": "integer", "minimum": 0},
+        "step_in_block": {"type": "integer", "minimum": 0},
+        "active_block_start": {"type": "integer", "minimum": 0},
+        "active_block_end": {"type": "integer", "minimum": 1},
+        "eligible_positions": {"type": "array", "items": {"type": "integer"}},
+        "entropy": {"type": "array", "items": {"type": "number"}},
+        "top1_token_ids": {"type": "array", "items": {"type": "integer"}},
+        "top2_token_ids": {"type": "array", "items": {"type": "integer"}},
+        "top1_logits": {"type": "array", "items": {"type": "number"}},
+        "top2_logits": {"type": "array", "items": {"type": "number"}},
+        "logit_margins": {"type": "array", "items": {"type": "number"}},
+        "probability_margins": {"type": "array", "items": {"type": "number"}},
+        "candidate_token_ids": {"type": "array", "items": {"type": "integer"}},
+        "candidate_probabilities": {"type": "array", "items": {"type": "number"}},
+        "eligible_entropy": {"type": "array", "items": {"type": "number"}},
+        "eligible_logit_margins": {"type": "array", "items": {"type": "number"}},
+        "selected_positions": {"type": "array", "items": {"type": "integer"}},
+        "selected_token_ids": {"type": "array", "items": {"type": "integer"}},
+        "state_checksum_before": {"type": "string"},
+        "state_checksum_after": {"type": "string"}
+      }
+    },
+    "shard_completion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["protocol_version", "split_role", "run_kind", "task_selection", "shard_index", "num_shards", "expected_keys_sha256", "observed_keys_sha256", "result_count", "completed_at_utc"],
+      "properties": {
+        "protocol_version": {"const": "phase1-v1"},
+        "split_role": {"enum": ["calibration", "heldout"]},
+        "run_kind": {"enum": ["smoke", "screening", "primary-extension"]},
+        "task_selection": {"enum": ["all", "gsm8k", "math500"]},
+        "shard_index": {"type": "integer", "minimum": 0},
+        "num_shards": {"type": "integer", "minimum": 1},
+        "expected_keys_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "observed_keys_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "result_count": {"type": "integer", "minimum": 0},
+        "completed_at_utc": {"type": "string", "format": "date-time"}
+      }
+    }
+  },
+  "oneOf": [
+    {"$ref": "#/$defs/generation_result"},
+    {"$ref": "#/$defs/trace_event"},
+    {"$ref": "#/$defs/shard_completion"}
+  ]
+}

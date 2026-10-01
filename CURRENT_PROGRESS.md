@@ -1,0 +1,64 @@
+# Current Progress
+
+Last updated: 2026-10-01
+
+## Completed experimental evidence
+
+- Instrumentation and protocol checks for the decoding-study pipeline are
+  recorded in the phase-1 and phase-2 reports.
+- The held-out Condition A analysis found no resolved pooled advantage of
+  entropy-first over confidence-first for the preregistered coverage endpoint;
+  the confidence-vs-entropy position choice is therefore not identified as the
+  source of the observed coverage loss.
+- The matched block-size study supports a schedule-associated coverage cost,
+  concentrated near the sequential-to-block-parallel transition.
+- The random-64 extension filled the high-budget comparison gap. It found a
+  resolved policy reversal across the budget range, while the aggregate
+  full-grid contrast remains modest. This extension was selected after the
+  first-16 results and is labeled post-Gate-1 exploratory evidence.
+- The temperature extension shows a resolved differential change: confidence-
+  first is comparatively stable across the tested temperature grid, whereas
+  random and sequential decoding lose substantially more single-sample
+  precision at high temperature. The extension was selected after review and
+  is also labeled post-Gate-1 exploratory evidence.
+- CPU-only audits now cover query-level heterogeneity, leave-one-query-out
+  influence, same-policy rollout-split checks, paired majority-vote contrasts,
+  diversity summaries, and the temperature-extension diagnostics.
+
+## Current manuscript state
+
+- The active manuscript is `paper/main.tex` in ACL review format.
+- The title currently emphasizes repeated-sampling returns rather than a
+  universal policy-ranking law.
+- The main text ends within the ACL review-style page budget in the current
+  build; references and appendix material follow it.
+- Figure 1 uses a mechanism-first schematic. An empirical Figure 1(b)
+  candidate is included in `paper/figures/` for comparison only and is not
+  wired into the manuscript because its curves overlap conceptually with the
+  full empirical Figure 3.
+- The current narrative avoids claiming that confidence-first is universally
+  invariant to temperature, that exploratory selection improves coverage, or
+  that one aggregate metric is sufficient without conditioning on budget and
+  temperature.
+
+## Immediate next steps
+
+1. Decide whether Figure 1(b) should remain conceptual or use the optional
+   empirical teaser after a final-size comparison.
+2. Complete the ACL/ARR prose pass, especially the contribution claims,
+   evidence-tier labels, limitations, and the distinction between confirmatory
+   and post-outcome exploratory analyses.
+3. Recheck references, anonymization, artifact links, and the target venue's
+   current submission requirements before uploading.
+
+## Important interpretation guardrails
+
+- The tested setting is not a universal theory of all diffusion decoding or
+  test-time scaling.
+- Post-Gate-1 extensions are useful for hypothesis generation and robustness
+  context, but they do not change the frozen primary verdicts.
+- Candidate-token selection scores are policy-dependent quantities. In
+  particular, random-selection scores must not be interpreted as calibrated
+  model probabilities.
+- A high Pass@k value is an oracle-style coverage statistic; it is not
+  equivalent to majority-vote accuracy or deployment utility.

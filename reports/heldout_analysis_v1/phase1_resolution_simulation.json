@@ -1,0 +1,32 @@
+{
+  "fisher_z_planning_mde": {
+    "per_task_n100": 0.27702591030392854,
+    "pooled_n200": 0.19699537308615603
+  },
+  "latent_rho": 0.3,
+  "n_per_task": 100,
+  "note": "Half-widths are for the frozen average-rank stratified statistic under a bivariate-normal copula. The Fisher-z MDEs are single-sample approximations, not calibrated to the stratified recipe; the empirical half-widths here measure the actual recipe's resolution at the stated latent correlation.",
+  "pooled": {
+    "ci_high": 0.4420026515605397,
+    "ci_low": 0.19848679125880925,
+    "half_width": 0.12175793015086522,
+    "point": 0.32673267326732663
+  },
+  "replicates": 10000,
+  "simulation_seed": 20260820,
+  "single_task": {
+    "gsm8k": {
+      "ci_high": 0.4944410606792571,
+      "ci_low": 0.15015837102451837,
+      "half_width": 0.17214134482736937,
+      "point": 0.3307530753075307
+    },
+    "math500": {
+      "ci_high": 0.491684255666847,
+      "ci_low": 0.13073544076605953,
+      "half_width": 0.18047440745039373,
+      "point": 0.32271227122712265
+    }
+  },
+  "status": "pre-unblinding planning documentation; not a frozen endpoint and cannot modify Gate 1"
+}

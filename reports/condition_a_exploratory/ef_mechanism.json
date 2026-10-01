@@ -1,0 +1,34 @@
+{
+  "commit_entropy_subsample": {
+    "gsm8k": {
+      "ao_mean_commit_entropy": 0.1553,
+      "ef_mean_commit_entropy": 0.492,
+      "subsample": "rollouts r00-r03, 100 queries"
+    },
+    "math500": {
+      "ao_mean_commit_entropy": 0.3196,
+      "ef_mean_commit_entropy": 0.7736,
+      "subsample": "rollouts r00-r03, 100 queries"
+    }
+  },
+  "per_task": {
+    "gsm8k": {
+      "mean_ao_cov": 0.91534,
+      "mean_ao_len": 146.973,
+      "mean_ef_cov": 0.91617,
+      "mean_ef_len": 139.165,
+      "spearman_dlen_dcov": 0.0973,
+      "spearman_len_cov_ao": -0.1193,
+      "spearman_len_cov_ef": 0.324
+    },
+    "math500": {
+      "mean_ao_cov": 0.59115,
+      "mean_ao_len": 125.42,
+      "mean_ef_cov": 0.5706,
+      "mean_ef_len": 113.569,
+      "spearman_dlen_dcov": -0.0109,
+      "spearman_len_cov_ao": -0.0679,
+      "spearman_len_cov_ef": 0.0277
+    }
+  }
+}

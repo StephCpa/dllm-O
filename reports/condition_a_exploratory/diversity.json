@@ -1,0 +1,92 @@
+{
+  "ao_b16|gsm8k|k16": {
+    "mean_answer_entropy": 0.4334,
+    "mean_modal_share": 0.8431,
+    "mean_unique_answers": 2.43
+  },
+  "ao_b16|math500|k16": {
+    "mean_answer_entropy": 1.1156,
+    "mean_modal_share": 0.6138,
+    "mean_unique_answers": 5.54
+  },
+  "ao_b32|gsm8k|k16": {
+    "mean_answer_entropy": 0.3681,
+    "mean_modal_share": 0.8688,
+    "mean_unique_answers": 2.22
+  },
+  "ao_b32|gsm8k|k64": {
+    "mean_answer_entropy": 0.4373,
+    "mean_modal_share": 0.8488,
+    "mean_unique_answers": 3.39
+  },
+  "ao_b32|math500|k16": {
+    "mean_answer_entropy": 1.0238,
+    "mean_modal_share": 0.6288,
+    "mean_unique_answers": 4.94
+  },
+  "ao_b32|math500|k64": {
+    "mean_answer_entropy": 1.2959,
+    "mean_modal_share": 0.6139,
+    "mean_unique_answers": 11.33
+  },
+  "ao_b8|gsm8k|k16": {
+    "mean_answer_entropy": 0.4679,
+    "mean_modal_share": 0.83,
+    "mean_unique_answers": 2.61
+  },
+  "ao_b8|math500|k16": {
+    "mean_answer_entropy": 1.1276,
+    "mean_modal_share": 0.6019,
+    "mean_unique_answers": 5.49
+  },
+  "ar_b1|gsm8k|k16": {
+    "mean_answer_entropy": 0.5806,
+    "mean_modal_share": 0.7881,
+    "mean_unique_answers": 3.03
+  },
+  "ar_b1|gsm8k|k64": {
+    "mean_answer_entropy": 0.7034,
+    "mean_modal_share": 0.7905,
+    "mean_unique_answers": 6.13
+  },
+  "ar_b1|math500|k16": {
+    "mean_answer_entropy": 1.3398,
+    "mean_modal_share": 0.5331,
+    "mean_unique_answers": 6.59
+  },
+  "ar_b1|math500|k64": {
+    "mean_answer_entropy": 1.7297,
+    "mean_modal_share": 0.5111,
+    "mean_unique_answers": 16.8
+  },
+  "ef_b32|gsm8k|k16": {
+    "mean_answer_entropy": 1.4377,
+    "mean_modal_share": 0.5369,
+    "mean_unique_answers": 7.26
+  },
+  "ef_b32|gsm8k|k64": {
+    "mean_answer_entropy": 1.8995,
+    "mean_modal_share": 0.5256,
+    "mean_unique_answers": 20.09
+  },
+  "ef_b32|math500|k16": {
+    "mean_answer_entropy": 1.8823,
+    "mean_modal_share": 0.3719,
+    "mean_unique_answers": 9.46
+  },
+  "ef_b32|math500|k64": {
+    "mean_answer_entropy": 2.4799,
+    "mean_modal_share": 0.3472,
+    "mean_unique_answers": 26.8
+  },
+  "random_b32|gsm8k|k16": {
+    "mean_answer_entropy": 0.9382,
+    "mean_modal_share": 0.6919,
+    "mean_unique_answers": 4.81
+  },
+  "random_b32|math500|k16": {
+    "mean_answer_entropy": 1.6286,
+    "mean_modal_share": 0.4444,
+    "mean_unique_answers": 8.1
+  }
+}

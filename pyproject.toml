@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dllm-order-transmission"
+version = "0.1.0"
+description = "Auditable decoding traces for the dLLM order-transmission study"
+requires-python = ">=3.10"
+dependencies = ["jsonschema>=4.18", "numpy>=1.24", "pyarrow>=14", "scipy>=1.10", "torch>=2.1"]
+
+[project.scripts]
+dllm-phase0 = "dllm_order_transmission.runner:main"
+dllm-phase0-analyze = "dllm_order_transmission.analysis:main"
+dllm-phase1-plan = "dllm_order_transmission.phase1_planning:main"
+dllm-phase1 = "dllm_order_transmission.phase1_runner:main"
+dllm-phase1-calibrate = "dllm_order_transmission.phase1_calibration:main"
+dllm-phase1-heldout-analyzer = "dllm_order_transmission.phase1_heldout_analyzer:main"
+dllm-phase2-optionb-analyzer = "dllm_order_transmission.phase2_optionB_analyzer:main"
+dllm-condition-a = "dllm_order_transmission.condition_a_runner:main"
+dllm-condition-a-analyzer = "dllm_order_transmission.condition_a_analyzer:main"
+dllm-random-extension-analyzer = "dllm_order_transmission.random_extension_analyzer:main"
+dllm-temperature-extension = "dllm_order_transmission.temperature_extension_runner:main"
+dllm-temperature-extension-analyzer = "dllm_order_transmission.temperature_extension_analyzer:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra"
+asyncio_default_fixture_loop_scope = "function"
