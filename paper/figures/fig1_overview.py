@@ -176,7 +176,7 @@ def main() -> None:
     ax_b = fig.add_axes((0.775, 0.17, 0.215, 0.70))
     panel_a(ax_a)
     panel_b(ax_b)
-    fig.savefig(OUT / "fig1_overview.pdf", bbox_inches="tight", pad_inches=0.02)
+    fig.savefig(OUT / "fig1_overview.pdf", bbox_inches="tight", pad_inches=0.02, metadata={"CreationDate": None})
     fig.savefig(OUT / "fig1_overview.png", dpi=220, bbox_inches="tight", pad_inches=0.02)
     plt.close(fig)
 

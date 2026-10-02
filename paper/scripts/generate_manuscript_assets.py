@@ -177,6 +177,7 @@ def write_macros(
     gate1: dict,
     postreview: dict,
     robustness: dict,
+    fragility: dict,
 ) -> None:
     p1 = phase2["primary"]
     trend = phase2["trend"]
@@ -230,6 +231,15 @@ def write_macros(
         number_macro("BlockEndpointPearson", dependence["pearson"], signed=False),
         number_macro("BlockEndpointSpearman", dependence["spearman_tie_aware"], signed=False),
         f"\\newcommand{{\\BlockTrendStepShare}}{{{100 * step_share:.0f}\\%}}",
+    ]
+    concentration = fragility["concentration"]
+    removal = fragility["most_negative_removed_first"]
+    lines += [
+        f"\\newcommand{{\\FragilitySmallEffectCount}}{{{concentration['abs_effect_below_0_01']}}}",
+        f"\\newcommand{{\\FragilityTopTenShare}}"
+        f"{{{100 * concentration['share_by_most_negative']['10']:.0f}\\%}}",
+        f"\\newcommand{{\\FragilityRemovedForZero}}"
+        f"{{{removal['first_removed_where_interval_reaches_zero']}}}",
         "",
     ]
     (GENERATED / "paper_numbers.tex").write_text("\n".join(lines), encoding="utf-8")
@@ -328,7 +338,8 @@ def configure_plotting() -> None:
     )
 
 def save_figure(fig: plt.Figure, stem: str) -> None:
-    fig.savefig(FIGURES / f"{stem}.pdf", bbox_inches="tight", pad_inches=0.02)
+    # A fixed (absent) creation date keeps rebuilt PDFs byte-identical.
+    fig.savefig(FIGURES / f"{stem}.pdf", bbox_inches="tight", pad_inches=0.02, metadata={"CreationDate": None})
     fig.savefig(FIGURES / f"{stem}.png", dpi=220, bbox_inches="tight", pad_inches=0.02)
     plt.close(fig)
 
@@ -642,6 +653,9 @@ def main() -> None:
         REPORTS / "postreview_cpu_audits_20260914" / "postreview_cpu_audits.json"
     )
     robustness = read_json(REPORTS / "posthoc_robustness_20260912" / "posthoc_robustness.json")
+    fragility = read_json(
+        REPORTS / "block_size_fragility_audit_20261002" / "block_size_fragility_audit.json"
+    )
     multiplicity = read_json(
         REPORTS / "random_extension_results_20260914" / "random_extension_multiplicity_audit.json"
     )
@@ -649,7 +663,7 @@ def main() -> None:
     temperature = read_json(temperature_dir / "temperature_extension_analysis_v1.json")
     exploratory = read_json(temperature_dir / "temperature_extension_exploratory_v2.json")
     configure_plotting()
-    write_macros(phase2, condition_a, random_report, gate1, postreview, robustness)
+    write_macros(phase2, condition_a, random_report, gate1, postreview, robustness, fragility)
     write_postreview_tables(postreview, temperature)
     write_temperature_assets(temperature, exploratory, postreview)
     # Figure 1 is a manually reviewed asset; do not overwrite it during builds.

@@ -41,6 +41,7 @@ run the relevant script from the repository root, for example:
 python -m pip install -e .
 python scripts/postreview_cpu_audits.py --help
 python scripts/query_level_exploratory_audits.py --help
+python scripts/block_size_fragility_audit.py   # reads committed per-query effects
 ```
 
 ## Data and reproducibility boundary

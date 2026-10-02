@@ -21,6 +21,9 @@ Last updated: 2026-10-01
   random and sequential decoding lose substantially more single-sample
   precision at high temperature. The extension was selected after review and
   is also labeled post-Gate-1 exploratory evidence.
+- A fragility audit (2026-10-02) shows that the block-size effect is
+  concentrated: removing the 9 most-hurt of 200 queries brings its interval to
+  zero. This is outcome-selected and descriptive.
 - CPU-only audits now cover query-level heterogeneity, leave-one-query-out
   influence, same-policy rollout-split checks, paired majority-vote contrasts,
   diversity summaries, and the temperature-extension diagnostics.
@@ -57,6 +60,11 @@ Last updated: 2026-10-01
    the pre-review audit.
 3. Recheck references, anonymization, artifact links, and the target venue's
    current submission requirements before uploading.
+4. Decide which follow-up experiments to run. Draft protocols, with power and
+   cost, are in `protocols/*_prefreeze_draft_20261002.md`. In priority order:
+   a second-model replication of the block-size primary; the intermediate block
+   sizes `B=2,4`; and a cold sequential decoder, which is cheap but probably
+   inconclusive on the current panel. None is frozen or authorized for launch.
 
 ## Important interpretation guardrails
 

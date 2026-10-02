@@ -107,3 +107,35 @@ response pass.
    committed reports hold only their quantiles.
 4. **Venue checks.** Before submission, recheck the venue's CFP, checklist,
    and reference metadata (`REFERENCE_AUDIT.md`).
+
+## 8. Addendum (2026-10-02): fragility audit and follow-up protocols
+
+**Fragility audit (CPU-only, post-outcome exploratory).** The new script
+`scripts/block_size_fragility_audit.py` reads the per-query effects already
+committed in `reports/query_level_exploratory_audits_20261001/`. It writes
+`reports/block_size_fragility_audit_20261002/`.
+
+- 134 of 200 queries change by less than 0.01.
+- The ten most-hurt queries carry 71% of the summed block-size effect.
+- Removing the 9 most-hurt queries (5 GSM8K, 4 MATH-500) brings the interval
+  to zero, and removing 17 makes the point estimate nonnegative.
+
+Section 4 now states this in one sentence through generated macros, and the
+Limitations section notes it. The removal is outcome-selected, so it describes
+concentration rather than testing the effect. Its practical message is that new
+queries or a second model are the informative robustness checks. Four unit tests
+cover the script (`tests/test_block_size_fragility_audit.py`).
+
+**Draft follow-up protocols.** These are not frozen and not authorized for
+launch. Each lists the decisions the authors must make before freezing, along
+with launch gates, approximate power, and cost.
+
+| Draft | Question | New generations | Approximate power |
+|---|---|---:|---|
+| `protocols/second_model_replication_prefreeze_draft_20261002.md` | Does the frozen B=32 vs. B=1 contrast replicate on a second dLLM? | 25,600 | 0.93 if the effect matches LLaDA; 0.41 at half size |
+| `protocols/intermediate_block_size_prefreeze_draft_20261002.md` | Where inside [1, 8] does the cost appear? | 25,600 | 0.95 if the whole drop happens at B=2; 0.35 at half |
+| `protocols/cold_sequential_prefreeze_draft_20261002.md` | Can a colder sequential decoder match CF's Pass@1 while keeping more coverage? | 6,400 | 0.66 at best on the current panel, so probably inconclusive |
+
+In the existing data, between-query variance is 20–50 times the binomial
+rollout reference. In all three designs, adding queries therefore raises power
+far more than adding rollouts.
