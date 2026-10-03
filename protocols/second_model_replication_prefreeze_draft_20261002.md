@@ -1,6 +1,11 @@
 # Second-Model Replication of the Block-Size Primary: Pre-Freeze Draft
 
 **Protocol version:** `second-model-replication-freeze-v1` (proposed)  
+**Priority (2026-10-03 UTC review):** P1. The validation on unseen problems
+(E1) and the CF-resample control (E2) come first; see
+`unseen_problem_validation_prefreeze_draft_20261003.md` and
+`cf_resample_control_prefreeze_draft_20261003.md`. A second model alone does not
+resolve the novelty concern.  
 **Status:** draft for author review. Not frozen and not authorized for GPU launch.
 Every item marked **[author decision]** must be resolved, and every item marked
 **[bind at freeze]** must be filled in by the analyzer's `emit-freeze` mode, before

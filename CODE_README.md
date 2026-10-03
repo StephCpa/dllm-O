@@ -16,6 +16,12 @@ selection score. For confidence-first it is the sampled candidate token's model
 probability; for random selection it is a random score used to choose an eligible
 position. It must not be compared across policies as a calibrated probability.
 
+`low_confidence_resample` is the CF-resample control used by the E2 draft
+protocol. It ranks and selects positions exactly as `low_confidence` does, then
+commits a fresh draw from the same tempered distribution at the selected
+position instead of the winning candidate. At temperature 0 it is identical to
+`low_confidence`. No frozen protocol uses it.
+
 Run the local tests with:
 
 ```bash

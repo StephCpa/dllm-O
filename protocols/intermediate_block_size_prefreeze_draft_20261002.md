@@ -1,6 +1,11 @@
 # Intermediate Block Sizes B=2 and B=4: Pre-Freeze Draft
 
 **Protocol version:** `intermediate-block-size-freeze-v1` (proposed)  
+**Priority (2026-10-03 UTC review):** P1. The validation on unseen problems
+(E1) and the CF-resample control (E2) come first; see
+`unseen_problem_validation_prefreeze_draft_20261003.md` and
+`cf_resample_control_prefreeze_draft_20261003.md`. A second model alone does not
+resolve the novelty concern.  
 **Status:** draft for author review. Not frozen and not authorized for GPU launch.
 Items marked **[author decision]** or **[bind at freeze]** must be resolved before
 any new generation.  

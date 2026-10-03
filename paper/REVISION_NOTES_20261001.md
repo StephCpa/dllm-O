@@ -96,9 +96,10 @@ Status as of 2026-10-03 UTC:
 - `make check` rebuilds everything from scratch without errors, undefined
   references, or overfull boxes. All figures, generated macros, and `main.pdf`
   then match `build_manifest.json` bit for bit (Section 9).
-- The 137 repository tests pass (`python -m pytest`, run 2026-10-03 UTC): the
-  original 123, plus 4 for the fragility audit and 10 for the build-manifest
-  checker in `paper/scripts/`.
+- The 146 repository tests pass (`python -m pytest`, run 2026-10-03 UTC): the
+  original 123, plus 4 for the fragility audit, 10 for the build-manifest
+  checker in `paper/scripts/`, 3 for the CF-resample decoder mode, and 6 for
+  the problem-level reanalysis.
 
 ## 7. Open decisions for the authors
 
@@ -301,3 +302,86 @@ item, so no change was made.
 **Experiments.** The ordering is unchanged: the second-model replication first,
 then `B=2,4`, with cold sequential deferred. No protocol is frozen, and none may
 be launched as written.
+
+## 11. Simulated ARR review: positioning, mechanism, and validation (2026-10-03 UTC)
+
+The review's verdict was that the workflow is more rigorous than the
+established contribution. It scored the paper Soundness 3, Excitement 2–2.5,
+Overall 2.5 (Borderline Findings). Its three top priorities were: reposition
+against *The Flexibility Trap*, validate the new finding on unseen problems,
+and separate CF's position selection from its candidate filtering.
+
+### What Claude could and could not verify
+
+- **Verified:** the public JustGRPO decoder at the pinned commit
+  (`reports/prior_work_decoder_alignment_20261003.md`), and the README figure in
+  the JustGRPO repository, which shows arbitrary order ahead at `k=1` and behind
+  at large `k` on GSM8K.
+- **Not verified:** the review's specific figure and table claims about the
+  prior paper (a block-size sweep over `B=1,8,32,128`, a temperature appendix
+  with tuned crossings, a random-order table at Pass@1 and Pass@128). arXiv and
+  its mirrors were blocked by the environment's network policy. The new
+  Introduction and Related Work state these axes without figure numbers. The
+  authors must check them against the current version (arXiv 2601.15165).
+
+### Manuscript changes
+
+- **Positioning.** The Introduction and Related Work now take the prior
+  work's phenomenon as given. The claimed contribution is a frozen,
+  compute-matched test of it, the boundaries of the random-ranking effect, and
+  what aggregate crossings and trajectory diagnostics can identify.
+- **Contributions** condensed from five to three scientific ones. The
+  protocols are described as support for credibility, not as a contribution.
+- **Section 2.1** writes out CF's full stochastic process (candidate sampling,
+  scoring by the position's own candidate, committing that candidate). It adds
+  the `1 - 0.1^B` example of candidate filtering.
+- **Section 2.2** states that CoverageAUC is a discrete grid mean, and that
+  Pass@64 with `n=64` is the indicator that some rollout is correct.
+- **Section 3 and Appendix A** describe the decoder as a reimplementation with
+  float32 CF confidences, giving the commit.
+- **Section 4** is retitled and framed as the total effect of widening the
+  eligible set under CF.
+- **Section 5** is retitled "Sampling Budget Changes a Pairwise Policy
+  Ranking", and the text states that the best tested policy does not switch.
+- **Section 6** adds the direct post-hoc interaction on the shared window:
+  `-0.014 [-0.057, +0.027]` at `T=0.9`, `-0.223 [-0.289, -0.161]` at `T=1.2`.
+- **Section 7** is rewritten around a proposition: if one policy's per-query
+  success probability is never lower, its coverage is never lower at any `k`.
+  So aggregate crossings require heterogeneous per-query differences, and the
+  section gives a two-query example.
+- **Discussion** names the CF-resample control as the discriminating test,
+  and moves the boundary-closure detail to Appendix G.
+- **Figure 1** relabels "Block-parallel" as "Blockwise any-order", and its
+  caption points to Section 7.
+- **Figure 4** caption and text are now explicitly descriptive.
+- **Limitations** add that the random-ranking effect has not been validated on
+  unseen problems and that filtering has not been separated from position
+  choice.
+
+The abstract is 181 words, and the main text still ends on page 8.
+
+### New code, protocols, and reports
+
+- **E0:** `reports/prior_work_decoder_alignment_20261003.md`. The public decoder
+  computes CF confidences in bfloat16 (only four distinct values between 0.99
+  and 1), while this study uses float32. CF position choice can therefore
+  differ near ties, so the two are close settings, not identical ones.
+- **E1:** `protocols/unseen_problem_validation_prefreeze_draft_20261003.md`.
+  The power table shows 200 new problems are underpowered (0.56 at the observed
+  effect), and recommends at least 400.
+- **E2:** `protocols/cf_resample_control_prefreeze_draft_20261003.md`, plus the
+  additive decoder mode `low_confidence_resample` with 3 tests. The existing
+  modes are unchanged, and at `T=0` the control equals CF.
+- **E3:** `scripts/problem_level_reanalysis.py`, with 6 tests. It runs on the
+  server's raw records and gives joint success counts, the k=64 win/loss
+  decomposition, split-sample heterogeneity, subset-averaged majority voting,
+  and optional `math_equal` grouping.
+
+### Not done in this round
+
+- No GPU experiment was run.
+- The tuned-temperature comparison on a development set, the length
+  (`L=512`) controls, and a second model remain P1 options.
+- The artifact paragraph still promises an anonymous supplement. Packaging it
+  (code commit, patches, prompts, problem IDs, environment, recompute
+  entry points) is a release task for the authors.

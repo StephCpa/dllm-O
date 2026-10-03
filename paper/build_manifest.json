@@ -20,25 +20,25 @@
   "note": "Regenerate with `make manifest` after an intended change to the figures or text.",
   "pdf_text": {
     "page_sha256": [
-      "81113463bad2332e12ff4305c509bca472fb6bbc388d3a365309e6c4b5e171a7",
-      "96b3fe5f72ac41f75718a0b603f7dc0e03ee1ce12cd1292ca46799fbc73ec654",
-      "75fd1ead1f360c9b663b105ab6f82542f329f2b12ce4f09fea374ff37af1ef78",
-      "b3f131776437af3ecbcc26ddaff84df3fe761b5255da12448c9f308ebc344217",
-      "c25b472196d27c914d51bac9e70564fcfcb21b4ae76049e7cbc3b63c9153e7ca",
-      "0bf16a207d9d5bc0d5860f7589757b045708e5347fc768c1c037a6da94613edb",
-      "12fc66f113cda2eb3d7b6d298d93c288b448f35be343544fd3b4c7986938684a",
-      "bc5f0c81ed9f1302bb0f011440a4e72f9643ba5ab704d733904d2f9b91188d07",
-      "ef84423faeb7fc3ff1c6bd9a007ebfa5999e8aa9f050c94f458949d52fb9b850",
-      "c8bed20da31883fd6a5fda81b612ebdb99c0a5ffe3a551236d70e1e5ba6e1fce",
-      "042a605436d32ed947bc146f34276a921a483babf61f0d709e83b75e4b2365b0",
-      "0d07b9b747e5a40ca1902e5080872b157ddda0ea7a17764da83701e453519740",
-      "beea45d7d22c9764b56d113d18b9191ce7bab75a6ef365c06a057b59e09b19f3"
+      "9d5ddd95ddb4b1c9327ce3facd6d5911ec2ebbde58f59a8890f3920bdb0873d3",
+      "921c7af16082ca5d2d8db877bb8a39741d807ba499aac99709d4ad01083afb29",
+      "0573e584cfae12b7cced283044c4daa49498fbe148d9f5b9b53b4b896211bad4",
+      "6357d31e4dec2af54dfc65adac58e0d284da45828e8aad63af083461fd46a3c8",
+      "3005413526b943aef4c81b39abb43bb24905757e6c3c6d45afdc12ee1f138428",
+      "33b1213fd371d47fa9fcf7a3c037ad166c369ee8c1b017783c9f06d22bc202be",
+      "6643937d899802d51fe648baa99f561e4f4bd881ac4ba92dd01f71c7a12d1451",
+      "70e485e2ff6e8dcfe774b17500a78b7bd619054e8c1cb729bc32c06186c71a12",
+      "ac5efacd2c1c4eabc8ad83e36866a3e1b3acbfe53c5318acb1421590ee0813f0",
+      "bb99a96458fe202d6ea92ac248feabbb75ca0eb7a0015b6f0dcdc2a5882fce04",
+      "22cb6db8ab974eb63eb398d8dd9f87b6717147626e3aeae7210bd60b0d8bb67b",
+      "246a80bf614b4f76e555a5eb6f9f7ffd35117b5c5f5b204d1ef66799ddafcad4",
+      "fc438c473826775f9f36450b3d74fc3a7af84870729de5fbad8fce6954c0e446"
     ],
     "pages": 13
   },
   "python_outputs": {
-    "figures/fig1_overview.pdf": "c2648a76622a06757f10694f087778f301e98e2def9703f84e24441eebe6db1d",
-    "figures/fig1_overview.png": "cd641176c411c67e5e5a277718d16c729098ee142e0b096f0f334c96382f5311",
+    "figures/fig1_overview.pdf": "235b5ad9c7fa9f8cc4a28ecfe40151af9841f2b3a556abcc251991089248997e",
+    "figures/fig1_overview.png": "154e4b0fc1f60c6654a93f27214ad4057444c3c8879a98572b0373afb452201b",
     "figures/fig2_block_size.pdf": "591d657d4a8262fab5b9e2525e957e77dbd91cae20504c64e5611b8f9c77c8d3",
     "figures/fig2_block_size.png": "276de7f4a4e2068f9ee0373abfebce8bbcb9545d83aa367e14294388f0c765dc",
     "figures/fig3_policy_frontier.pdf": "0c69d3935f26f4c174cf771c61b0ec3744bd2d569274b2dbc19eaf310d599510",
@@ -51,9 +51,9 @@
     "generated/paper_numbers.tex": "555750e8b391b5b9f4c0ac7aa0efde26105455f0ec25bef05eede8e9a3442d1d",
     "generated/postreview_majority_vote_rows.tex": "5e1df67b1ff162e76c90b24e3840d95b3a862bd0572050a17e52193c19b0ed54",
     "generated/postreview_math_difficulty_rows.tex": "0b7d8da3943877a2eb5bfdf00b0fbcf2d15f84d9a2656819bd65d96670f567d3",
-    "generated/temperature_numbers.tex": "dea94aac394773cbdf0fe3575e9205b7b4b4c04f8089dc82d8acb81ddbf0d9bc"
+    "generated/temperature_numbers.tex": "90c12387629e0f674fa2fc70389174ca9248f15ef102d063204d2ab876cc71e1"
   },
   "tex_outputs": {
-    "main.pdf": "6194c81d25259d6f969d0a5975cde54fe806072ee9bf3a5322b5513d19b7a2a9"
+    "main.pdf": "ad0d2caeae54819e0434d03d4486bbc03d3f57128d13169247b0314846dba12c"
   }
 }

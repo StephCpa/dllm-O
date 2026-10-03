@@ -110,8 +110,9 @@ def panel_a(ax) -> None:
             fontsize=7.2, color=MUTED, va="center")
 
     # Row 2: block-parallel, B > 1 (one 8-position block shown schematically).
-    ax.text(0, 23.6, "Block-parallel", fontsize=8.0, weight="bold", color=INK, va="center")
-    ax.text(0, 19.6, "$B>1$", fontsize=8.2, color=INK, va="center")
+    ax.text(0, 25.4, "Blockwise", fontsize=8.0, weight="bold", color=INK, va="center")
+    ax.text(0, 21.8, "any-order", fontsize=8.0, weight="bold", color=INK, va="center")
+    ax.text(0, 18.0, "$B>1$", fontsize=8.2, color=INK, va="center")
     block = set(range(1, 9))
     block_states = [
         ({3: "w3"}, 3, block),

@@ -244,3 +244,76 @@ def test_high_entropy_trace_does_not_change_output() -> None:
         full_distribution=True,
     )
     assert torch.equal(plain, traced)
+
+
+class SharedBinaryModel:
+    """Every position has the same distribution: P(token 0)=0.9, P(token 1)=0.1."""
+
+    vocab_size = 8
+    mask_id = 7
+
+    def __call__(self, tokens: torch.Tensor):
+        batch_size, length = tokens.shape
+        logits = torch.full((batch_size, length, self.vocab_size), -30.0)
+        logits[..., 0] = math.log(0.9)
+        logits[..., 1] = math.log(0.1)
+        from conftest import ToyOutput
+
+        return ToyOutput(logits=logits)
+
+
+def first_step_committed_tokens(remasking: str, batch_size: int = 600) -> list[int]:
+    config = DecodeConfig(
+        steps=8, gen_length=8, block_length=8, temperature=1.0, remasking=remasking, mask_id=7
+    )
+    prompt = torch.tensor([[2, 3]], dtype=torch.long).expand(batch_size, -1).contiguous()
+    sink = ListTraceSink()
+    generate_with_trace(
+        SharedBinaryModel(), prompt, config=config, generator=make_generator(20261003), trace_callback=sink
+    )
+    first = [event for event in sink.events if event.global_step == 0]
+    return [event.selected_token_ids[0] for event in first]
+
+
+def test_cf_filters_candidates_while_resample_restores_the_tempered_distribution() -> None:
+    # With identical position distributions, CF commits token 0 unless all
+    # eight candidates are token 1 (probability 1 - 0.1**8). The resample
+    # control keeps the same position rule but commits a fresh draw, so token 0
+    # appears with its model probability, 0.9.
+    cf = first_step_committed_tokens("low_confidence")
+    resample = first_step_committed_tokens("low_confidence_resample")
+    assert sum(token == 0 for token in cf) / len(cf) > 0.995
+    share = sum(token == 0 for token in resample) / len(resample)
+    assert 0.85 < share < 0.95
+
+
+def test_cf_resample_selects_positions_by_the_cf_rule() -> None:
+    model = ToyMaskedModel()
+    prompt = torch.tensor([[1, 2]], dtype=torch.long)
+    config = DecodeConfig(
+        steps=8, gen_length=8, block_length=8, temperature=0.6,
+        remasking="low_confidence_resample", mask_id=7,
+    )
+    sink = ListTraceSink()
+    output = generate_with_trace(
+        model, prompt, config=config, generator=make_generator(7), trace_callback=sink
+    )
+    for event in sink.events:
+        best = max(event.candidate_probabilities)
+        (selected,) = event.selected_positions
+        index = event.eligible_positions.index(selected)
+        assert event.candidate_probabilities[index] == best
+    reconstructed = reconstruct_completion(sink.events, prompt_length=2, gen_length=8)
+    assert torch.equal(torch.tensor(reconstructed), output[0, 2:])
+
+
+def test_cf_resample_equals_cf_at_zero_temperature() -> None:
+    model = ToyMaskedModel()
+    prompt = torch.tensor([[1, 2]], dtype=torch.long)
+    outputs = []
+    for remasking in ("low_confidence", "low_confidence_resample"):
+        config = DecodeConfig(
+            steps=32, gen_length=32, block_length=32, temperature=0.0, remasking=remasking, mask_id=7
+        )
+        outputs.append(generate_with_trace(model, prompt, config=config))
+    assert torch.equal(outputs[0], outputs[1])

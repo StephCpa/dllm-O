@@ -546,6 +546,13 @@ def write_temperature_assets(report: dict, exploratory: dict, postreview: dict) 
     macro("TempInteractionPoint", result["point"], signed=True)
     macro("TempInteractionLower", result["raw_95_ci"][0], signed=True)
     macro("TempInteractionUpper", result["raw_95_ci"][1], signed=True)
+    # Post-hoc direct interaction on the shared window k in {16, 32} with 32
+    # rollouts per cell: [RND - CF]_T minus [RND - CF]_{T=0.6}.
+    for temp, label in (("0.9", "Nine"), ("1.2", "Twelve")):
+        result = exploratory["interactions"][f"random_vs_cf_t{temp}_minus_t0.6_high"]
+        macro(f"TempInteractionHigh{label}Point", result["point"], signed=True)
+        macro(f"TempInteractionHigh{label}Lower", result["raw_95_ci"][0], signed=True)
+        macro(f"TempInteractionHigh{label}Upper", result["raw_95_ci"][1], signed=True)
     new_count = report["validation"]["new_artifacts"]["present_and_valid"]
     total = postreview["generation_accounting"]["total"] + new_count
     lines.append(f"\\newcommand{{\\TemperatureNewCount}}{{{new_count:,}}}")

@@ -15,6 +15,15 @@ from .trace import StepTrace
 
 TraceCallback = Callable[[StepTrace], None]
 
+# ``low_confidence_resample`` is the CF-resample control: it ranks and selects
+# positions exactly as ``low_confidence`` does, but commits a fresh draw from
+# the same tempered distribution at each selected position instead of the
+# candidate that won the ranking. It separates CF's position choice from its
+# filtering of candidate tokens, at no extra model evaluation.
+REMASKING_MODES = frozenset(
+    {"low_confidence", "low_confidence_resample", "random", "high_entropy"}
+)
+
 
 @dataclass(frozen=True)
 class DecodeConfig:
@@ -36,9 +45,10 @@ class DecodeConfig:
             raise ValueError("steps must be divisible by the number of blocks")
         if self.temperature < 0:
             raise ValueError("temperature must be nonnegative")
-        if self.remasking not in {"low_confidence", "random", "high_entropy"}:
+        if self.remasking not in REMASKING_MODES:
             raise ValueError(
-                "remasking must be low_confidence, random, or high_entropy"
+                "remasking must be low_confidence, low_confidence_resample, "
+                "random, or high_entropy"
             )
 
 
@@ -173,7 +183,7 @@ def generate_with_trace(
 
             probabilities = F.softmax(logits.float(), dim=-1)
             entropy: torch.Tensor | None = None
-            if config.remasking == "low_confidence":
+            if config.remasking in {"low_confidence", "low_confidence_resample"}:
                 candidate_probabilities = torch.gather(
                     probabilities, dim=-1, index=candidate_ids.unsqueeze(-1)
                 ).squeeze(-1)
@@ -220,6 +230,24 @@ def generate_with_trace(
                         ranked_scores[batch_index], k=count
                     ).indices
                 transfer_index[batch_index, selected] = True
+
+            # The committed tokens equal the ranked candidates except under the
+            # CF-resample control, which redraws only the selected positions.
+            committed_ids = candidate_ids
+            if config.remasking == "low_confidence_resample":
+                committed_ids = candidate_ids.clone()
+                for batch_index in range(batch_size):
+                    selected = torch.nonzero(
+                        transfer_index[batch_index], as_tuple=False
+                    ).squeeze(-1)
+                    if selected.numel() == 0:
+                        continue
+                    redraw = add_gumbel_noise(
+                        logits[batch_index, selected],
+                        config.temperature,
+                        generator=generator,
+                    )
+                    committed_ids[batch_index, selected] = torch.argmax(redraw, dim=-1)
 
             event_payloads: list[dict[str, Any]] = []
             if trace_callback is not None:
@@ -275,7 +303,7 @@ def generate_with_trace(
                         }
                     )
 
-            x[transfer_index] = candidate_ids[transfer_index]
+            x[transfer_index] = committed_ids[transfer_index]
 
             if trace_callback is not None:
                 checksum_after = _state_checksum(x)
@@ -315,7 +343,7 @@ def generate_with_trace(
                         eligible_entropy=values(eligible_entropy, positions),
                         eligible_logit_margins=values(eligible_margin, positions),
                         selected_positions=tuple(selected_positions.cpu().tolist()),
-                        selected_token_ids=values(candidate_ids, selected_positions),
+                        selected_token_ids=values(committed_ids, selected_positions),
                         state_checksum_before=checksum_before,
                         state_checksum_after=checksum_after,
                         top64_token_ids=(
