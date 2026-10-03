@@ -5,14 +5,14 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from pathlib import Path
 
-import matplotlib
-
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import matplotlib.ticker
 import numpy as np
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from plot_environment import PDF_METADATA, plt, reset_style, warn_if_unpinned  # noqa: E402
 
 
 PROJECT = Path(__file__).resolve().parents[2]
@@ -316,9 +316,8 @@ COLUMN_WIDTH = 3.1
 
 
 def configure_plotting() -> None:
-    plt.rcParams.update(
+    reset_style(
         {
-            "font.family": "serif",
             "font.size": 7,
             "axes.labelsize": 7,
             "axes.titlesize": 7.2,
@@ -332,14 +331,11 @@ def configure_plotting() -> None:
             "ytick.major.size": 2.5,
             "axes.spines.top": False,
             "axes.spines.right": False,
-            "pdf.fonttype": 42,
-            "ps.fonttype": 42,
         }
     )
 
 def save_figure(fig: plt.Figure, stem: str) -> None:
-    # A fixed (absent) creation date keeps rebuilt PDFs byte-identical.
-    fig.savefig(FIGURES / f"{stem}.pdf", bbox_inches="tight", pad_inches=0.02, metadata={"CreationDate": None})
+    fig.savefig(FIGURES / f"{stem}.pdf", bbox_inches="tight", pad_inches=0.02, metadata=PDF_METADATA)
     fig.savefig(FIGURES / f"{stem}.png", dpi=220, bbox_inches="tight", pad_inches=0.02)
     plt.close(fig)
 
@@ -641,6 +637,7 @@ def figure_temperature_frontier(report: dict) -> None:
     save_figure(fig, "fig5_temperature_frontier")
 
 def main() -> None:
+    warn_if_unpinned()
     FIGURES.mkdir(parents=True, exist_ok=True)
     GENERATED.mkdir(parents=True, exist_ok=True)
     phase2 = phase2_tables()

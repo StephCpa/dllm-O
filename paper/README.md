@@ -25,6 +25,36 @@ python figures/fig1_overview.py
 Figures 2--5 are drawn at ACL single-column width (3.1 in), so their text
 prints at about 6--7 pt. Keep that width if you change them.
 
+## Reproducible build
+
+The committed figures, generated macros, and `main.pdf` are bit-reproducible.
+`build_manifest.json` records their SHA-256 hashes and the environment that
+produced them. To verify from a clean checkout:
+
+```bash
+python3.11 -m venv .venv
+.venv/bin/pip install -r requirements-figures.txt
+make PYTHON=.venv/bin/python check
+```
+
+`make check` deletes every build output, redraws Figure 1 and Figures 2--5,
+rebuilds the PDF, and compares the hashes.
+
+- **Figures and macros** depend only on the pinned Python packages, and they
+  must match exactly. Both figure scripts reset Matplotlib to its built-in
+  defaults and use the DejaVu fonts bundled with it, so a local `matplotlibrc`
+  or the system's fonts cannot change the output. With other package versions
+  the scripts print a warning, and the figures render but are not
+  bit-identical.
+- **`main.pdf`** also depends on the TeX distribution. The Makefile fixes
+  `SOURCE_DATE_EPOCH`, so rebuilds with the recorded TeX build (TeX Live 2023,
+  pdfTeX 1.40.25) are byte-identical. With another TeX release, `make check`
+  reports the difference as expected drift; compare the page count and
+  extracted text instead.
+
+After an intended change to a figure or the text, rebuild in the pinned
+environment and run `make manifest`; it refuses to run in an unpinned one.
+
 `REVISION_NOTES_20261001.md` lists the changes in the current revision and
 the decisions still open for the authors.
 

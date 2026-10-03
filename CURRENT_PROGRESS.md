@@ -1,6 +1,6 @@
 # Current Progress
 
-Last updated: 2026-10-01
+Last updated: 2026-10-03
 
 ## Completed experimental evidence
 
@@ -41,6 +41,9 @@ Last updated: 2026-10-01
   candidate is included in `paper/figures/` for comparison only and is not
   wired into the manuscript because its curves overlap conceptually with the
   full empirical Figure 3.
+- The manuscript build is bit-reproducible in the pinned environment
+  (`paper/requirements-figures.txt`). `make check` rebuilds everything and
+  compares it with `paper/build_manifest.json`.
 - The 2026-10-01 revision (`paper/REVISION_NOTES_20261001.md`) checked every
   manuscript number against the reports. It reports the frozen trend
   endpoint, states the temperature result as a frozen non-replication,
@@ -61,10 +64,13 @@ Last updated: 2026-10-01
 3. Recheck references, anonymization, artifact links, and the target venue's
    current submission requirements before uploading.
 4. Decide which follow-up experiments to run. Draft protocols, with power and
-   cost, are in `protocols/*_prefreeze_draft_20261002.md`. In priority order:
-   a second-model replication of the block-size primary; the intermediate block
-   sizes `B=2,4`; and a cold sequential decoder, which is cheap but probably
-   inconclusive on the current panel. None is frozen or authorized for launch.
+   cost, are in `protocols/*_prefreeze_draft_20261002.md`. Priority, confirmed
+   by the independent verification: first the second-model replication of the
+   block-size primary, then the intermediate block sizes `B=2,4`. The
+   cold-sequential experiment is deferred. None is frozen or authorized for
+   launch. Each first needs a finalized model and pinned revision, a decoder
+   equivalence check where relevant, an emitted machine freeze, and a
+   validation-only run.
 
 ## Important interpretation guardrails
 

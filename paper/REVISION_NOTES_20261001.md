@@ -1,4 +1,4 @@
-# Manuscript Revision Notes (2026-10-01)
+# Manuscript Revision Notes (2026-10-01; updated 2026-10-03)
 
 This revision is a CPU-only consistency, presentation, and claim-scoping pass
 over `main.tex`, its generated assets, and the build. No frozen endpoint,
@@ -89,10 +89,13 @@ response pass.
   automatically: Pass@1 and Pass@16 by block size, the B=1→8 contrast, the
   P1/P2 dependence correlations, the trend endpoint, the temperature
   endpoints, the temperature interaction, and the CF trace entropies.
-- `make distclean && make` builds without errors, undefined references, or
-  overfull boxes.
-- The 123 repository tests pass (`python -m pytest`). The tests do not cover
-  `paper/scripts/`.
+Status as of 2026-10-03:
+
+- `make check` rebuilds everything from scratch without errors, undefined
+  references, or overfull boxes. All figures, generated macros, and `main.pdf`
+  then match `build_manifest.json` bit for bit (Section 9).
+- The 127 repository tests pass (`python -m pytest`): the original 123 plus 4
+  for the fragility audit. The tests do not cover `paper/scripts/`.
 
 ## 7. Open decisions for the authors
 
@@ -139,3 +142,85 @@ with launch gates, approximate power, and cost.
 In the existing data, between-query variance is 20–50 times the binomial
 rollout reference. In all three designs, adding queries therefore raises power
 far more than adding rollouts.
+
+## 9. Release cleanup after independent verification (2026-10-03)
+
+An independent verification of commit `08a179b` confirmed the test suite, the
+clean rebuild, the 8-page main text, the corrected Figure 1, the labelling of
+the fragility audit, and the unfrozen status of the protocols. It listed three
+items to address before submission.
+
+**1. Figures were not bit-reproducible across environments.** In the
+verifier's environment, a rebuild changed Figures 2–5. For example, Figure 2's
+PNG went from 679×404 to 637×406, and the PDF page boxes changed. Nothing
+pinned the plotting stack, so a different Matplotlib build or local font
+settings changed the text extents. Fixes:
+
+- `requirements-figures.txt` pins the exact plotting packages.
+- `scripts/plot_environment.py` resets Matplotlib to its built-in defaults,
+  pins the bundled DejaVu fonts, and warns when installed versions differ from
+  the pins. Both figure scripts use it.
+- The Makefile fixes `SOURCE_DATE_EPOCH`, so pdfTeX writes the same dates and
+  `/ID`. Before this change, two clean builds of `main.pdf` differed; after it
+  they are identical.
+- `build_manifest.json` and `scripts/build_manifest.py` back the new
+  `make check` and `make manifest` targets (see `README.md`).
+
+In this environment the committed figures were already the pinned output, so
+the style reset left them byte-identical. Three checks confirm the fix:
+
+- **Fresh environment.** A fresh checkout in a fresh virtual environment with
+  only `requirements-figures.txt` installed reproduces all 15 figure and macro
+  hashes and `main.pdf`.
+- **Conflicting local settings.** The result is the same with a deliberately
+  conflicting `matplotlibrc` (sans-serif, 20 pt, thick lines) that was
+  confirmed to be loaded.
+- **Negative control.** With matplotlib 3.10.9, Figure 2's PNG comes out at
+  637×406, the size the verifier saw, so that environment most likely had
+  matplotlib 3.10. Here the scripts warn about the version mismatch, and
+  `make check` fails and names the mismatch as the cause.
+
+**2. Outdated records.** Section 6 now gives the current test count, and this
+file's title and `CURRENT_PROGRESS.md` carry the current date.
+
+**3. AI Use Statement.** Claude was involved, so the statement should be
+retained. For the authors' confirmation, here is what Claude did in this
+revision:
+
+- checked every manuscript number against the committed reports;
+- drafted revised manuscript text, including the abstract, parts of the
+  introduction and contributions, Sections 4–6, the Discussion, Conclusion,
+  Limitations, figure captions, and Appendix F;
+- wrote or rewrote the figure scripts (Figure 1 and Figures 2–5), the macro
+  generator changes, the Makefile, and the build-manifest tooling;
+- designed and ran the post-outcome fragility audit, including its script and
+  tests, at the authors' request;
+- drafted the three follow-up protocols.
+
+The current wording ("grammar checking, linguistic polishing, ... figure
+scripting ...") understates the drafted text and the fragility analysis. The
+sentence "All research design, experiments and analysis were conducted by the
+authors" is accurate only if the authors adopt the AI-drafted analysis and
+protocols as their own after review. Suggested wording, for the authors to
+accept or edit:
+
+> During research and manuscript preparation, the authors used OpenAI Codex
+> and Anthropic Claude for grammar checking and linguistic polishing, drafting
+> revisions of manuscript text, standardizing reference formatting, checking
+> reported values against the audited result files, writing figure and
+> post-outcome audit scripts, and code debugging and implementation
+> suggestions. The study design, all experiments, and all frozen analyses were
+> conducted by the authors. AI-drafted text, scripts, and exploratory analyses
+> were reviewed, verified, and revised by the authors, who take full
+> responsibility for all content of this paper.
+
+`main.tex` is unchanged on this point, because this is an attestation that only
+the authors can make.
+
+**Experiment priorities.** The verification agrees with running the
+second-model replication first and `B=2,4` second. It recommends deferring the
+cold-sequential experiment, which needs a new non-inferiority margin and will
+probably end `not_resolved`. Its protocol is now marked deferred. None of the
+protocols can be executed as written. Each first needs a finalized model and
+its pinned revision, a passing decoder equivalence check where relevant, an
+emitted machine freeze, and a validation-only run.

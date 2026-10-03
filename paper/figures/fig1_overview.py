@@ -15,14 +15,14 @@ directly after editing:
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
-import matplotlib
-
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.patches import FancyBboxPatch, Rectangle
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+from plot_environment import PDF_METADATA, plt, reset_style, warn_if_unpinned  # noqa: E402
 
 OUT = Path(__file__).resolve().parent
 
@@ -170,13 +170,14 @@ def panel_b(ax) -> None:
 
 
 def main() -> None:
-    plt.rcParams.update({"font.family": "serif", "pdf.fonttype": 42, "ps.fonttype": 42})
+    warn_if_unpinned()
+    reset_style()
     fig = plt.figure(figsize=(7.0, 2.55))
     ax_a = fig.add_axes((0.0, 0.0, 0.70, 1.0))
     ax_b = fig.add_axes((0.775, 0.17, 0.215, 0.70))
     panel_a(ax_a)
     panel_b(ax_b)
-    fig.savefig(OUT / "fig1_overview.pdf", bbox_inches="tight", pad_inches=0.02, metadata={"CreationDate": None})
+    fig.savefig(OUT / "fig1_overview.pdf", bbox_inches="tight", pad_inches=0.02, metadata=PDF_METADATA)
     fig.savefig(OUT / "fig1_overview.png", dpi=220, bbox_inches="tight", pad_inches=0.02)
     plt.close(fig)
 

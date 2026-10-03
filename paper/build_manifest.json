@@ -1,0 +1,40 @@
+{
+  "environment": {
+    "pdftex": "pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)",
+    "python_packages": {
+      "contourpy": "1.3.3",
+      "cycler": "0.12.1",
+      "fonttools": "4.66.1",
+      "kiwisolver": "1.5.1",
+      "matplotlib": "3.11.2",
+      "numpy": "2.4.6",
+      "packaging": "24.0",
+      "pillow": "12.3.0",
+      "pyparsing": "3.1.1",
+      "python-dateutil": "2.9.0.post0",
+      "six": "1.16.0"
+    },
+    "source_date_epoch": "set by the Makefile"
+  },
+  "note": "Regenerate with `make manifest` after an intended change to the figures or text.",
+  "python_outputs": {
+    "figures/fig1_overview.pdf": "c2648a76622a06757f10694f087778f301e98e2def9703f84e24441eebe6db1d",
+    "figures/fig1_overview.png": "cd641176c411c67e5e5a277718d16c729098ee142e0b096f0f334c96382f5311",
+    "figures/fig2_block_size.pdf": "591d657d4a8262fab5b9e2525e957e77dbd91cae20504c64e5611b8f9c77c8d3",
+    "figures/fig2_block_size.png": "276de7f4a4e2068f9ee0373abfebce8bbcb9545d83aa367e14294388f0c765dc",
+    "figures/fig3_policy_frontier.pdf": "0c69d3935f26f4c174cf771c61b0ec3744bd2d569274b2dbc19eaf310d599510",
+    "figures/fig3_policy_frontier.png": "04e5fb58d563c1a702952d2cf8f989dfcab6fae17ce8d2e2f9b0a1eeb85a5926",
+    "figures/fig4_diversity.pdf": "8c2de5a721f45d8ed27d1b173540c91912dce5f9b8098925e20db17c57e17423",
+    "figures/fig4_diversity.png": "4a8ded666278ea63fdb22c21469009e9e77b05c82cfd7ea91c2ac92ba2e0dbb6",
+    "figures/fig5_temperature_frontier.pdf": "67913c94d08c58d0008fb4beb91ab6748131146549ef3c339daa66e031ad6c1d",
+    "figures/fig5_temperature_frontier.png": "17d31ab9ab001bba40053490c291e016f5172de6c9eab4e2eb3036200ccee7e7",
+    "generated/generation_accounting_rows.tex": "209d50ad12658f03f70da338ba3806f14587a6e5fc4c6e22d8dca5dba86eb48c",
+    "generated/paper_numbers.tex": "555750e8b391b5b9f4c0ac7aa0efde26105455f0ec25bef05eede8e9a3442d1d",
+    "generated/postreview_majority_vote_rows.tex": "5e1df67b1ff162e76c90b24e3840d95b3a862bd0572050a17e52193c19b0ed54",
+    "generated/postreview_math_difficulty_rows.tex": "0b7d8da3943877a2eb5bfdf00b0fbcf2d15f84d9a2656819bd65d96670f567d3",
+    "generated/temperature_numbers.tex": "dea94aac394773cbdf0fe3575e9205b7b4b4c04f8089dc82d8acb81ddbf0d9bc"
+  },
+  "tex_outputs": {
+    "main.pdf": "71e01b043e37f00e1c1fe326c97339067b4b843352659ab859df6fb85020e441"
+  }
+}

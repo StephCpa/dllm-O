@@ -31,6 +31,15 @@ reports before running `latexmk`. The current source is an anonymous ACL/ARR
 working draft; venue-specific CFP, page-limit, metadata, and artifact rules
 must be rechecked before submission.
 
+To verify that the committed figures and PDF are bit-for-bit reproducible, install
+the pinned plotting packages and run the check (details in `paper/README.md`):
+
+```bash
+cd paper
+python3.11 -m venv .venv && .venv/bin/pip install -r requirements-figures.txt
+make PYTHON=.venv/bin/python check
+```
+
 ## Re-run CPU analyses
 
 The analysis scripts are deterministic CPU-side audits over the committed JSON

@@ -15,3 +15,6 @@ paper/*.toc
 
 # Temporary figure QA overlays are reproducible and need not be distributed.
 paper/figures/*_overlay.pdf
+
+# Local virtual environment for the pinned figure build.
+paper/.venv/

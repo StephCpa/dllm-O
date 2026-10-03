@@ -1,0 +1,15 @@
+# Exact plotting environment used for the committed figures (Python 3.11).
+# Install into a fresh virtual environment before rebuilding:
+#   python3.11 -m venv .venv && .venv/bin/pip install -r requirements-figures.txt
+# Other versions still render the figures, but not bit-identically.
+matplotlib==3.11.2
+numpy==2.4.6
+pillow==12.3.0
+contourpy==1.3.3
+cycler==0.12.1
+fonttools==4.66.1
+kiwisolver==1.5.1
+packaging==24.0
+pyparsing==3.1.1
+python-dateutil==2.9.0.post0
+six==1.16.0
