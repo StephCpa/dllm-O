@@ -1,6 +1,6 @@
 # Current Progress
 
-Last updated: 2026-10-03
+Last updated: 2026-10-03 UTC. All dates in this file are UTC.
 
 ## Completed experimental evidence
 
@@ -58,12 +58,15 @@ Last updated: 2026-10-03
 
 1. Decide whether Figure 1(b) should remain conceptual or use the optional
    empirical teaser after a final-size comparison.
-2. Review the 2026-10-01 revision. In particular, confirm the updated AI Use
-   Statement, and respond to any external reviewer comments that arrived after
-   the pre-review audit.
-3. Recheck references, anonymization, artifact links, and the target venue's
+2. Review the 2026-10-01 revision and respond to any external reviewer
+   comments that arrived after the pre-review audit. Before submission, confirm
+   that the authors completed the verification attested in the revised AI Use
+   Statement (`paper/REVISION_NOTES_20261001.md`, Section 10).
+3. Have the build verified on a second machine with `make check` in the
+   pinned environment. Cross-environment validation is not yet complete.
+4. Recheck references, anonymization, artifact links, and the target venue's
    current submission requirements before uploading.
-4. Decide which follow-up experiments to run. Draft protocols, with power and
+5. Decide which follow-up experiments to run. Draft protocols, with power and
    cost, are in `protocols/*_prefreeze_draft_20261002.md`. Priority, confirmed
    by the independent verification: first the second-model replication of the
    block-size primary, then the intermediate block sizes `B=2,4`. The

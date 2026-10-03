@@ -19,7 +19,7 @@ $k=1$ but no resolved advantage at $k\geq16$, and near-zero same-policy A/A
 split differences. These are exploratory diagnostics; they narrow the
 statistical objections but do not create new confirmatory endpoints.
 
-Status update: 2026-10-01 (manuscript revision; see
+Status update: 2026-10-01 UTC (manuscript revision; see
 `REVISION_NOTES_20261001.md`). Figure 1 was redrawn as a vector schematic in
 which every schedule commits one token per NFE, which resolves the panel (a)
 objection under "What remains unresolved", item 4. Panel (b) remains

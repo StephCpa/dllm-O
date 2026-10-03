@@ -1,5 +1,7 @@
 # Manuscript Revision Notes (2026-10-01; updated 2026-10-03)
 
+All dates in these notes are UTC.
+
 This revision is a CPU-only consistency, presentation, and claim-scoping pass
 over `main.tex`, its generated assets, and the build. No frozen endpoint,
 interval, verdict, or protocol was changed, and no new inference was run. The
@@ -89,13 +91,14 @@ response pass.
   automatically: Pass@1 and Pass@16 by block size, the B=1→8 contrast, the
   P1/P2 dependence correlations, the trend endpoint, the temperature
   endpoints, the temperature interaction, and the CF trace entropies.
-Status as of 2026-10-03:
+Status as of 2026-10-03 UTC:
 
 - `make check` rebuilds everything from scratch without errors, undefined
   references, or overfull boxes. All figures, generated macros, and `main.pdf`
   then match `build_manifest.json` bit for bit (Section 9).
-- The 127 repository tests pass (`python -m pytest`): the original 123 plus 4
-  for the fragility audit. The tests do not cover `paper/scripts/`.
+- The 137 repository tests pass (`python -m pytest`, run 2026-10-03 UTC): the
+  original 123, plus 4 for the fragility audit and 10 for the build-manifest
+  checker in `paper/scripts/`.
 
 ## 7. Open decisions for the authors
 
@@ -167,7 +170,8 @@ settings changed the text extents. Fixes:
   `make check` and `make manifest` targets (see `README.md`).
 
 In this environment the committed figures were already the pinned output, so
-the style reset left them byte-identical. Three checks confirm the fix:
+the style reset left them byte-identical. Three checks, all run by Claude in a
+single container (one TeX Live 2023 installation), support the fix:
 
 - **Fresh environment.** A fresh checkout in a fresh virtual environment with
   only `requirements-figures.txt` installed reproduces all 15 figure and macro
@@ -214,8 +218,9 @@ accept or edit:
 > were reviewed, verified, and revised by the authors, who take full
 > responsibility for all content of this paper.
 
-`main.tex` is unchanged on this point, because this is an attestation that only
-the authors can make.
+At this stage `main.tex` was left unchanged on this point, because this is an
+attestation that only the authors can make. Section 10 records the wording that
+replaced it.
 
 **Experiment priorities.** The verification agrees with running the
 second-model replication first and `B=2,4` second. It recommends deferring the
@@ -224,3 +229,75 @@ probably end `not_resolved`. Its protocol is now marked deferred. None of the
 protocols can be executed as written. Each first needs a finalized model and
 its pinned revision, a passing decoder equivalence check where relevant, an
 emitted machine freeze, and a validation-only run.
+
+## 10. Second verification round (2026-10-03 UTC)
+
+A second independent review of commit `a0a0fe6` accepted the main body of the
+build fix. Its local Matplotlib 3.10.7, against the pinned 3.11.2, supports the
+environment-drift explanation. The review asked for three further changes.
+
+**PDF checker guardrails.** The reviewer showed that under a different TeX build
+the checker returned exit code 0 even when `main.pdf` had changed arbitrarily.
+Claude reproduced this: with the old checker, a manifest recording another TeX
+build plus an inserted sentence still gave exit 0. `scripts/build_manifest.py`
+now behaves as follows:
+
+- **Recorded build.** Under the recorded TeX build and `SOURCE_DATE_EPOCH`, any
+  difference in `main.pdf` is a failure (exit 1).
+- **Other build.** Under another TeX build or epoch, the checker compares the
+  page count and the per-page normalized text with the manifest. The line-number
+  gutters are cropped away, and whitespace, hyphenation, and ligatures are
+  normalized while minus signs are kept. Any difference is a failure (exit 1). A
+  match is reported as `PDF NOT VERIFIED` (exit 3), never as a pass, because the
+  layout still needs manual inspection.
+- **Manifest writing.** `make manifest` now refuses to write when any build
+  output is missing, so `"missing"` can no longer enter the baseline. It also
+  refuses when the plotting environment is unpinned, and when `main.pdf` was not
+  built with the Makefile's `SOURCE_DATE_EPOCH`.
+
+The scenarios were rerun in a scratch worktree:
+
+| Scenario | Result |
+|---|---|
+| Clean rebuild | PASS, exit 0 |
+| Another epoch, identical content | PDF NOT VERIFIED, exit 3 |
+| Another epoch plus an inserted sentence | FAIL, exit 1 (text differs on pages 8 and 9) |
+| Recorded build plus an inserted sentence | FAIL, exit 1 |
+| An extra page | FAIL, exit 1 (14 pages; manifest records 13) |
+| Missing figure at check | FAIL, exit 1 |
+| `make manifest` with a missing figure | refused |
+
+Ten unit tests (`tests/test_build_manifest.py`) cover every branch of the PDF
+verdict and the missing-artifact refusals. Because only one TeX installation was
+available, the "another TeX build" case was simulated by changing the epoch.
+**Cross-environment validation is therefore not complete.** It still needs an
+independent rebuild in the pinned Python environment on a second machine, and
+ideally under a second TeX release.
+
+**AI Use Statement.** On the reviewer's recommendation, the sentence "All research
+design, experiments and analysis were conducted by the authors" was removed. The
+statement in `main.tex` now reads:
+
+> During research and manuscript preparation, the authors used OpenAI Codex and
+> Anthropic Claude to assist with manuscript drafting and revision, reference
+> formatting and checking, experimental-protocol development, code
+> implementation and debugging, figure generation, and statistical analysis.
+> The authors made the final research decisions, supervised computational
+> execution, and reviewed and verified the AI-assisted outputs, including
+> reported results and interpretations. The authors take full responsibility for
+> the paper.
+
+The second sentence is an attestation. It is accurate only if the authors have
+completed the verification it describes. This must be confirmed before
+submission.
+
+**Dates.** Dates in these records are UTC, and both this file and
+`CURRENT_PROGRESS.md` now say so, rather than shifting dates between time zones.
+
+**Retracted comment.** The earlier report of a duplicate row in the appendix
+configuration table was withdrawn by the reviewer. The source has one row per
+item, so no change was made.
+
+**Experiments.** The ordering is unchanged: the second-model replication first,
+then `B=2,4`, with cold sequential deferred. No protocol is frozen, and none may
+be launched as written.

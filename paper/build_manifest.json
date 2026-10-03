@@ -1,6 +1,7 @@
 {
   "environment": {
     "pdftex": "pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian)",
+    "pdftotext": "pdftotext version 24.02.0",
     "python_packages": {
       "contourpy": "1.3.3",
       "cycler": "0.12.1",
@@ -14,9 +15,27 @@
       "python-dateutil": "2.9.0.post0",
       "six": "1.16.0"
     },
-    "source_date_epoch": "set by the Makefile"
+    "source_date_epoch": "1790812800"
   },
   "note": "Regenerate with `make manifest` after an intended change to the figures or text.",
+  "pdf_text": {
+    "page_sha256": [
+      "81113463bad2332e12ff4305c509bca472fb6bbc388d3a365309e6c4b5e171a7",
+      "96b3fe5f72ac41f75718a0b603f7dc0e03ee1ce12cd1292ca46799fbc73ec654",
+      "75fd1ead1f360c9b663b105ab6f82542f329f2b12ce4f09fea374ff37af1ef78",
+      "b3f131776437af3ecbcc26ddaff84df3fe761b5255da12448c9f308ebc344217",
+      "c25b472196d27c914d51bac9e70564fcfcb21b4ae76049e7cbc3b63c9153e7ca",
+      "0bf16a207d9d5bc0d5860f7589757b045708e5347fc768c1c037a6da94613edb",
+      "12fc66f113cda2eb3d7b6d298d93c288b448f35be343544fd3b4c7986938684a",
+      "bc5f0c81ed9f1302bb0f011440a4e72f9643ba5ab704d733904d2f9b91188d07",
+      "ef84423faeb7fc3ff1c6bd9a007ebfa5999e8aa9f050c94f458949d52fb9b850",
+      "c8bed20da31883fd6a5fda81b612ebdb99c0a5ffe3a551236d70e1e5ba6e1fce",
+      "042a605436d32ed947bc146f34276a921a483babf61f0d709e83b75e4b2365b0",
+      "0d07b9b747e5a40ca1902e5080872b157ddda0ea7a17764da83701e453519740",
+      "beea45d7d22c9764b56d113d18b9191ce7bab75a6ef365c06a057b59e09b19f3"
+    ],
+    "pages": 13
+  },
   "python_outputs": {
     "figures/fig1_overview.pdf": "c2648a76622a06757f10694f087778f301e98e2def9703f84e24441eebe6db1d",
     "figures/fig1_overview.png": "cd641176c411c67e5e5a277718d16c729098ee142e0b096f0f334c96382f5311",
@@ -35,6 +54,6 @@
     "generated/temperature_numbers.tex": "dea94aac394773cbdf0fe3575e9205b7b4b4c04f8089dc82d8acb81ddbf0d9bc"
   },
   "tex_outputs": {
-    "main.pdf": "71e01b043e37f00e1c1fe326c97339067b4b843352659ab859df6fb85020e441"
+    "main.pdf": "6194c81d25259d6f969d0a5975cde54fe806072ee9bf3a5322b5513d19b7a2a9"
   }
 }

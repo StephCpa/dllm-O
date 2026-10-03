@@ -1,7 +1,7 @@
 # Cold Sequential Decoding Versus Confidence-First: Pre-Freeze Draft
 
 **Protocol version:** `cold-sequential-freeze-v1` (proposed)  
-**Status:** **deferred** after independent review (2026-10-03). Launch is not
+**Status:** **deferred** after independent review (2026-10-03 UTC). Launch is not
 recommended at this stage, because the design needs a new non-inferiority margin
 and is probably underpowered on the current panel (Section 6). Kept for reference
 only. It is not frozen and not authorized for GPU launch.

@@ -27,9 +27,12 @@ prints at about 6--7 pt. Keep that width if you change them.
 
 ## Reproducible build
 
-The committed figures, generated macros, and `main.pdf` are bit-reproducible.
-`build_manifest.json` records their SHA-256 hashes and the environment that
-produced them. To verify from a clean checkout:
+The committed figures, generated macros, and `main.pdf` are bit-reproducible
+in the recorded environment: the pinned Python packages plus TeX Live 2023.
+This has been verified in one environment only; independent verification on a
+second machine is still pending. `build_manifest.json` records the SHA-256
+hashes and the environment that produced them. To verify from a clean
+checkout:
 
 ```bash
 python3.11 -m venv .venv
@@ -47,13 +50,31 @@ rebuilds the PDF, and compares the hashes.
   the scripts print a warning, and the figures render but are not
   bit-identical.
 - **`main.pdf`** also depends on the TeX distribution. The Makefile fixes
-  `SOURCE_DATE_EPOCH`, so rebuilds with the recorded TeX build (TeX Live 2023,
-  pdfTeX 1.40.25) are byte-identical. With another TeX release, `make check`
-  reports the difference as expected drift; compare the page count and
-  extracted text instead.
+  `SOURCE_DATE_EPOCH`, so a rebuild with the recorded TeX build (TeX Live 2023,
+  pdfTeX 1.40.25) and the recorded epoch must be byte-identical; any
+  difference is a failure. With another TeX build or epoch, the PDF cannot be
+  checked bit for bit. The checker then compares the page count and the
+  per-page normalized text with the manifest. Line numbers are cropped away;
+  whitespace, hyphenation, and ligatures are normalized; minus signs are
+  kept. Any difference is a failure, and a match is reported as
+  `PDF NOT VERIFIED`, never as a pass, because the layout still needs a
+  manual look.
+
+`scripts/build_manifest.py --check` exits with:
+
+| Code | Status | Meaning |
+|---:|---|---|
+| 0 | `PASS` | Every figure, macro, and `main.pdf` is bit-identical. |
+| 1 | `FAIL` | A figure or macro differs or is missing; `main.pdf` differs under the recorded build; or, under another build, the page count or text differs. |
+| 3 | `PDF NOT VERIFIED` | Figures and macros are bit-identical, but `main.pdf` was built with another TeX build or epoch. Its page count and text match the manifest, or could not be compared because `pdfinfo`/`pdftotext` are missing. Inspect the layout manually. |
+
+Under `make check`, any nonzero code makes `make` itself fail; the `STATUS:`
+line shows which case applies.
 
 After an intended change to a figure or the text, rebuild in the pinned
-environment and run `make manifest`; it refuses to run in an unpinned one.
+environment and run `make manifest`. It refuses to write a manifest if any
+build output is missing, if the plotting environment is unpinned, or if
+`main.pdf` was not built with the Makefile's `SOURCE_DATE_EPOCH`.
 
 `REVISION_NOTES_20261001.md` lists the changes in the current revision and
 the decisions still open for the authors.
