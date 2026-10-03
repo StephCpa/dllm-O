@@ -68,23 +68,27 @@ Last updated: 2026-10-03 UTC. All dates in this file are UTC.
    current submission requirements before uploading.
 5. Decide which follow-up experiments to run. Priorities after the
    2026-10-03 UTC simulated review:
-   - **P0, E1:** validation on unseen problems
+   - **P0, E2 first:** the CF-resample control
+     (`protocols/cf_resample_control_prefreeze_draft_20261003.md`). Its decoder
+     mode is implemented and tested. It costs about a sixth of E1 and may change
+     the mechanism paragraph that E1 is interpreted against.
+   - **P0, E1 second:** validation on unseen problems
      (`protocols/unseen_problem_validation_prefreeze_draft_20261003.md`). At
      least 400 new problems; 200 gives only 0.56 power even at the observed
      effect.
-   - **P0, E2:** the CF-resample control
-     (`protocols/cf_resample_control_prefreeze_draft_20261003.md`). Its decoder
-     mode is implemented and tested.
    - **P0, E3:** problem-level reanalysis on the server's raw records
-     (`scripts/problem_level_reanalysis.py`, CPU only).
+     (`scripts/problem_level_reanalysis.py`, CPU only). Run it before either GPU
+     experiment. See `reports/progress_after_pre_review_20261003.md` for the
+     full sequence.
    - **P1:** the second-model replication and `B=2,4`. Cold sequential remains
      deferred.
 
    No protocol is frozen or authorized for launch. Each first needs a
    finalized model and pinned revision, any decoder equivalence check, an
-   emitted machine freeze, and a validation-only run. Before any new GPU run,
-   also measure how often CF's position choice differs between float32 and
-   bfloat16 confidences (`reports/prior_work_decoder_alignment_20261003.md`).
+   emitted machine freeze, and a validation-only run. Before E2, also measure
+   how often CF's position choice differs between float32 and bfloat16
+   confidences (`reports/prior_work_decoder_alignment_20261003.md`). This is a
+   short GPU job, one forward pass per stored state.
 6. Confirm the prior-work claims now in the Introduction and Related Work
    against the current version of Ni et al. (arXiv 2601.15165): Pass@k curves,
    block size, temperature, random orders, and how its random and

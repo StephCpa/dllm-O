@@ -140,14 +140,18 @@ on the server's raw rollout records in this work cycle.
 - Decoder unit tests verify that the new mode is identical to CF at zero
   temperature and behaves as expected on a controlled toy distribution.
 - The latest branch passes `146` Python tests.
-- `make all` completes successfully and produces a 13-page ACL-format PDF;
-  the main-text budget remains within the current target.
-- `make check` on the current machine fails because the local plotting and TeX
-  environment differs from the pinned environment. The failure is a
-  reproducibility-environment mismatch, not a LaTeX or manuscript-content
-  failure. Final verification must run in the pinned environment.
-- The wording-only manuscript tightening is preserved in local commit
-  `b5a61c7` in the review checkout. It has not been pushed from this session.
+- `make all` completes successfully and produces a 13-page ACL-format PDF.
+  After `b5a61c7`, the Conclusion ran two lines onto page 9; two redundant
+  sentences in Section 7 were removed, and the main text again ends on page 8.
+- `make check` on a machine outside the pinned environment is expected not to
+  pass. It reports `STATUS: FAIL` only when figures or macros differ, as with
+  an unpinned plotting stack. When only the TeX build differs, it reports
+  `PDF NOT VERIFIED` (exit 3). In the pinned environment, the rebuilt PDF and
+  refreshed manifest pass with `STATUS: PASS`. Final verification must run in
+  the pinned environment.
+- The wording-only manuscript tightening is commit `b5a61c7`, now pushed. It
+  did not rebuild `main.pdf` or refresh `build_manifest.json`; a follow-up
+  commit does both.
 
 ## 5. Main Remaining Scientific Risks
 
@@ -200,10 +204,15 @@ before the final manuscript claims any practical implication.
 1. Run `scripts/problem_level_reanalysis.py` on the server's raw records.
 2. Export the random-subset majority-vote and mathematical-equivalence results
    with fixed seeds and bootstrap metadata.
-3. Run the float32/bfloat16 CF position-selection agreement audit on stored
-   masked states, if the required trace fields are available.
-4. Check every new result against the evidence ledger before changing the main
+3. Check every new result against the evidence ledger before changing the main
    text. Post-outcome analyses must remain labeled exploratory.
+
+### Short GPU job before E2
+
+- Run the float32/bfloat16 CF position-selection agreement audit on stored
+  masked states, if the required trace fields are available. It needs one
+  forward pass of the 8B model per state, so it is GPU work, not CPU work.
+  E2's one-step diagnostic has the same requirement.
 
 ### First GPU experiment when resources are stable: E2
 
@@ -216,8 +225,9 @@ E2 is the highest-value mechanism experiment per GPU-hour:
 - requires a frozen runner, artifact schema, CF-preservation gate, and smoke
   audit before formal launch.
 
-The current draft proposes `delta_D=0.05` for the descriptive equivalence-style
-reading, but this remains an author decision and must be frozen before outcome
+The current draft uses `delta_D=0.05` as a frozen verdict threshold for the
+"filtering is not needed" reading of E2a, not as a descriptive quantity. It
+remains an author decision and must be justified and frozen before outcome
 generation.
 
 ### Second GPU experiment: E1
@@ -236,7 +246,8 @@ objection to the current random-ranking result.
 
 ### Lower-priority extensions
 
-- `B=2,4` to localize the onset between sequential and block-parallel decoding;
+- `B=2,4` to localize the onset between sequential and blockwise any-order
+  decoding;
 - a second model replication;
 - a length/completion audit or `L=512` condition;
 - development-set temperature tuning if deployment optimization becomes a

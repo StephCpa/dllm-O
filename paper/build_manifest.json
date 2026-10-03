@@ -20,14 +20,14 @@
   "note": "Regenerate with `make manifest` after an intended change to the figures or text.",
   "pdf_text": {
     "page_sha256": [
-      "9d5ddd95ddb4b1c9327ce3facd6d5911ec2ebbde58f59a8890f3920bdb0873d3",
+      "77256f04863e37dac97619ac4e4918317dcb3a18adefabd838033c30e0ff8e35",
       "921c7af16082ca5d2d8db877bb8a39741d807ba499aac99709d4ad01083afb29",
       "0573e584cfae12b7cced283044c4daa49498fbe148d9f5b9b53b4b896211bad4",
       "6357d31e4dec2af54dfc65adac58e0d284da45828e8aad63af083461fd46a3c8",
-      "3005413526b943aef4c81b39abb43bb24905757e6c3c6d45afdc12ee1f138428",
-      "33b1213fd371d47fa9fcf7a3c037ad166c369ee8c1b017783c9f06d22bc202be",
-      "6643937d899802d51fe648baa99f561e4f4bd881ac4ba92dd01f71c7a12d1451",
-      "70e485e2ff6e8dcfe774b17500a78b7bd619054e8c1cb729bc32c06186c71a12",
+      "4ea38f6703106d5f823bf9117b557fe9cc6c7a0a9b4439a85fa30fad0b747cc3",
+      "49ea85d75a316d907fec4f11648a2d03f9703aa790dc1da26c58b238c0d482d5",
+      "8b935bad22082c6f9f33663351d4dc618127abe54ef0a44a174d7ba9927ed5a3",
+      "5cc1482be957e3cb968f8086be1804435f1a9faea8f85f480bd10e114684d8d7",
       "ac5efacd2c1c4eabc8ad83e36866a3e1b3acbfe53c5318acb1421590ee0813f0",
       "bb99a96458fe202d6ea92ac248feabbb75ca0eb7a0015b6f0dcdc2a5882fce04",
       "22cb6db8ab974eb63eb398d8dd9f87b6717147626e3aeae7210bd60b0d8bb67b",
@@ -54,6 +54,6 @@
     "generated/temperature_numbers.tex": "90c12387629e0f674fa2fc70389174ca9248f15ef102d063204d2ab876cc71e1"
   },
   "tex_outputs": {
-    "main.pdf": "ad0d2caeae54819e0434d03d4486bbc03d3f57128d13169247b0314846dba12c"
+    "main.pdf": "7d1d33252f2b24c0ae847a73bda67dcfc19536641ac3c1ebd64042efcc1a76ae"
   }
 }
